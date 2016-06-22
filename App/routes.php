@@ -1,5 +1,5 @@
 <?php
-use App\Containers\Env;
+use App\Providers\EnvProvider as Env;
 
 add_action('admin_menu', function() {
     add_menu_page(Env::getEnv('PAGE_TITLE','blah'), Env::getEnv('MENU_NAME', 'JN Plugin Name'),'manage_options', Env::getEnv('MENU_SLUG', 'jn-plugin'), function() {

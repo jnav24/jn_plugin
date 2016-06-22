@@ -11,7 +11,7 @@ License: GPL2
 
 require_once 'App/bootstrap.php';
 
-use App\Containers\MigrationsRunner;
+use App\Providers\MigrationProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +23,33 @@ use App\Containers\MigrationsRunner;
 */
 
 register_activation_hook(__FILE__, function() {
-    MigrationsRunner::migrate();
+    MigrationProvider::migrate();
 });
 
 register_deactivation_hook(__FILE__,function() {
-    MigrationsRunner::rollback();
+    MigrationProvider::rollback();
 });
+
+/*
+	create a page and build out an array like this to save
+
+	$page = array(
+		'module_banner_0' => [
+			0 => 'img.jpg'
+		],
+		'module_slideshow_0' => [
+			0 => [
+				'img.jpg'
+			]
+		],
+		'module_text_0' => [
+			'title' => '',
+			'text' => ''
+		]
+		'module_banner_1' => [
+			0 => 'img.jpg'
+		]
+	)
+
+	<input name="[module_banner][]">
+*/

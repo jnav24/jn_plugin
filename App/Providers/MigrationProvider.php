@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Containers;
+namespace App\Providers;
 
-class MigrationsRunner
+class MigrationProvider
 {
     private static function run($method)
     {
-        $files = scandir(__DIR__.'/../Migrations');
+        $files = scandir(__DIR__ . '/../Migrations');
 
         foreach($files as $file)
         {

@@ -1,7 +1,7 @@
 <?php
-namespace App\Containers;
+namespace App\Providers;
 
-class Env
+class EnvProvider
 {
 	private $file = '.env';
 	private $path = __DIR__;

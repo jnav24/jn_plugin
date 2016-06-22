@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Containers\Env;
+use App\Providers\EnvProvider;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /*
@@ -13,7 +13,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 |
 */
 
-$env = new Env();
+$env = new EnvProvider();
 $env->setPath(__DIR__ . '/../');
 $env->load();
 

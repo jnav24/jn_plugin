@@ -7,8 +7,10 @@
         "psr-4" : {
             "App\\Containers\\" : "App/Containers",
             "App\\Controllers\\" : "App/Controllers",
+            "App\\Exceptions\\" : "App/Exceptions",
             "App\\Models\\" : "App/Models",
-            "App\\Migrations\\" : "App/Migrations"
+            "App\\Migrations\\" : "App/Migrations",
+            "App\\Providers\\" : "App/Providers"
         }
     },
     "require" : {
