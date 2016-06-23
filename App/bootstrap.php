@@ -1,12 +1,8 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Containers\TwigContainer;
-use App\Models\Options;
-use App\Providers\EnvProvider;
+use App\Providers\EnvProvider as Env;
 use Illuminate\Database\Capsule\Manager as Capsule;
-
-$twig = new TwigContainer(__DIR__.'/Views', new Options());
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +13,7 @@ $twig = new TwigContainer(__DIR__.'/Views', new Options());
 |
 */
 
-$env = new EnvProvider();
+$env = new Env();
 $env->setPath(__DIR__ . '/../');
 $env->load();
 
@@ -39,11 +35,11 @@ $capsule->addConnection([
     'username' => DB_USER,
     'password' => DB_PASSWORD,
     'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix' => ''
+    'collation' => $wpdb->get_charset_collate(),
+    'prefix' => Env::getEnv('PREFIX', '')
 ]);
 $capsule->setAsGlobal();
-//$capsule->bootEloquent();
+$capsule->bootEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +51,7 @@ $capsule->setAsGlobal();
 */
 
 add_action('admin_enqueue_scripts',function() {
-    wp_enqueue_style('hmstyles', plugins_url('main.css',__FILE__));
+    wp_enqueue_style('hmstyles', plugins_url('main.css', __FILE__));
     wp_enqueue_script("jquery");
     wp_enqueue_media();
 });

@@ -4,7 +4,7 @@ namespace App\Migrations;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class TemplateMigration
+class PageMigration
 {
     public function up()
     {

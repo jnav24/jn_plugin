@@ -20,7 +20,6 @@ class TwigContainer extends TwigProvider
 
     private function setOptions()
     {
-        // Get the options_value from options table
         $results = $this->optionsModel->geturl();
         
         $this->options['base_url'] = $results['option_value'];
