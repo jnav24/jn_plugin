@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use \Twig_Environment;
 use \Twig_Loader_Filesystem;
 use \Twig_SimpleFunction;
 use \Twig_SimpleFilter;
@@ -17,7 +18,7 @@ class TwigProvider
     /**
      * @var array
      */
-    protected $options;
+    public $options;
 
     public function __construct($htmlPath)
     {

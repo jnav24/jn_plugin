@@ -1,8 +1,12 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Containers\TwigContainer;
+use App\Models\Options;
 use App\Providers\EnvProvider;
 use Illuminate\Database\Capsule\Manager as Capsule;
+
+$twig = new TwigContainer(__DIR__.'/Views', new Options());
 
 /*
 |--------------------------------------------------------------------------
