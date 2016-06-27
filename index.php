@@ -13,6 +13,7 @@ require_once 'App/bootstrap.php';
 
 use App\Providers\MigrationProvider;
 
+var_dump($fake);
 /*
 |--------------------------------------------------------------------------
 | Registration Hooks 
@@ -27,7 +28,7 @@ register_activation_hook(__FILE__, function() {
 });
 
 register_deactivation_hook(__FILE__,function() {
-    MigrationProvider::rollback();
+//    MigrationProvider::rollback();
 });
 
 /*

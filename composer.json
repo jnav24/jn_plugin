@@ -1,6 +1,7 @@
 {
     "autoload" : {
         "files" : [
+            "App/Helpers/fake.php",
             "App/null.php",
             "App/routes.php"
         ],
@@ -18,6 +19,7 @@
         "tareq1988/wp-eloquent" : "dev-master"
     },
     "require-dev" : {
+        "fzaninotto/faker" : "1.6.*",
         "phpunit/phpunit" : "5.4.*",
         "mockery/mockery" : "0.9.*"
     }

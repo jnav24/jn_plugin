@@ -3,6 +3,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Providers\EnvProvider as Env;
 use Illuminate\Database\Capsule\Manager as Capsule;
+global $wpdb;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ $capsule->addConnection([
     'username' => DB_USER,
     'password' => DB_PASSWORD,
     'charset' => 'utf8',
-    'collation' => $wpdb->get_charset_collate(),
+    'collation' => 'utf8_unicode_ci',
     'prefix' => Env::getEnv('PREFIX', '')
 ]);
 $capsule->setAsGlobal();

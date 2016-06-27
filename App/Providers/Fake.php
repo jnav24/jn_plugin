@@ -1,0 +1,35 @@
+<?php
+namespace App\Providers;
+
+class Fake
+{
+    public $definitions = [];
+    public static $instance = null;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$instance))
+        {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    public function define($class, callable $attributes)
+    {
+        $this->definitions[$class] = $attributes;
+    }
+
+    public function create($class, $amount = 1)
+    {
+        $name = $class;
+        $class = "\\App\\Models\\{$class}";
+        $object = new $class();
+
+        for ($i = 0; $i < $amount; $i++) 
+        {
+            $object->create($this->definitions[$name]);
+        }
+    }
+}

@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 use App\Containers\TwigContainer;
 
-class TwigTest  extends TestCase
+class TwigTest extends TestCase
 {
     public function setUp()
     {}
@@ -18,6 +18,6 @@ class TwigTest  extends TestCase
         $twig = new TwigContainer(__DIR__ . '/../App/Views', $options);
         $actual = $twig->options;
         $expect = 'http://pi.dev/jn-wpPlugin_new';
-        $this->assertEquals($expect, $actual['base_url']); 
+        $this->assertEquals($expect, $actual['base_url']);
     }
 }
