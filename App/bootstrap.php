@@ -3,7 +3,23 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Providers\EnvProvider as Env;
 use Illuminate\Database\Capsule\Manager as Capsule;
-global $wpdb;
+
+/*
+|--------------------------------------------------------------------------
+| Fake
+|--------------------------------------------------------------------------
+|
+| Create fake data anywhere!
+|
+*/
+
+$GLOBALS['fake'] = App\Providers\Fake::getInstance();
+
+function fake()
+{
+    global $fake;
+    return $fake;
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -41,18 +57,3 @@ $capsule->addConnection([
 ]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
-
-/*
-|--------------------------------------------------------------------------
-| WordPress Additionals
-|--------------------------------------------------------------------------
-|
-| Additional addons for this WordPress Plugin.
-|
-*/
-
-add_action('admin_enqueue_scripts',function() {
-    wp_enqueue_style('hmstyles', plugins_url('main.css', __FILE__));
-    wp_enqueue_script("jquery");
-    wp_enqueue_media();
-});

@@ -8,12 +8,12 @@ Version: 0.1
 Author URI: http://www.justinnavarro.net
 License: GPL2
 */
+global $wpdb;
 
 require_once 'App/bootstrap.php';
 
 use App\Providers\MigrationProvider;
 
-var_dump($fake);
 /*
 |--------------------------------------------------------------------------
 | Registration Hooks 
@@ -30,6 +30,22 @@ register_activation_hook(__FILE__, function() {
 register_deactivation_hook(__FILE__,function() {
 //    MigrationProvider::rollback();
 });
+
+/*
+|--------------------------------------------------------------------------
+| WordPress Additionals
+|--------------------------------------------------------------------------
+|
+| Additional addons for this WordPress Plugin.
+|
+*/
+
+add_action('admin_enqueue_scripts',function() {
+    wp_enqueue_style('hmstyles', plugins_url('main.css', __FILE__));
+    wp_enqueue_script("jquery");
+    wp_enqueue_media();
+});
+
 
 /*
 	create a page and build out an array like this to save

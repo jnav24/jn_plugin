@@ -26,10 +26,11 @@ class Fake
         $name = $class;
         $class = "\\App\\Models\\{$class}";
         $object = new $class();
+        $create = $this->definitions[$name];
 
         for ($i = 0; $i < $amount; $i++) 
         {
-            $object->create($this->definitions[$name]);
+            $object->create($create(Faker::create()));
         }
     }
 }

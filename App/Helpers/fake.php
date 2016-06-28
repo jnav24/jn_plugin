@@ -1,7 +1,5 @@
 <?php
 
-$fake = App\Providers\Fake::getInstance();
-
 $fake->define('Pages', function(Faker\Generator $faker) {
     return [
         'page_content' => $faker->text,
@@ -13,9 +11,3 @@ $fake->define('Pages', function(Faker\Generator $faker) {
         'updated_at' => $faker->dateTime,
     ];
 });
-
-function fake($class, callable $attributes)
-{
-    $fake = App\Providers\Fake::getInstance();
-    $fake->define($class, $attributes);
-}
