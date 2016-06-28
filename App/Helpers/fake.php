@@ -1,6 +1,5 @@
 <?php
-
-$fake->define('Pages', function(Faker\Generator $faker) {
+fake()->define('Pages', function(Faker\Generator $faker) {
     return [
         'page_content' => $faker->text,
         'page_name' => $faker->name,

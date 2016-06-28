@@ -57,3 +57,34 @@ $capsule->addConnection([
 ]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
+
+/*
+|--------------------------------------------------------------------------
+| Autoload Helpers
+|--------------------------------------------------------------------------
+|
+| Get all the files in the Helpers.
+| Has to be after the global fake aka not in composer.
+|
+*/
+
+function auto_load()
+{
+    $filePath = 'App/Helpers';
+    if( $fileList = opendir($filePath) )
+    {
+        while( ($file = readdir($fileList)) !== FALSE )
+        {
+            if(!preg_match('/\.$/',$file) && preg_match('/.php$/', $file))
+            {
+                $path = $filePath . '/' . $file;
+                var_dump($path);
+                if(file_exists($path))
+                {
+                    require_once $path;
+                }
+            }
+        }
+    }
+}
+auto_load();

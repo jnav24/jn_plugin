@@ -1,6 +1,8 @@
 <?php
 namespace App\Providers;
 
+use Faker\Factory as Faker;
+
 class Fake
 {
     public $definitions = [];

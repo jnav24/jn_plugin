@@ -1,6 +1,5 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use App\Models\Pages;
 
 class PageListTest  extends TestCase
 {
@@ -12,6 +11,7 @@ class PageListTest  extends TestCase
 
     public function testGetAllPages()
     {
+        fake()->create('Pages', 1);
         $this->assertTrue(true);
     }
 }
