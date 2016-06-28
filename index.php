@@ -11,6 +11,7 @@ License: GPL2
 global $wpdb;
 
 require_once 'App/bootstrap.php';
+require_once 'App/routes.php';
 
 use App\Providers\MigrationProvider;
 

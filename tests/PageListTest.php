@@ -12,6 +12,6 @@ class PageListTest  extends TestCase
 
     public function testGetAllPages()
     {
-
+        $this->assertTrue(true);
     }
 }

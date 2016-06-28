@@ -1,5 +1,5 @@
 <?php
-use App\Providers\EnvProvider as Env; 
+use App\Providers\EnvProvider as Env;
 
 class EnvTest extends PHPUnit_Framework_TestCase
 {
