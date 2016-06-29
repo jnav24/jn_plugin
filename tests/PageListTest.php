@@ -12,10 +12,13 @@ class PageListTest  extends TestCase
         fake()->truncate();
     }
 
-    public function testGetAllPages()
+    public function testGetAllPagesReturnHighestId()
     {
-        fake()->create('Pages', 1);
-        var_dump(Pages::all()->toArray());
-        $this->assertTrue(true);
+        fake()->create('Pages', 10);
+        fake()->create('Pages', 15);
+        fake()->create('Pages', 26);
+
+        $pages = Pages::orderBy('page_id', 'desc')->first();
+        $this->assertEquals(51, $pages->page_id);
     }
 }

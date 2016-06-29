@@ -23,7 +23,7 @@ class Fake
         $this->definitions[$class] = $attributes;
     }
 
-    public function create($class, $amount = 1)
+    public function create($class, $amount = 1, $options = [])
     {
         $name = $class;
         $class = "\\App\\Models\\{$class}";
@@ -32,7 +32,7 @@ class Fake
 
         for ($i = 0; $i < $amount; $i++) 
         {
-            $object->create($create(Faker::create()));
+            $object->create($create(Faker::create()) + $options);
         }
     }
 
