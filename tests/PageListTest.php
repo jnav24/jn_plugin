@@ -7,7 +7,7 @@ class PageListTest  extends TestCase
 {
     public function setUp()
     {
-        $this->twig = new TwigProvider(__DIR__ . '/../App/views/tests');
+        $this->twig = new TwigProvider(__DIR__ . '/../App/resources/views/tests');
     }
 
     public function tearDown()

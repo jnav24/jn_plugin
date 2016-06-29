@@ -10,6 +10,11 @@ class PageController extends Controller
     }
 
     public function create()
+    {
+        return $this->getView('create-page.twig');
+    }
+    
+    public function edit()
     {}
 
     public function store($post)
