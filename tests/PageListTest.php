@@ -7,6 +7,7 @@ class PageListTest  extends TestCase
 {
     public function setUp()
     {
+        fake()->truncate();
         $this->twig = new TwigProvider(__DIR__ . '/../App/resources/views/tests');
     }
 

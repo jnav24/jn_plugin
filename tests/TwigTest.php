@@ -15,7 +15,7 @@ class TwigTest extends TestCase
         $options = \Mockery::mock('App\Models\Options');
         $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
 
-        $twig = new TwigContainer(__DIR__ . '/../App/views', $options);
+        $twig = new TwigContainer(__DIR__ . '/../App/resources/views', $options);
         $actual = $twig->options;
         $expect = 'http://pi.dev/jn-wpPlugin_new';
         $this->assertEquals($expect, $actual['base_url']);
