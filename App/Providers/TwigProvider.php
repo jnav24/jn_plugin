@@ -18,7 +18,7 @@ class TwigProvider
     /**
      * @var array
      */
-    public $options;
+    public $options = [];
 
     public function __construct($htmlPath)
     {
@@ -41,7 +41,7 @@ class TwigProvider
         return $this->twig->render($file, array_merge($this->options, $options));
     }
 
-    protected function createSimpleFunc($name, /*callable*/ $function)
+    protected function createSimpleFunc($name, $function)
     {
         if(!is_callable($function))
         {
@@ -51,7 +51,7 @@ class TwigProvider
         return $this->twig->addFunction(new Twig_SimpleFunction($name, $function));
     }
 
-    protected function createSimpleFilter($name, /*callable*/ $function)
+    protected function createSimpleFilter($name, $function)
     {
         if(!is_callable($function))
         {

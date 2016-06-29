@@ -78,7 +78,6 @@ function auto_load()
             if(!preg_match('/\.$/',$file) && preg_match('/.php$/', $file))
             {
                 $path = $filePath . '/' . $file;
-                var_dump($path);
                 if(file_exists($path))
                 {
                     require_once $path;
