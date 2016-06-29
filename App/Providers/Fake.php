@@ -35,4 +35,14 @@ class Fake
             $object->create($create(Faker::create()));
         }
     }
+
+    public function truncate()
+    {
+        foreach($this->definitions as $table => $callback)
+        {
+            $class = "\\App\\Models\\{$table}";
+            $object = new $class();
+            $object->truncate();
+        }
+    }
 }
