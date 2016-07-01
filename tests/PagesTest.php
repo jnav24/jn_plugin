@@ -2,11 +2,13 @@
 use PHPUnit\Framework\TestCase;
 use App\Models\Pages;
 use App\Providers\TwigProvider;
+use Faker\Factory as Faker;
 
-class PagesTest  extends TestCase
+class PagesTest extends TestCase
 {
     public function setUp()
     {
+        $this->faker = Faker::create();
         $this->path = __DIR__ . '/../App/resources/views';
         $this->twig = new TwigProvider($this->path);
     }
@@ -93,5 +95,23 @@ class PagesTest  extends TestCase
         $actual = Pages::count();
 
         $this->assertNotEquals($expect, $actual);
+    }
+    
+    public function testEditNewPageReturnsDataFromModules()
+    {
+        $options = Mockery::mock('App\Models\Options');
+        $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
+
+        $needle = $this->faker->name;
+        $pageContentFromDB = array(
+            'module_banner_0' => [
+                'banner_name' => $needle
+            ]
+        );
+
+        $page = new App\Controllers\PageController($options);
+        Pages::create(['page_content' => $page->serialize($pageContentFromDB)]);
+        $haystack = $page->edit(Pages::first()->toArray());
+        $this->assertContains($needle, $haystack);
     }
 }

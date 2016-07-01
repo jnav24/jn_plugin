@@ -69,5 +69,14 @@ add_action('admin_enqueue_scripts',function() {
 		]
 	)
 
-	<input name="[module_banner][]">
+	<input name="[modules][module_banner_0][]">
+	<input name="[modules][module_text_0][]">
+
+    Steps:
+    load page by url
+    go to index.php
+    get templates from db
+    get data from db
+    load data to template
+    display page
 */
