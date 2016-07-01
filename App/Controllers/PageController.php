@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Options;
 use App\Models\Pages;
+use Carbon\Carbon;
 
 class PageController extends Controller
 {
@@ -31,13 +32,33 @@ class PageController extends Controller
     }
 
     public function store($post)
-    {}
+    {
+        $page = new Pages();
+        $page->page_content = $post['page_content'];
+        $page->page_name = $post['page_name'];
+        $page->page_url = $post['page_url'];
+        $page->created_by = $post['modified_by'];
+        $page->modified_by = $post['modified_by'];
+        $page->created_at = Carbon::now();
+        $page->updated_at = Carbon::now();
+        $page->save();
+    }
 
     public function update($post)
-    {}
+    {
+        $page = Pages::find($post['page_id']);
+        $page->page_name = $post['page_name'];
+        $page->page_url = $post['page_url'];
+        $page->page_content = $this->serialize($post['page_content']);
+        $page->modified_by = $post['modified_by'];
+        $page->updated_at = Carbon::now();
+        $page->save();
+    }
 
-    public function destroy()
-    {}
+    public function destroy($id)
+    {
+        Pages::destroy($id);
+    }
     
     private function getPageModules($moduleContent)
     {

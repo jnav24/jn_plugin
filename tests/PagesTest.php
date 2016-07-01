@@ -11,6 +11,10 @@ class PagesTest extends TestCase
         $this->faker = Faker::create();
         $this->path = __DIR__ . '/../App/resources/views';
         $this->twig = new TwigProvider($this->path);
+
+        $options = Mockery::mock('App\Models\Options');
+        $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
+        $this->page = new App\Controllers\PageController($options);
     }
 
     public function tearDown()
@@ -50,21 +54,10 @@ class PagesTest extends TestCase
             'page_content' => 'Something',
             'page_name' => 'from test',
             'page_url' => 'from-test',
-            'created_by' => '1',
             'modified_by' => '1',
-            'created_at' => '2015-10-25 16:24:00',
-            'updated_at' => '2015-10-25 16:24:00',
         ];
 
-        $page = new Pages();
-        $page->page_content = $post['page_content'];
-        $page->page_name = $post['page_name'];
-        $page->page_url = $post['page_url'];
-        $page->created_by = $post['created_by'];
-        $page->modified_by = $post['modified_by'];
-        $page->created_at = $post['created_at'];
-        $page->updated_at = $post['updated_at'];
-        $page->save();
+        $this->page->store($post);
 
         $actual = Pages::first();
         $this->assertGreaterThan(0, $actual->page_id);
@@ -73,14 +66,19 @@ class PagesTest extends TestCase
     public function testUpdateReturnsNotEqual()
     {
         fake()->create('Pages', 10);
-        $id = 5;
+        $id = rand(1,10);
 
         $page = Pages::find($id);
         $expect = $page->page_url;
 
-        $page->page_url = "http://www.justinnavarro.net";
-        $page->save();
-        $actual = $page->page_url;
+        $post['page_id'] = $id;
+        $post['page_name'] = $page->page_name;
+        $post['page_content'] = $page->page_content;
+        $post['page_url'] = "http://www.justinnavarro.net";
+        $post['modified_by'] = 24;
+        $this->page->update($post);
+
+        $actual = Pages::find($id)->page_url;
 
         $this->assertNotEquals($expect, $actual);
     }
@@ -99,9 +97,6 @@ class PagesTest extends TestCase
     
     public function testEditNewPageReturnsDataFromModules()
     {
-        $options = Mockery::mock('App\Models\Options');
-        $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
-
         $needle = $this->faker->name;
         $pageContentFromDB = array(
             'module_banner_0' => [
@@ -109,9 +104,8 @@ class PagesTest extends TestCase
             ]
         );
 
-        $page = new App\Controllers\PageController($options);
-        Pages::create(['page_content' => $page->serialize($pageContentFromDB)]);
-        $haystack = $page->edit(Pages::first()->toArray());
+        Pages::create(['page_content' => $this->page->serialize($pageContentFromDB)]);
+        $haystack = $this->page->edit(Pages::first()->toArray());
         $this->assertContains($needle, $haystack);
     }
 }

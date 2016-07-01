@@ -16,6 +16,7 @@ class TwigContainer extends TwigProvider
         $this->setOptions();
         $this->getWpEditor();
         $this->rmSlashes();
+        $this->getCurrentUser();
     }
 
     private function setOptions()
@@ -38,6 +39,13 @@ class TwigContainer extends TwigProvider
         });
 
         return;
+    }
+
+    private function getCurrentUser()
+    {
+        $this->createSimpleFunc('getCurrentUser', function() {
+            return wp_get_current_user()->ID;
+        });
     }
 
     private function rmSlashes()
