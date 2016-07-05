@@ -25,6 +25,16 @@ abstract class Controller
         return $this->twig->render($file, $options);
     }
 
+    protected function getModule($file, array $options = [])
+    {
+        if(!file_exists($this->path . '/modules/' . $file))
+        {
+            return $this->twig->render('errors/module-404.twig', ['file' => $file]);
+        }
+
+        return $this->twig->render($file, $options);
+    }
+
     public function serialize($value)
     {
         return base64_encode(serialize($value));

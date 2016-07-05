@@ -14,7 +14,7 @@ class PageController extends Controller
 
     public function create()
     {
-        return $this->getView('create-page.twig');
+        return $this->getView('pages/page-create.twig');
     }
     
     public function edit($id)
@@ -65,7 +65,7 @@ class PageController extends Controller
         {
             $moduleArray = explode('_', $module);
             $moduleName = $moduleArray[0] . '_' . $moduleArray[1];
-            $pageContent .= $this->getView('modules/'.$moduleName.'.twig', ['content' => $content]);
+            $pageContent .= $this->getModules($moduleName.'.twig', ['content' => $content]);
         }
         
         return $pageContent;

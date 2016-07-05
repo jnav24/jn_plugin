@@ -32,6 +32,7 @@ register_deactivation_hook(__FILE__,function() {
 //    Migration::rollback();
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | WordPress Additionals
@@ -41,8 +42,13 @@ register_deactivation_hook(__FILE__,function() {
 |
 */
 
-add_action('admin_enqueue_scripts',function() {
-    wp_enqueue_style('hmstyles', plugins_url('main.css', __FILE__));
+add_action('admin_menu', function() {
+    $menu = new App\WP\MenuWP();
+    $menu->removeMenuItems(['Pages']);
+});
+
+add_action('admin_enqueue_scripts', function() {
+    wp_enqueue_style('jn_plugin_styles', plugins_url('style.css', __FILE__));
     wp_enqueue_script("jquery");
     wp_enqueue_media();
 });

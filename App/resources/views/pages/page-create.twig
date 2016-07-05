@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <h1>Create a Page</h1>
+
+    <div class="col_container">
+        <div class="col main_col">
+            <div class="list"></div>
+            <div class="create_page"></div>
+        </div>
+
+        <div class="col side_col">
+            {% include 'partials/save.twig' %}
+        </div>
+    </div>
+
+{% endblock %}

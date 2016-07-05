@@ -13,16 +13,16 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 |
 */
 
-$run = [
+$providers = [
     'fake' => App\Providers\FakeProvider::getInstance(),
     'mag' => App\Providers\MsgProvider::getInstance(),
     'session' => App\Providers\SessionProvider::getInstance(),
 ];
 
-foreach ($run as $key => $value)
+foreach ($providers as $funcName => $class)
 {
-    $GLOBALS[$key] = $value;
-    eval("function $key() { global $$key; return $$key; }");
+    $GLOBALS[$funcName] = $class;
+    eval("function $funcName() { global $$funcName; return $$funcName; }");
 }
 
 /*
@@ -72,7 +72,7 @@ $capsule->bootEloquent();
 |
 */
 
-function auto_load()
+function loadHelpers()
 {
     $filePath = __DIR__ . '/Helpers';
     if( $fileList = opendir($filePath) )
@@ -90,4 +90,4 @@ function auto_load()
         }
     }
 }
-auto_load();
+loadHelpers();

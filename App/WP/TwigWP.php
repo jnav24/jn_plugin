@@ -31,6 +31,8 @@ class TwigWP extends TwigManager
         $this->options['theme_path'] = $results['option_value'] . 'wp-content/themes/' . Env::getEnv('THEME_NAME', '') . '/';
         $this->options['plugin_img_path'] = $this->options['plugin_path'] . 'images/';
         $this->options['theme_img_path'] = $this->options['theme_path'] . 'images/';
+        $this->options['add_page_url'] = $this->options['plugin_url'] . Env::getEnv('SUBMENU_SLUG', 'jn-subplugin');
+        $this->options['main_page_url'] = $this->options['plugin_url'] . Env::getEnv('MENU_SLUG', 'jn-plugin');
     }
 
     private function getWpEditor()

@@ -1,0 +1,81 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <h2>All Pages <a href="{{ add_page_url }}" class="add-new-h2">Add New</a></h2>
+
+    <table class="wp-list-table widefat fixed striped posts">
+        <thead>
+        <tr>
+            <th><a href="#"><span>Page Title</span></a></th>
+            <th><a href="#"><span>Created By</span></a></th>
+            <th><a href="#"><span>Modified By</span></a></th>
+            <th><a href="#"><span>Last Updated</span></a></th>
+            <th><a href="#"><span>Delete</span></a></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td><strong><a href="{{ plugin_url }}{{ page.page_url|lower }}">{{ page.page_name }}</a></strong></td>
+                <td>{{ page.created_by }}</td>
+                <td>{{ page.modified_by }}</td>
+                <td>{{ page.updated_at|date("m/d/Y h:i a") }}</td>
+                <td><a href="#" class="remove_media" data-page="{{ page.page_name }}" data-id="{{ page.page_id }}">Delete Page</a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td align="center" colspan="5" style="font-weight: bold">There are no pages.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        jQuery(function($) {
+            $('.wp-list-table').on('click','.remove_media', function() {
+                var page_id = $(this).data('id'),
+                    page_name = $(this).data('page'),
+                    row = $(this).closest('tr');
+
+
+                if(confirm("Are you want to remove this?"))
+                {
+                    $.ajax({
+                        url: "{{ plugin_url }}menu&deletePage=" + template_id + "&templatePage=" + template_page,
+                        contentType: 'application/json',
+                        success: function(response) {
+                            console.log(response);
+                            row.fadeOut(function() {
+                                $(this).remove();
+                            });
+
+                            // response = $.parseJSON(response);
+                            // console.log(response.result);
+                            // response = jQuery.parseJSON(response);
+
+                            // console.log(response);
+
+                            /*resultClass = 'deleteSuccess';
+
+                             if( response['result'].indexOf('Error') > -1 )
+                             {
+                             resultClass = 'deleteError';
+                             }
+
+                             $('.deleteMsg').addClass(resultClass).text(response.result).fadeIn();
+
+                             setTimeout(function() {
+                             $('.deleteMsg').fadeOut('slow',function() {
+                             $(this).removeClass(resultClass).text('');
+                             });
+                             }, 8000);
+
+                             tr.fadeOut('slow', function() {
+                             $(this).remove();
+                             });*/
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}
