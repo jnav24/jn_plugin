@@ -1,14 +1,14 @@
 <?php
-namespace App\Containers;
+namespace App\WP;
 
 use App\Models\Options;
-use App\Providers\EnvProvider as Env;
-use App\Providers\TwigProvider;
+use App\Managers\EnvManager as Env;
+use App\Managers\TwigManager;
 
-class TwigContainer extends TwigProvider
+class TwigWP extends TwigManager
 {
     private $optionsModel;
-    
+
     public function __construct($htmlPath, Options $optionsModel)
     {
         parent::__construct($htmlPath);
@@ -22,7 +22,7 @@ class TwigContainer extends TwigProvider
     private function setOptions()
     {
         $results = $this->optionsModel->geturl();
-        
+
         $this->options['base_url'] = $results['option_value'];
         $this->options['admin_url'] = $results['option_value'] . '/wp-admin/';
         $this->options['plugin_url'] = $this->options['admin_url'] . 'admin.php?page=' . Env::getEnv('PREFIX', 'wp_');

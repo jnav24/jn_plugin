@@ -13,7 +13,7 @@ global $wpdb;
 require_once 'App/bootstrap.php';
 require_once 'App/routes.php';
 
-use App\Providers\MigrationProvider;
+use App\Managers\MigrationManager as Migration;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +25,11 @@ use App\Providers\MigrationProvider;
 */
 
 register_activation_hook(__FILE__, function() {
-    MigrationProvider::migrate();
+    Migration::migrate();
 });
 
 register_deactivation_hook(__FILE__,function() {
-//    MigrationProvider::rollback();
+//    Migration::rollback();
 });
 
 /*

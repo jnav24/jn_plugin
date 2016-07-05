@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace App\Managers;
 
-class MigrationProvider
+class MigrationManager
 {
     private static function run($method)
     {
@@ -18,12 +18,12 @@ class MigrationProvider
             }
         }
     }
-    
+
     public static function migrate()
     {
         self::run('up');
     }
-    
+
     public static function rollback()
     {
         self::run('down');

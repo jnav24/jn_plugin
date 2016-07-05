@@ -1,8 +1,10 @@
 <?php
+use App\Controllers\PageController;
 use App\Controllers\PageListController;
-use App\Providers\EnvProvider as Env;
+use App\Managers\EnvManager as Env;
 
 $pageList = new PageListController();
+$page = new PageController();
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,7 @@ add_action('admin_menu', function() {
 
 add_action('admin_menu', function() {
     add_submenu_page(Env::getEnv('MENU_SLUG', 'jn-plugin'), Env::getEnv('SUBMENU_TITLE', 'Add Page'), Env::getEnv('SUBMENU_NAME', 'Add Page'), 'manage_options', Env::getEnv('SUBMENU_SLUG', 'jn-subplugin'), function() {
-        global $pageList;
-        echo $pageList->create();
+        global $page;
+        echo $page->create();
     });
 });

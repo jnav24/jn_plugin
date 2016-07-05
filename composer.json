@@ -7,9 +7,11 @@
             "App\\Containers\\" : "App/Containers",
             "App\\Controllers\\" : "App/Controllers",
             "App\\Exceptions\\" : "App/Exceptions",
+            "App\\Managers\\" : "App/Managers",
             "App\\Models\\" : "App/Models",
             "App\\Migrations\\" : "App/Migrations",
-            "App\\Providers\\" : "App/Providers"
+            "App\\Providers\\" : "App/Providers",
+            "App\\WP\\" : "App/WP"
         }
     },
     "require" : {

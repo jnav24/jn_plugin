@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Managers;
 
 use \Twig_Environment;
 use \Twig_Loader_Filesystem;
@@ -8,7 +8,7 @@ use \Twig_SimpleFunction;
 use \Twig_SimpleFilter;
 use App\Exceptions\TwigException;
 
-class TwigProvider
+class TwigManager
 {
     /**
      * @var string

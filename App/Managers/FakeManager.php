@@ -1,9 +1,9 @@
 <?php
-namespace App\Providers;
+namespace App\Managers;
 
 use Faker\Factory as Faker;
 
-class Fake
+class FakeManager
 {
     public $definitions = [];
     public static $instance = null;
@@ -30,7 +30,7 @@ class Fake
         $object = new $class();
         $create = $this->definitions[$name];
 
-        for ($i = 0; $i < $amount; $i++) 
+        for ($i = 0; $i < $amount; $i++)
         {
             $object->create($create(Faker::create()) + $options);
         }

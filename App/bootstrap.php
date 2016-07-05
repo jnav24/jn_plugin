@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Providers\EnvProvider as Env;
+use App\Managers\EnvManager as Env;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /*
@@ -13,12 +13,29 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 |
 */
 
-$GLOBALS['fake'] = App\Providers\Fake::getInstance();
+$GLOBALS['fake'] = App\Managers\FakeManager::getInstance();
 
 function fake()
 {
     global $fake;
     return $fake;
+}
+
+/*
+|--------------------------------------------------------------------------
+| MSG
+|--------------------------------------------------------------------------
+|
+| Flash messaging
+|
+*/
+
+$GLOBALS['mag'] = App\Managers\MsgManager::getInstance();
+
+function msg()
+{
+    global $msg;
+    return $msg;
 }
 
 /*
@@ -70,7 +87,7 @@ $capsule->bootEloquent();
 
 function auto_load()
 {
-    $filePath = 'App/Helpers';
+    $filePath = __DIR__ . '/Helpers';
     if( $fileList = opendir($filePath) )
     {
         while( ($file = readdir($fileList)) !== FALSE )

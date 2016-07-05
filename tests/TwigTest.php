@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use App\Containers\TwigContainer;
+use App\WP\TwigWP;
 
 class TwigTest extends TestCase
 {
@@ -12,16 +12,12 @@ class TwigTest extends TestCase
         Mockery::close();
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
     public function testOptionsArrayReturnEqualBaseUrl()
     {
         $optionsModel = Mockery::mock('overload:App\Models\Options');
         $optionsModel->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
 
-        $twig = new TwigContainer(__DIR__ . '/../App/resources/views', $optionsModel);
+        $twig = new TwigWP(__DIR__ . '/../App/resources/views', $optionsModel);
 
         $actual = $twig->options;
         $expect = 'http://pi.dev/jn-wpPlugin_new';

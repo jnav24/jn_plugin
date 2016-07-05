@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Containers\TwigContainer;
+use App\WP\TwigWP;
 use App\Models\Options;
 
 abstract class Controller
@@ -12,7 +12,7 @@ abstract class Controller
     public function __construct()
     {
         $this->path = __DIR__ . '/../resources/views';
-        $this->twig = new TwigContainer($this->path, new Options());
+        $this->twig = new TwigWP($this->path, new Options());
     }
 
     protected function getView($file, array $options = [])

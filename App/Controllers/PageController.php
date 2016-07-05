@@ -8,8 +8,8 @@ class PageController extends Controller
 {
     public function index()
     {
-        $page = [];
-        return $this->getView('page.twig', $page);
+        $page = Pages::all()->toArray();
+        return $this->getView('list-page.twig', ['pages' => $page]);
     }
 
     public function create()

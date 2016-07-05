@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use App\Models\Pages;
-use App\Providers\TwigProvider;
+use App\Managers\TwigManager;
 use Faker\Factory as Faker;
 
 class PagesTest extends TestCase
@@ -14,7 +14,7 @@ class PagesTest extends TestCase
     {
         $this->faker = Faker::create();
         $this->path = __DIR__ . '/../App/resources/views';
-        $this->twig = new TwigProvider($this->path);
+        $this->twig = new TwigManager($this->path);
 
         $options = Mockery::mock('overload:App\Models\Options');
         $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
