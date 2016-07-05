@@ -2,16 +2,17 @@
 namespace App\Controllers;
 
 use App\Containers\TwigContainer;
+use App\Models\Options;
 
 abstract class Controller
 {
     protected $path;
     protected $twig;
 
-    public function __construct($options)
+    public function __construct()
     {
         $this->path = __DIR__ . '/../resources/views';
-        $this->twig = new TwigContainer($this->path, $options);
+        $this->twig = new TwigContainer($this->path, new Options());
     }
 
     protected function getView($file, array $options = [])

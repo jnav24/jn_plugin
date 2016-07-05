@@ -6,13 +6,17 @@ use Faker\Factory as Faker;
 
 class PagesTest extends TestCase
 {
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function setUp()
     {
         $this->faker = Faker::create();
         $this->path = __DIR__ . '/../App/resources/views';
         $this->twig = new TwigProvider($this->path);
 
-        $options = Mockery::mock('App\Models\Options');
+        $options = Mockery::mock('overload:App\Models\Options');
         $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
         $this->page = new App\Controllers\PageController($options);
     }
@@ -20,6 +24,7 @@ class PagesTest extends TestCase
     public function tearDown()
     {
         fake()->truncate();
+        Mockery::close();
     }
 
     public function testgetViewReturn404()

@@ -1,17 +1,11 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\Options;
 use App\Models\Pages;
 use Carbon\Carbon;
 
 class PageController extends Controller
 {
-    public function __construct(Options $options)
-    {
-        parent::__construct($options);
-    }
-
     public function index()
     {
         $page = [];

@@ -8,14 +8,21 @@ class TwigTest extends TestCase
     {}
 
     public function tearDown()
-    {}
+    {
+        Mockery::close();
+    }
 
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function testOptionsArrayReturnEqualBaseUrl()
-    { 
-        $options = \Mockery::mock('App\Models\Options');
-        $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
+    {
+        $optionsModel = Mockery::mock('overload:App\Models\Options');
+        $optionsModel->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
 
-        $twig = new TwigContainer(__DIR__ . '/../App/resources/views', $options);
+        $twig = new TwigContainer(__DIR__ . '/../App/resources/views', $optionsModel);
+
         $actual = $twig->options;
         $expect = 'http://pi.dev/jn-wpPlugin_new';
         $this->assertEquals($expect, $actual['base_url']);
