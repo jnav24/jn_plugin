@@ -17,6 +17,7 @@ class TwigWP extends TwigManager
         $this->getWpEditor();
         $this->rmSlashes();
         $this->getCurrentUser();
+        $this->sessionInstance();
     }
 
     private function setOptions()
@@ -55,5 +56,12 @@ class TwigWP extends TwigManager
         });
 
         return;
+    }
+    
+    private function sessionInstance()
+    {
+        $this->createSimpleFunc('session', function() {
+            return new \App\Managers\SessionManager();
+        });
     }
 }

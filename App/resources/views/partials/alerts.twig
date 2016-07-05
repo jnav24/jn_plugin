@@ -1,0 +1,13 @@
+{% if(session().has('msg_notify.message')) %}
+    <div class="alert alert-{{ session().get('msg_notify.class') }} {{ session().has('msg_notify.close') ? 'alert-retain' : '' }}">
+        {% if(session().has('msg_notify.close')) %}
+            <div class="close">&times;</div>
+        {% endif %}
+
+        {{ session().get('msg_notify.message') }}
+    </div>
+
+    <script>
+        // run alert js
+    </script>
+{% endif %}

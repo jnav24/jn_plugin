@@ -6,36 +6,23 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 /*
 |--------------------------------------------------------------------------
-| Fake
+| Global functions
 |--------------------------------------------------------------------------
 |
-| Create fake data anywhere!
+| Global functions that returns a provider class
 |
 */
 
-$GLOBALS['fake'] = App\Managers\FakeManager::getInstance();
+$run = [
+    'fake' => App\Providers\FakeProvider::getInstance(),
+    'mag' => App\Providers\MsgProvider::getInstance(),
+    'session' => App\Providers\SessionProvider::getInstance(),
+];
 
-function fake()
+foreach ($run as $key => $value)
 {
-    global $fake;
-    return $fake;
-}
-
-/*
-|--------------------------------------------------------------------------
-| MSG
-|--------------------------------------------------------------------------
-|
-| Flash messaging
-|
-*/
-
-$GLOBALS['mag'] = App\Managers\MsgManager::getInstance();
-
-function msg()
-{
-    global $msg;
-    return $msg;
+    $GLOBALS[$key] = $value;
+    eval("function $key() { global $$key; return $$key; }");
 }
 
 /*

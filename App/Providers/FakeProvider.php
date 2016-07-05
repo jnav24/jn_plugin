@@ -1,9 +1,9 @@
 <?php
-namespace App\Managers;
+namespace App\Providers;
 
 use Faker\Factory as Faker;
 
-class FakeManager
+class FakeProvider
 {
     public $definitions = [];
     public static $instance = null;

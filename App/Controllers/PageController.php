@@ -36,6 +36,8 @@ class PageController extends Controller
         $page->created_at = Carbon::now();
         $page->updated_at = Carbon::now();
         $page->save();
+
+//        msg()->success('Page has been updated successfully.');
     }
 
     public function update($post)
