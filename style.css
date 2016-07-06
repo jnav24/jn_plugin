@@ -1,7 +1,1 @@
-.error-404 {
-    background: #f00;
-    color: #fff;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    text-align: center;
-}
+h1.jn_plugin_h1{margin-bottom:20px}.col_container{display:block}.col_container:after,.col_container:before{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}.col_container .col{float:left;text-align:center;width:33.33333%}.col_container .col:nth-of-type(1){text-align:left;width:66.66667%}.col_container .main_col{display:block}.col_container .main_col:after,.col_container .main_col:before{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}.col_container .main_col .modules{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;float:left;text-align:center;width:33.33333%}.col_container .main_col .modules:nth-of-type(2){text-align:left;width:66.66667%}.error.error-404{background:#f00;color:#fff;margin-bottom:20px;padding:10px 0;text-align:center}.col_container{height:auto}.col_container .main_col{height:auto}.col_container .modules.module_list,.col_container .modules .module_create{background:#fff;height:500px;padding:10px}.col_container .modules .module_create{margin-left:20px}

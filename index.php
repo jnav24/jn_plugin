@@ -29,7 +29,7 @@ register_activation_hook(__FILE__, function() {
 });
 
 register_deactivation_hook(__FILE__,function() {
-//    Migration::rollback();
+    Migration::rollback();
 });
 
 
@@ -50,6 +50,7 @@ add_action('admin_menu', function() {
 add_action('admin_enqueue_scripts', function() {
     wp_enqueue_style('jn_plugin_styles', plugins_url('style.css', __FILE__));
     wp_enqueue_script("jquery");
+    wp_enqueue_script("jqueryui","//code.jquery.com/ui/1.11.4/jquery-ui.js");
     wp_enqueue_media();
 });
 

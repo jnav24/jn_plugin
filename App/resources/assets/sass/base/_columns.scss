@@ -1,0 +1,16 @@
+.col_container {
+    @include clearfix;
+
+    .col {
+        @include colgriduneven(8, 2);
+    }
+
+    .main_col {
+        @include clearfix;
+
+        .modules {
+            @include box-sizing(border-box);
+            @include colgriduneven(8, 2, true, 2);
+        }
+    }
+}

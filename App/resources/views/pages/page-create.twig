@@ -1,17 +1,45 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <h1>Create a Page</h1>
+    <h1 class="jn_plugin_h1">Create a Page</h1>
 
     <div class="col_container">
         <div class="col main_col">
-            <div class="list"></div>
-            <div class="create_page"></div>
+            <div class="modules module_list">
+                {% for module in modules %}
+                    <div class="module_each" data-module="{{ module.module_file }}"><img src="{{ plugin_img_path }}{{ module.module_image }}"></div>
+                {% else %}
+                    <div class="module_none">There are no modules.</div>
+                {% endfor %}
+            </div>
+            <div class="modules">
+                <div class="module_create"></div>
+            </div>
         </div>
 
         <div class="col side_col">
-            {% include 'partials/save.twig' %}
+            {% include 'partials/save.twig' with {'save' : 'create'} %}
         </div>
     </div>
 
+    <script>
+        jQuery(function($) {
+            // TODO:
+            // add a remove button
+
+            $('.module_list .module_each').draggable({
+                appendTo: "body",
+                helper: "clone"
+            });
+
+            $('.module_create').droppable({
+                accept: ":not(.ui-sortable-helper)",
+                drop: function(event, ui) {
+                    var str = ui.draggable.context.outerHTML,
+                        module = ui.draggable.context.attributes['data-module'].value;
+                    $(str.replace("ui-draggable ui-draggable-handle", "")).html("<input type='hidden' name='modules[]' value='"+ module +"'>").appendTo(this)
+                }
+            }).sortable();
+        });
+    </script>
 {% endblock %}

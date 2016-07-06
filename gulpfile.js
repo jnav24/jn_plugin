@@ -9,8 +9,8 @@
 
 // ::::::::::::::: Sass
 
-var sassop = 'css/';
-var sassip = 'sass/';
+var sassop = './';
+var sassip = 'App/resources/assets/sass/';
 var ops = 'compressed';
 var sass = 'nodeSass';
 
@@ -138,4 +138,4 @@ gulp.task('watch', function(){
 
 // ===========================================================================
 // Default Task
-gulp.task('default', ['watch','phpunit']);
+gulp.task('default', ['watch','nodeSass']);

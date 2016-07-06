@@ -1,10 +1,10 @@
 <?php
+
 use App\Controllers\PageController;
 use App\Controllers\PageListController;
 use App\Managers\EnvManager as Env;
-use App\Models\Pages;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
-$allPages = Pages::all();
 $pageList = new PageListController();
 $page = new PageController();
 $parent_slug = Env::getEnv('PREFIX', 'jn_') . Env::getEnv('MENU_SLUG', 'jn-plugin');
@@ -50,20 +50,44 @@ add_action('admin_menu', function() {
 |
 */
 
-if(!empty($allTemplates))
+if(Capsule::schema()->hasTable('pages'))
 {
-    add_action('admin_menu', function() {
-        global $allPages;
+    $allPages = Capsule::table('pages')->get();
+    if(!empty($allPages))
+    {
+        add_action('admin_menu', function() {
+            global $allPages;
 
-        foreach($allPages as $singlePage)
-        {
-            $submenuName = Env::getEnv('PREFIX', 'jn_') . $singlePage['page_url'];
-            $singlePage['page_name'] = ucfirst($singlePage['page_name']);
+            foreach($allPages as $singlePage)
+            {
+                $submenuName = Env::getEnv('PREFIX', 'jn_') . $singlePage['page_url'];
+                $singlePage['page_name'] = ucfirst($singlePage['page_name']);
 
-            add_submenu_page(null, $singlePage['page_name'], $singlePage['page_name'], 'manage_options', $submenuName, function() {
-                global $page, $singlePage;
-                echo $page->edit($singlePage['page_id']);
-            });
-        }
-    });
+                add_submenu_page(null, $singlePage['page_name'], $singlePage['page_name'], 'manage_options', $submenuName, function() {
+                    global $page, $singlePage;
+                    echo $page->edit($singlePage['page_id']);
+                });
+            }
+        });
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Page Save
+|--------------------------------------------------------------------------
+|
+*/
+
+if(isset($_POST['page_save']))
+{
+    if($_POST['page_save'] == 'create')
+    {
+        $page->store($_POST);
+    }
+
+    if($_POST['page_save'] == 'update')
+    {
+        $page->update($_POST);
+    }
 }

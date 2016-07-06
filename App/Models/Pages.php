@@ -15,4 +15,5 @@ class Pages extends Model
         'created_at',
         'updated_at'
     ];
+    protected $table = 'jn_plugin_pages';
 }

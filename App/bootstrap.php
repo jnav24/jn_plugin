@@ -57,7 +57,7 @@ $capsule->addConnection([
     'password' => DB_PASSWORD,
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'prefix' => Env::getEnv('PREFIX', '')
+    'prefix' => Env::getEnv('PREFIX')
 ]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();

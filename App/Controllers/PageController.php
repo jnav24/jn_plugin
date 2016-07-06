@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Pages;
+use App\Models\Modules;
 use Carbon\Carbon;
 
 class PageController extends Controller
@@ -14,7 +15,8 @@ class PageController extends Controller
 
     public function create()
     {
-        return $this->getView('pages/page-create.twig');
+        $modules = Modules::all()->toArray();
+        return $this->getView('pages/page-create.twig', ['modules' => $modules]);
     }
     
     public function edit($id)
