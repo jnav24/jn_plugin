@@ -2,13 +2,12 @@
 
 use App\Controllers\PageController;
 use App\Controllers\PageListController;
-use App\Managers\EnvManager as Env;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $pageList = new PageListController();
 $page = new PageController();
-$parent_slug = Env::getEnv('PREFIX', 'jn_') . Env::getEnv('MENU_SLUG', 'jn-plugin');
-$child_slug = Env::getEnv('PREFIX', 'jn_') . Env::getEnv('SUBMENU_SLUG', 'jn-subplugin');
+$parent_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('MENU_SLUG', 'jn-plugin');
+$child_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('SUBMENU_SLUG', 'jn-subplugin');
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +16,11 @@ $child_slug = Env::getEnv('PREFIX', 'jn_') . Env::getEnv('SUBMENU_SLUG', 'jn-sub
 |
 */
 
-add_action('admin_menu', function() {
-    global $parent_slug;
-    add_menu_page(Env::getEnv('MENU_TITLE','JN Plugin Title'), Env::getEnv('MENU_NAME', 'JN Plugin Name'),'manage_options', $parent_slug, function() {
-        global $pageList;
+add_action('admin_menu', function() use ($parent_slug, $pageList) {
+    $pageTitle = env()->getEnv('MENU_TITLE','JN Plugin Title');
+    $pageName = env()->getEnv('MENU_NAME', 'JN Plugin Name');
+
+    add_menu_page($pageTitle, $pageName,'manage_options', $parent_slug, function() use ($pageList) {
         echo $pageList->index();
     }, '','2.3');
 });
@@ -32,10 +32,11 @@ add_action('admin_menu', function() {
 |
 */
 
-add_action('admin_menu', function() {
-    global $parent_slug, $child_slug;
-    add_submenu_page($parent_slug, Env::getEnv('SUBMENU_TITLE', 'Add Page'), Env::getEnv('SUBMENU_NAME', 'Add Page'), 'manage_options', $child_slug, function() {
-        global $page;
+add_action('admin_menu', function() use ($parent_slug, $child_slug, $page) {
+    $pageTitle = env()->getEnv('SUBMENU_TITLE','Add Page');
+    $pageName = env()->getEnv('SUBMENU_NAME', 'Add Page');
+
+    add_submenu_page($parent_slug, $pageTitle, $pageName, 'manage_options', $child_slug, function() use ($page) {
         echo $page->create();
     });
 });
@@ -55,16 +56,13 @@ if(Capsule::schema()->hasTable('pages'))
     $allPages = Capsule::table('pages')->get();
     if(!empty($allPages))
     {
-        add_action('admin_menu', function() {
-            global $allPages;
-
+        add_action('admin_menu', function() use ($page, $allPages) {
             foreach($allPages as $singlePage)
             {
-                $submenuName = Env::getEnv('PREFIX', 'jn_') . $singlePage->page_url;
+                $submenuName = env()->getEnv('PREFIX', 'jn_') . $singlePage->page_url;
                 $singlePage->page_name = ucfirst($singlePage->page_name);
 
-                add_submenu_page(null, $singlePage->page_name, $singlePage->page_name, 'manage_options', $submenuName, function() {
-                    global $page, $singlePage;
+                add_submenu_page(null, $singlePage->page_name, $singlePage->page_name, 'manage_options', $submenuName, function() use ($page, $singlePage) {
                     echo $page->edit($singlePage->page_id);
                 });
             }

@@ -63,6 +63,11 @@ class PageController extends Controller
         $pageContent = '';
         $moduleContent['page_content'] = $this->unserialize($moduleContent['page_content']);
 
+        if(!is_array($moduleContent['page_content']))
+        {
+            return $pageContent;
+        }
+
         foreach($moduleContent['page_content'] as $module => $content)
         {
             $moduleArray = explode('_', $module);

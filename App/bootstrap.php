@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Managers\EnvManager as Env;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /*
@@ -14,6 +13,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 */
 
 $providers = [
+    'env' => App\Providers\EnvProvider::getInstance(),
     'fake' => App\Providers\FakeProvider::getInstance(),
     'msg' => App\Providers\MsgProvider::getInstance(),
     'session' => App\Providers\SessionProvider::getInstance(),
@@ -34,9 +34,8 @@ foreach ($providers as $funcName => $class)
 |
 */
 
-$env = new Env();
-$env->setPath(__DIR__ . '/../');
-$env->load();
+env()->setPath(__DIR__ . '/../');
+env()->load();
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +56,7 @@ $capsule->addConnection([
     'password' => DB_PASSWORD,
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'prefix' => Env::getEnv('PREFIX')
+    'prefix' => env()->getEnv('PREFIX')
 ]);
 
 $capsule->addConnection([

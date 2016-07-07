@@ -1,11 +1,22 @@
 <?php
-namespace App\Managers;
+namespace App\Providers;
 
-class EnvManager
+class EnvProvider
 {
     private $file = '.env';
     private $path = __DIR__;
     public $loadDefaults = false;
+    public static $instance = null;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$instance))
+        {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
 
     public function setPath($path)
     {

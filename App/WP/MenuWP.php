@@ -1,13 +1,11 @@
 <?php
 namespace App\WP;
 
-use App\Managers\EnvManager as Env;
-
 class MenuWp
 {
     public function removeMenuItems(array $items)
     {
-        if(wp_get_current_user()->user_login == Env::getEnv('ADMIN_USER'))
+        if(wp_get_current_user()->user_login == env()->getEnv('ADMIN_USER'))
         {
             return;
         }
