@@ -67,7 +67,7 @@ class PageController extends Controller
         {
             $moduleArray = explode('_', $module);
             $moduleName = $moduleArray[0] . '_' . $moduleArray[1];
-            $pageContent .= $this->getModules($moduleName.'.twig', ['content' => $content]);
+            $pageContent .= $this->getModule($moduleName.'.twig', ['content' => $content]);
         }
         
         return $pageContent;

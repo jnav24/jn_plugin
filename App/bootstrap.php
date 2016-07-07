@@ -15,7 +15,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 $providers = [
     'fake' => App\Providers\FakeProvider::getInstance(),
-    'mag' => App\Providers\MsgProvider::getInstance(),
+    'msg' => App\Providers\MsgProvider::getInstance(),
     'session' => App\Providers\SessionProvider::getInstance(),
 ];
 
@@ -59,6 +59,18 @@ $capsule->addConnection([
     'collation' => 'utf8_unicode_ci',
     'prefix' => Env::getEnv('PREFIX')
 ]);
+
+$capsule->addConnection([
+    'driver' => 'mysql',
+    'database' => DB_NAME,
+    'host' => DB_HOST,
+    'username' => DB_USER,
+    'password' => DB_PASSWORD,
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => isset($wpdb->prefix) ? $wpdb->prefix : 'wp_'
+], 'wordpress');
+
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 

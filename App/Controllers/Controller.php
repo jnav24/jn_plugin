@@ -32,7 +32,7 @@ abstract class Controller
             return $this->twig->render('errors/module-404.twig', ['file' => $file]);
         }
 
-        return $this->twig->render($file, $options);
+        return $this->twig->render('modules/' . $file, $options);
     }
 
     public function serialize($value)

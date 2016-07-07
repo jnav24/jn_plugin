@@ -1,11 +1,13 @@
 <?php
 namespace App\Models;
 
-use \WeDevs\ORM\Eloquent\Model as Model;
+// use \WeDevs\ORM\Eloquent\Model as Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Options extends Model
 {
     protected $primaryKey = 'option_id';
+    protected $connection = 'wordpress';
     public $timestamps = false;
 
     public function scopeGeturl($query)

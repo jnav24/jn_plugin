@@ -10,5 +10,4 @@ class Modules extends Model
         'module_file',
         'module_image',
     ];
-    protected $table = 'jn_plugin_modules';
 }

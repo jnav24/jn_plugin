@@ -60,12 +60,12 @@ if(Capsule::schema()->hasTable('pages'))
 
             foreach($allPages as $singlePage)
             {
-                $submenuName = Env::getEnv('PREFIX', 'jn_') . $singlePage['page_url'];
-                $singlePage['page_name'] = ucfirst($singlePage['page_name']);
+                $submenuName = Env::getEnv('PREFIX', 'jn_') . $singlePage->page_url;
+                $singlePage->page_name = ucfirst($singlePage->page_name);
 
-                add_submenu_page(null, $singlePage['page_name'], $singlePage['page_name'], 'manage_options', $submenuName, function() {
+                add_submenu_page(null, $singlePage->page_name, $singlePage->page_name, 'manage_options', $submenuName, function() {
                     global $page, $singlePage;
-                    echo $page->edit($singlePage['page_id']);
+                    echo $page->edit($singlePage->page_id);
                 });
             }
         });

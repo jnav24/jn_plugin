@@ -17,7 +17,7 @@ use App\Managers\MigrationManager as Migration;
 
 /*
 |--------------------------------------------------------------------------
-| Registration Hooks 
+| Registration Hooks
 |--------------------------------------------------------------------------
 |
 | Can only be called here.
