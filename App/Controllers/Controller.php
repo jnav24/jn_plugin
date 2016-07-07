@@ -35,13 +35,24 @@ abstract class Controller
         return $this->twig->render('modules/' . $file, $options);
     }
 
-    public function serialize($value)
+    protected function serialize($value)
     {
         return base64_encode(serialize($value));
     }
 
-    public function unserialize($value)
+    protected function unserialize($value)
     {
         return unserialize(base64_decode($value));
+    }
+    
+    protected function urlFormat($string)
+    {
+        $string = html_entity_decode(strip_tags($string));
+        $string = preg_replace('/\s+/', ' ', trim($string));
+        $string = str_replace(' ', '-', $string);
+        $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+        $string = strtolower($string);
+
+        return $string;
     }
 }

@@ -21,7 +21,7 @@ class PageController extends Controller
     
     public function edit($id)
     {
-        $page = Pages::find($id)->first()->toArray();
+        $page = Pages::find($id)->toArray();
         $moduleContent = $this->getPageModules($page);
         unset($page['page_content']);
         return $this->getView('modules/base.twig', ['modules' => $moduleContent, 'page' => $page]);
@@ -30,9 +30,9 @@ class PageController extends Controller
     public function store($post)
     {
         $page = new Pages();
-        $page->page_content = $post['page_content'];
         $page->page_name = $post['page_name'];
-        $page->page_url = $post['page_url'];
+        $page->page_url = $this->urlFormat($post['page_name']);
+        $page->page_content = $this->serialize($post['modules']);
         $page->created_by = $post['modified_by'];
         $page->modified_by = $post['modified_by'];
         $page->created_at = Carbon::now();
@@ -46,10 +46,11 @@ class PageController extends Controller
     {
         $page = Pages::find($post['page_id']);
         $page->page_name = $post['page_name'];
-        $page->page_url = $post['page_url'];
+        $page->page_url = $this->urlFormat($post['page_name']);
         $page->page_content = $this->serialize($post['page_content']);
         $page->modified_by = $post['modified_by'];
         $page->updated_at = Carbon::now();
+
         $page->save();
     }
 
@@ -67,6 +68,21 @@ class PageController extends Controller
         {
             return $pageContent;
         }
+
+        /**
+         * TODO::
+         * This array $moduleContent['page_content'] is currently
+         * array(
+         *  0 => 'module_banner',
+         *  1 => 'module_text',
+         * );
+         *
+         * it is supposed to be
+         * array(
+         *  'module_banner' => '',
+         *  'module_text' => '',
+         * );
+         */
 
         foreach($moduleContent['page_content'] as $module => $content)
         {

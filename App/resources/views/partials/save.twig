@@ -1,2 +1,6 @@
-Saving...
-<input type="hidden" name="page_save" value="{{ save }}">
+<div class="col_wrapper">
+    <input type="hidden" name="page_save" value="{{ save }}">
+    <input type="hidden" name="modified_by" value="{{ getCurrentUser() }}">
+    <input type="submit" name="btn_save" value="Save">
+    <a href="{{ main_page_url }}">Cancel</a>
+</div>

@@ -1,4 +1,5 @@
 idea/
+idea/*
 vendor/
 vendor/*
 node_modules
