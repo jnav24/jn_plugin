@@ -3,20 +3,26 @@
 {% block content %}
     <h1 class="jn_plugin_h1">Create a Page</h1>
 
-    <label for="page_name">Enter Page Name:</label>
-    <input type="text" name="page_name">
+    <div class="row_title col_wrapper">
+        <label for="page_name">Enter Page Name:</label>
+        <input type="text" name="page_name">
+    </div>
 
-    <div class="col_container">
-        <div class="col main_col">
-            <div class="modules module_list">
+    <div class="col_container left_big">
+        <div class="col main_col right_big clearfix">
+            <div class="col modules module_list col_wrapper">
                 {% for module in modules %}
-                    <div class="module_each" data-module="{{ module.module_file }}"><img src="{{ plugin_img_path }}{{ module.module_image }}"></div>
+                    <div class="module_each" data-module="{{ module.module_file }}">
+                        {% if module.module_image is not empty %}
+                            <img src="{{ plugin_img_path }}{{ module.module_image }}">
+                        {% endif %}
+                    </div>
                 {% else %}
                     <div class="module_none">There are no modules.</div>
                 {% endfor %}
             </div>
-            <div class="modules">
-                <div class="module_create"></div>
+            <div class="col modules">
+                <div class="module_create col_wrapper"></div>
             </div>
         </div>
 

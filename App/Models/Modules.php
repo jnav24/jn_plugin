@@ -10,4 +10,5 @@ class Modules extends Model
         'module_file',
         'module_image',
     ];
+    public $timestamps = false;
 }

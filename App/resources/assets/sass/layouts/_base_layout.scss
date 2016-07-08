@@ -1,0 +1,18 @@
+.col_container {
+    height: auto;
+
+    .main_col {
+        height: auto;
+    }
+}
+
+.col_wrapper {
+    background: #fff;
+    @include box-shadow(0 0 1px rgba(#000,0.6));
+}
+
+.save_container {
+    .col_wrapper {
+        margin-left: 20px;
+    }
+}

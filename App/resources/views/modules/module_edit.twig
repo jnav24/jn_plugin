@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <h1 class="jn_plugin_h1">Edit Modules</h1>
+    <h4 class="alert alert-warning">Editing and/or deleting current modules from this page will not update pages using those modules and the name of the files associated with them.</h4>
+    <a href="#" class="add_module">Add Module</a>
+
+    <div class="col_container left_big">
+        <div class="col main_col col_wrapper modules_edit">
+            {% for module in modules %}
+                {% include 'partials/module_edit.twig' %}
+            {% else %}
+                There are no modules.
+            {% endfor %}
+        </div>
+
+        <div class="col side_col">
+            {% include 'partials/save.twig' with {'action' : 'module-update'} %}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        jQuery(function($) {
+            $(".add_module").on("click", function() {
+                var module = '{% spaceless %}{% include 'partials/module_edit.twig' with {'module' : {'module_image' : plugin_img_path ~ 'placeholder.jpg', 'module_file' : ' _ '}} %}{% endspaceless %}';
+
+                $(module).appendTo('.modules_edit');
+            });
+        });
+    </script>
+{% endblock %}

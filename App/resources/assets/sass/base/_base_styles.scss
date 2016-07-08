@@ -1,3 +1,7 @@
 h1.jn_plugin_h1 {
     margin-bottom: 20px;
 }
+
+.clearfix {
+    @include clearfix;
+}

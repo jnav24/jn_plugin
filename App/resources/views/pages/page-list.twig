@@ -31,27 +31,7 @@
     </table>
     <script type="text/javascript">
         jQuery(function($) {
-            $('.wp-list-table').on('click','.remove_media', function() {
-                var page_id = $(this).data('id'),
-                    row = $(this).closest('tr');
 
-                if(confirm("Are you want to remove this?"))
-                {
-                    $.ajax({
-                        url: "{{ main_page_url }}",
-                        method: "POST",
-                        data: {
-                            "page_id" : page_id,
-                            "page_action" : "delete"
-                        },
-                        success: function(response) {
-                            row.fadeOut(function() {
-                                $(this).remove();
-                            });
-                        }
-                    });
-                }
-            });
         });
     </script>
 {% endblock %}

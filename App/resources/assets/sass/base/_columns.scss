@@ -1,16 +1,23 @@
 .col_container {
     @include clearfix;
 
-    .col {
-        @include colgriduneven(8, 2);
+    &.left_big, .left_big {
+        > .col {
+            @include colgriduneven(8, 2);
+        }
     }
 
-    .main_col {
-        @include clearfix;
-
-        .modules {
-            @include box-sizing(border-box);
+    &.right_big, .right_big {
+        > .col {
             @include colgriduneven(8, 2, true, 2);
         }
+    }
+
+    &.half, .half {
+        @include colgrid(0.5, 3);
+    }
+
+    &.third, .third {
+        @include colgrid(0.5, 3);
     }
 }

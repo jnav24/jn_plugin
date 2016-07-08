@@ -1,0 +1,16 @@
+<div class="module_each third">
+    <div class="col">
+        <input type="hidden" value="{{ module.module_id }}" name="module_id[]">
+        <input type="hidden" value="{{ module.module_image }}" name="module_image[]">
+        <p>image container</p>
+    </div>
+
+    <div class="col">
+        <label for="module_file">Enter filename for module</label>
+        <input type="text" value="{{ getModuleName(module.module_file) }}" name="module_file[]">
+    </div>
+
+    <div class="col">
+        <a href="#" class="remove_module" data-id="{{ module.module_id }}">Delete</a>
+    </div>
+</div>

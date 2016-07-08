@@ -1,9 +1,52 @@
-.error {
-    &.error-404 {
-        background: #f00;
+@mixin emptyMsg {
+    &:empty {
+        background: rgba(#000,0);
+        margin-bottom: 0;
+        padding: 0;
+    }
+}
+
+.alert {
+    margin-bottom: 20px;
+    padding: 20px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    @include border-radius(5px);
+
+    .close {
+        cursor: pointer;
+        @include posa(50%,20px,n,n);
+        @include transform(translateY(-50%));
+    }
+
+    &.alert-error {
+        background: lighten(red,20%);
         color: #fff;
-        margin-bottom: 20px;
-        padding: 10px 0;
-        text-align: center;
+        @include emptyMsg;
+    }
+
+    &.alert-warning {
+        background: lighten(#FFCA28,20%);
+        color: darken(#FFCA28,20%);
+        @include emptyMsg;
+    }
+
+    &.alert-success {
+        background: lighten(#8BC34A,20%);
+        color: darken(#8BC34A,20%);
+        @include emptyMsg;
+    }
+}
+
+input.error {
+    border: 1px solid red;
+    outline: 0;
+    @include box-shadow(0 0 0 red);
+
+    &:focus {
+        border: 1px solid red;
+        outline: 0;
+        @include box-shadow(0 0 0 red);
     }
 }

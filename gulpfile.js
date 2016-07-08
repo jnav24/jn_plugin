@@ -16,8 +16,8 @@ var sass = 'nodeSass';
 
 // ::::::::::::::: JS
 
-var jsop = 'js/';
-var jsip = 'js-dev/';
+var jsop = './';
+var jsip = 'App/resources/assets/js/';
 var jsDir = './';
 var phpDir = 'tests/';
 
@@ -138,4 +138,4 @@ gulp.task('watch', function(){
 
 // ===========================================================================
 // Default Task
-gulp.task('default', ['watch','phpunit']);
+gulp.task('default', ['watch','nodeSass','scripts']);

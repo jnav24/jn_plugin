@@ -18,6 +18,7 @@ class TwigWP extends TwigManager
         $this->getCurrentUser();
         $this->sessionInstance();
         $this->getUserName();
+        $this->getModuleName();
     }
 
     private function setOptions()
@@ -71,6 +72,19 @@ class TwigWP extends TwigManager
     {
         $this->createSimpleFunc('getUserName', function($id) {
             return get_user_by('ID', $id)->user_login;
+        });
+    }
+    
+    private function getModuleName()
+    {
+        $this->createSimpleFunc('getModuleName', function($module) {
+            $explode = explode('_', $module);
+            if(!isset($explode[1]))
+            {
+                return 'Error: Name is not correct';
+            }
+            unset($explode[0]);
+            return implode('_', $explode);
         });
     }
 }

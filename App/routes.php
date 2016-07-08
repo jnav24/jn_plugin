@@ -1,13 +1,14 @@
 <?php
 
+use App\Controllers\ModuleController;
 use App\Controllers\PageController;
 use App\Controllers\PageListController;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $pageList = new PageListController();
 $page = new PageController();
-$parent_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('MENU_SLUG', 'jn-plugin');
-$child_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('SUBMENU_SLUG', 'jn-subplugin');
+$module = new ModuleController();
+$parent_slug = env()->getEnv('PREFIX', 'jn_') . "list_pages";
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,29 @@ $child_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('SUBMENU_SLUG', 'jn
 */
 
 add_action('admin_menu', function() use ($parent_slug, $pageList) {
-    $pageTitle = env()->getEnv('MENU_TITLE','JN Plugin Title');
-    $pageName = env()->getEnv('MENU_NAME', 'JN Plugin Name');
+    $pageTitle = "JN Plugin";
+    $pageName = "JN Plugin";
 
     add_menu_page($pageTitle, $pageName,'manage_options', $parent_slug, function() use ($pageList) {
         echo $pageList->index();
     }, '','2.3');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Modules page
+|--------------------------------------------------------------------------
+|
+*/
+
+add_action('admin_menu', function() use ($parent_slug, $module) {
+    $child_slug = env()->getEnv('PREFIX', 'jn_') . "edit_modules";
+    $pageTitle = "Edit Modules";
+    $pageName = "Edit Modules";
+
+    add_submenu_page($parent_slug, $pageTitle, $pageName, 'manage_options', $child_slug, function() use ($module) {
+        echo $module->edit();
+    });
 });
 
 /*
@@ -32,9 +50,10 @@ add_action('admin_menu', function() use ($parent_slug, $pageList) {
 |
 */
 
-add_action('admin_menu', function() use ($parent_slug, $child_slug, $page) {
-    $pageTitle = env()->getEnv('SUBMENU_TITLE','Add Page');
-    $pageName = env()->getEnv('SUBMENU_NAME', 'Add Page');
+add_action('admin_menu', function() use ($parent_slug,  $page) {
+    $child_slug = env()->getEnv('PREFIX', 'jn_') . "add_page";
+    $pageTitle = "Add Page";
+    $pageName = "Add Page";
 
     add_submenu_page($parent_slug, $pageTitle, $pageName, 'manage_options', $child_slug, function() use ($page) {
         echo $page->create();
@@ -89,6 +108,12 @@ if(isset($_POST['page_action']))
             break;
         case "delete":
             $page->destroy($_POST);
+            break;
+        case "module-update":
+            $module->update($_POST);
+            break;
+        case "module-delete":
+            $module->destroy($_POST);
             break;
     }
 }

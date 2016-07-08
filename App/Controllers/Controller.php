@@ -50,9 +50,14 @@ abstract class Controller
         $string = html_entity_decode(strip_tags($string));
         $string = preg_replace('/\s+/', ' ', trim($string));
         $string = str_replace(' ', '-', $string);
-        $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+        $string = preg_replace('/[^A-Za-z0-9_-]/', '', $string);
         $string = strtolower($string);
 
         return $string;
+    }
+
+    protected function makeModuleSafe($string)
+    {
+        return str_replace('-', '_', $this->urlFormat($string));
     }
 }
