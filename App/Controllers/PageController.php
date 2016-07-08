@@ -54,9 +54,9 @@ class PageController extends Controller
         $page->save();
     }
 
-    public function destroy($id)
+    public function destroy($post)
     {
-        Pages::destroy($id);
+        Pages::destroy($post['page_id']);
     }
     
     private function getPageModules($moduleContent)

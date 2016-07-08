@@ -17,6 +17,7 @@ class TwigWP extends TwigManager
         $this->rmSlashes();
         $this->getCurrentUser();
         $this->sessionInstance();
+        $this->getUserName();
     }
 
     private function setOptions()
@@ -63,6 +64,13 @@ class TwigWP extends TwigManager
     {
         $this->createSimpleFunc('session', function() {
             return new \App\Managers\SessionManager();
+        });
+    }
+    
+    private function getUserName()
+    {
+        $this->createSimpleFunc('getUserName', function($id) {
+            return get_user_by('ID', $id)->user_login;
         });
     }
 }

@@ -72,20 +72,23 @@ if(Capsule::schema()->hasTable('pages'))
 
 /*
 |--------------------------------------------------------------------------
-| Page Save
+| All Post calls
 |--------------------------------------------------------------------------
 |
 */
 
-if(isset($_POST['page_save']))
+if(isset($_POST['page_action']))
 {
-    if($_POST['page_save'] == 'create')
+    switch ($_POST['page_action'])
     {
-        $page->store($_POST);
-    }
-
-    if($_POST['page_save'] == 'update')
-    {
-        $page->update($_POST);
+        case "create":
+            $page->store($_POST);
+            break;
+        case "update":
+            $page->update($_POST);
+            break;
+        case "delete":
+            $page->destroy($_POST);
+            break;
     }
 }
