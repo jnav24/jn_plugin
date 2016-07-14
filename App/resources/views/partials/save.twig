@@ -1,8 +1,17 @@
 <div class="save_container">
     <div class="col_wrapper">
+        {% if page is not null %}
+            <h2>Page Info</h2>
+            <p><strong>Last Modified By:</strong> {{ getUserName(page.modified_by) }}</p>
+            <p><strong>Last Modified On:</strong> {{ page.updated_at|date('M d, y') }} @ {{ page.updated_at|date('G:i') }}</p>
+        {% endif %}
+
         <input type="hidden" name="page_action" value="{{ action }}">
         <input type="hidden" name="modified_by" value="{{ getCurrentUser() }}">
-        <input type="submit" name="btn_save" value="Save">
-        <a href="{{ main_page_url }}">Cancel</a>
+
+        <div class="save__btns">
+            <input type="submit" name="btn_save" class="flat_btn btn__save" value="Save">
+            <a href="{{ main_page_url }}" class="flat_btn">Cancel</a>
+        </div>
     </div>
 </div>

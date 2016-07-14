@@ -1,2 +1,24 @@
-from the banner, yo!
-{{ content.banner_name }}
+<div class="module__layout col_container half" data-module="module_banner">
+    <h2>Banner</h2>
+
+    <div class="col">
+        <h3>Select an image</h3>
+
+        {% if true %}
+            <img class="banner_img" src="{{ plugin_img_path }}thumbnail.jpg" alt="">
+            <input type="text" class="banner_src" name="" value="" readonly>
+        {% else %}
+            <img class="banner_img" src="{{ base_url }}{{ modules.banner.module_content.banner_img }}" alt="">
+            <input type="text" class="banner_src" name="" value="{{ base_url }}{{ modules.banner.module_content.banner_img }}" readonly>
+        {% endif %}
+
+        <a href="#" class="insert-media add_media flat_btn" data-editor="content" title="Add Media">
+            <span class="wp-media-buttons-icon"></span> Add Media
+        </a>
+    </div>
+
+    <div class="col">
+        <h3>Additional Info</h3>
+
+    </div>
+</div>

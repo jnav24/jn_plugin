@@ -1,0 +1,45 @@
+<div class="module__layout col_container" data-module="module_slideshow">
+    <h2>Slideshow</h2>
+
+    <div class="slideshow__options">
+        options here
+    </div>
+
+    <div class="col_container half slide__each">
+        <div class="col">
+            <img class="slide_img" src="{{ plugin_img_path }}thumbnail.jpg" alt="">
+            <a href="#" class="insert-media add_media flat_btn" data-editor="content" title="Add Media">
+                <span class="wp-media-buttons-icon"></span> Add Media
+            </a>
+        </div>
+        <div class="col">
+            <label for="slideshow_title">Slide Title:</label>
+            <input type="text" name="slideshow_title">
+
+            <label for="slideshow_src">Slide Url:</label>
+            <input type="text" class="slide_src" name="" value="" readonly>
+
+            <a href="#" class="flat_btn btn__del">Remove Slide</a>
+        </div>
+    </div>
+
+    <div class="col_container third slide__each">
+        <div class="col">
+            <img class="slide_img" src="{{ plugin_img_path }}thumbnail.jpg" alt="">
+            <input type="text" class="slide_src" name="" value="" readonly>
+
+            <a href="#" class="insert-media add_media flat_btn" data-editor="content" title="Add Media">
+                <span class="wp-media-buttons-icon"></span> Add Media
+            </a>
+        </div>
+        <div class="col">
+            <label for="slideshow_title">Slide Title:</label>
+            <input type="text" name="slideshow_title">
+        </div>
+        <div class="col">
+            <a href="#" class="flat_btn btn__del">Remove Slide</a>
+        </div>
+    </div>
+
+    <a href="#" class="flat_btn btn__save">Add Slide</a>
+</div>

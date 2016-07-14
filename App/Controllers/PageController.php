@@ -24,7 +24,7 @@ class PageController extends Controller
         $page = Pages::find($id)->toArray();
         $moduleContent = $this->getPageModules($page);
         unset($page['page_content']);
-        return $this->getView('modules/base.twig', ['modules' => $moduleContent, 'page' => $page]);
+        return $this->getView('pages/page_edit.twig', ['modules' => $moduleContent, 'page' => $page]);
     }
 
     public function store($post)
@@ -68,21 +68,6 @@ class PageController extends Controller
         {
             return $pageContent;
         }
-
-        /**
-         * TODO::
-         * This array $moduleContent['page_content'] is currently
-         * array(
-         *  0 => 'module_banner',
-         *  1 => 'module_text',
-         * );
-         *
-         * it is supposed to be
-         * array(
-         *  'module_banner' => '',
-         *  'module_text' => '',
-         * );
-         */
 
         foreach($moduleContent['page_content'] as $module => $content)
         {

@@ -26,16 +26,17 @@
     }
 
     &.module_list {
+        height: 500px;
         overflow-y: auto;
     }
 
     &.module_list,  .module_create {
-        height: 500px;
         padding: 10px;
     }
 
     .module_create {
         margin-left: 20px;
+        min-height: 500px;
     }
 }
 

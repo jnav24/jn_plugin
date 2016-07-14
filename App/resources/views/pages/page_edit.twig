@@ -1,0 +1,13 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+    <h1>Edit {{ page.page_name }} page</h1>
+    <div class="col_container left_big">
+        <div class="col">
+            {{ modules|raw }}
+        </div>
+        <div class="col">
+            {% include 'partials/save.twig' with {'action' : 'module-update'} %}
+        </div>
+    </div>
+{% endblock %}

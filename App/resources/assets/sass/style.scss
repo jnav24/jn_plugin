@@ -17,9 +17,11 @@
 |
 */
 
+@import "base/alerts";
+@import "base/base_modules";
 @import "base/base_styles";
+@import "base/buttons";
 @import "base/columns";
-@import "base/errors";
 
 
 /*
@@ -31,3 +33,5 @@
 
 @import "layouts/base_layout";
 @import "layouts/create_page";
+@import "layouts/module_banner";
+@import "layouts/module_slideshow";

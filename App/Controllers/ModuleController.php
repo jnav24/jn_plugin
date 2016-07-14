@@ -7,7 +7,7 @@ class ModuleController extends Controller
 {    
     public function edit()
     {
-        $modules = Modules::all();
+        $modules = Modules::orderBy('module_file', 'asc')->get();
         return $this->getView('modules/module_edit.twig', ['modules' => $modules]);
     }
 

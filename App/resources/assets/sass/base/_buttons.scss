@@ -1,0 +1,102 @@
+$buttons: (
+    delDark: #c12e2a,
+    delFlat: #e74c3c,
+    delLight: #d9534f,
+    saveDark: #419641,
+    saveFlat: #4caf50,
+    saveLight: #4EA64E
+);
+
+.btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #555;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 5px 15px;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(#000, 0.4);
+    @include border-radius(5px);
+
+    &.btn__save {
+        border: 1px solid map-get($buttons,saveDark);
+        color: #fff;
+        @include box-shadow(inset 0 2px 2px rgba(#fff,0.5));
+        @include gradient(top,(map-get($buttons,saveLight) 0%, map-get($buttons,saveDark) 100%));
+
+        &:hover {
+            @include box-shadow(inset 0 2px 2px rgba(#fff,0.30));
+            @include gradient(top,(darken(map-get($buttons,saveLight),10%) 0%, map-get($buttons,saveDark) 100%));
+        }
+
+        &:active {
+            @include box-shadow(inset 0 2px 2px rgba(#fff,0.15));
+            @include gradient(top,(darken(map-get($buttons,saveLight),20%) 0%, map-get($buttons,saveDark) 100%));
+        }
+    }
+
+    &.btn__del {
+        border: 1px solid map-get($buttons,delDark);
+        color: #fff;
+        @include box-shadow(inset 0 2px 2px rgba(#fff,0.5));
+        @include gradient(top,(map-get($buttons,delLight) 0%, map-get($buttons,delDark) 100%));
+
+        &:hover {
+            @include box-shadow(inset 0 2px 2px rgba(#fff,0.30));
+            @include gradient(top,(darken(map-get($buttons,delLight),10%) 0%, map-get($buttons,delDark) 100%));
+        }
+
+        &:active {
+            @include box-shadow(inset 0 2px 2px rgba(#fff,0.15));
+            @include gradient(top,(darken(map-get($buttons,delLight),20%) 0%, map-get($buttons,delDark) 100%));
+        }
+    }
+}
+
+.flat_btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #555;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    //min-height: 39px;
+    padding: 10px 30px;
+    text-decoration: none;
+    @include border-radius(3px);
+    @include fontLa(16px);
+    @include transition(background ease 0.5s);
+
+    &.btn__save {
+        background: map-get($buttons,saveFlat);
+        border: 1px solid map-get($buttons,saveFlat);
+        color: #fff;
+
+        &:hover {
+            background: darken(map-get($buttons,saveFlat),15%);
+            border: 1px solid darken(map-get($buttons,saveFlat),15%);
+        }
+
+        &:active {
+            background: lighten(map-get($buttons,saveFlat),15%);
+            border: 1px solid lighten(map-get($buttons,saveFlat),15%);
+        }
+    }
+
+    &.btn__del {
+        background: map-get($buttons,delFlat);
+        border: 0;
+        color: #fff;
+
+        &:hover {
+            background: darken(map-get($buttons,delFlat),15%);
+        }
+
+        &:active {
+            background: lighten(map-get($buttons,delFlat),15%);
+        }
+    }
+}

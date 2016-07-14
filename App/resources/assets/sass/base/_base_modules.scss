@@ -1,0 +1,16 @@
+.module__error, .module__layout {
+    margin-bottom: 20px;
+}
+
+#jn_plugin {
+    .module__layout {
+        background: #fff;
+        padding: 10px;
+        @include box-shadow(0 0 1px rgba(#000,0.6));
+
+        h2 {
+            font-size: 21px;
+            padding: 0;
+        }
+    }
+}

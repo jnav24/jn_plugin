@@ -14,5 +14,11 @@
 .save_container {
     .col_wrapper {
         margin-left: 20px;
+        padding: 0;
+    }
+    
+    .save__btns {
+        background: #3a3a3a;
+        padding: 10px 0;
     }
 }

@@ -1,0 +1,17 @@
+.module__layout[data-module="module_slideshow"] {
+    .slide__each {
+        padding: 10px 0;
+
+        &:nth-of-type(2n+2) {
+            background: #eaeaea;
+        }
+    }
+
+    .slide_img {
+        width: 100%;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+}

@@ -1,5 +1,10 @@
 .col_container {
+    margin-top: 20px;
     @include clearfix;
+
+    .col_container {
+        margin-top: 0;
+    }
 
     &.left_big, .left_big {
         > .col {
@@ -14,10 +19,14 @@
     }
 
     &.half, .half {
-        @include colgrid(0.5, 3);
+        @include colgrid(0.5, 2);
     }
 
     &.third, .third {
+        @include colgrid(0.5, 3);
+    }
+
+    &.quad, .quad {
         @include colgrid(0.5, 3);
     }
 }

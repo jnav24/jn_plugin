@@ -75,7 +75,8 @@ gulp.task('rubySass', function() {
 // Node Sass
 gulp.task('nodeSass', function() {
     gulp.src(sassip + '*.scss')
-    .pipe(nodeSass({outputStyle: ops,errLogToConsole: true}))
+    .pipe(plumber())
+    .pipe(nodeSass({outputStyle: ops, errLogToConsole: true}))
         .pipe(gulp.dest(sassop))
         .pipe(reload({stream: true}));
 });

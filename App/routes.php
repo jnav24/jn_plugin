@@ -8,7 +8,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 $pageList = new PageListController();
 $page = new PageController();
 $module = new ModuleController();
-$parent_slug = env()->getEnv('PREFIX', 'jn_') . "list_pages";
+$parent_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('MENU_SLUG', 'plugin');
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ add_action('admin_menu', function() use ($parent_slug, $module) {
 */
 
 add_action('admin_menu', function() use ($parent_slug,  $page) {
-    $child_slug = env()->getEnv('PREFIX', 'jn_') . "add_page";
+    $child_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('SUBMENU_SLUG', 'subplugin');
     $pageTitle = "Add Page";
     $pageName = "Add Page";
 
