@@ -1,14 +1,14 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use App\Models\Pages;
-use App\Managers\TwigManager;
+use Twigger\Twigger;
 
 class PageListTest  extends TestCase
 {
     public function setUp()
     {
         fake()->truncate();
-        $this->twig = new TwigManager(__DIR__ . '/../App/resources/views/tests');
+        $this->twig = new Twigger(__DIR__ . '/../App/resources/views/tests');
     }
 
     public function tearDown()

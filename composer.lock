@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ffd7f922e375f229441c881b136f9c75",
-    "content-hash": "64c550ce45996b23f1aec3afa3da0ffe",
+    "hash": "97e6163e4a733290dd8ed00d18c39f01",
+    "content-hash": "3ce3273bfdeb41c0c5fe47a6b331948e",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -274,6 +274,48 @@
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
             "time": "2016-05-30 02:40:53"
+        },
+        {
+            "name": "jnav24/twigger",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/jnav24/twigger.git",
+                "reference": "33280409b57c330fd7eb1e5f1ae466db1999deb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/jnav24/twigger/get/33280409b57c330fd7eb1e5f1ae466db1999deb1.zip",
+                "reference": "33280409b57c330fd7eb1e5f1ae466db1999deb1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "twig/twig": "1.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twigger\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Navarro",
+                    "homepage": "http://www.justinnavarro.net",
+                    "role": "Php Developer"
+                }
+            ],
+            "description": "Basic class to init the Twig Environment with custom functions.",
+            "homepage": "https://bitbucket.org/jnav24/twigger",
+            "time": "2016-07-20 20:06:17"
         },
         {
             "name": "nesbot/carbon",
@@ -1264,16 +1306,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.4.6",
+            "version": "5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2f1fc94b77ea6418bd6a06c64a1dac0645fbce59"
+                "reference": "6c8a756c17a1a92a066c99860eb57922e8b723da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2f1fc94b77ea6418bd6a06c64a1dac0645fbce59",
-                "reference": "2f1fc94b77ea6418bd6a06c64a1dac0645fbce59",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6c8a756c17a1a92a066c99860eb57922e8b723da",
+                "reference": "6c8a756c17a1a92a066c99860eb57922e8b723da",
                 "shasum": ""
             },
             "require": {
@@ -1338,7 +1380,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-06-16 06:01:15"
+            "time": "2016-07-21 06:55:27"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2013,7 +2055,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jnav24/twigger": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

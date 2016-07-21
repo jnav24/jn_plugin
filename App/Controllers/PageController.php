@@ -21,7 +21,7 @@ class PageController extends Controller
     
     public function edit($id)
     {
-        $page = Pages::find($id)->toArray();
+        $page = Pages::where('page_id', $id)->first()->toArray();
         $moduleContent = $this->getPageModules($page);
         unset($page['page_content']);
         return $this->getView('pages/page_edit.twig', ['modules' => $moduleContent, 'page' => $page]);

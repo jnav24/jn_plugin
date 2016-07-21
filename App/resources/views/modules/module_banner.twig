@@ -4,12 +4,12 @@
     <div class="col">
         <h3>Select an image</h3>
 
-        {% if true %}
+        {% if content.banner_img is empty %}
             <img class="banner_img" src="{{ plugin_img_path }}thumbnail.jpg" alt="">
             <input type="text" class="banner_src" name="" value="" readonly>
         {% else %}
-            <img class="banner_img" src="{{ base_url }}{{ modules.banner.module_content.banner_img }}" alt="">
-            <input type="text" class="banner_src" name="" value="{{ base_url }}{{ modules.banner.module_content.banner_img }}" readonly>
+            <img class="banner_img" src="{{ base_url }}{{ content.banner_img }}" alt="">
+            <input type="text" class="banner_src" name="" value="{{ base_url }}{{ content.banner_img }}" readonly>
         {% endif %}
 
         <a href="#" class="insert-media add_media flat_btn" data-editor="content" title="Add Media">
@@ -19,6 +19,6 @@
 
     <div class="col">
         <h3>Additional Info</h3>
-
+        {{ content.banner_name }}
     </div>
 </div>

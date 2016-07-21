@@ -19,7 +19,7 @@ class TwigTest extends TestCase
 
         $twig = new TwigWP(__DIR__ . '/../App/resources/views', $optionsModel);
 
-        $actual = $twig->options;
+        $actual = $twig->getOptions();
         $expect = 'http://pi.dev/jn-wpPlugin_new';
         $this->assertEquals($expect, $actual['base_url']);
     }

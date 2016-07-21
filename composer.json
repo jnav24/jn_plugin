@@ -16,7 +16,7 @@
         }
     },
     "require" : {
-        "twig/twig" : "1.*",
+        "jnav24/twigger":"dev-master",
         "illuminate/database" : "5.2.*"
     },
     "require-dev" : {

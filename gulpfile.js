@@ -139,4 +139,4 @@ gulp.task('watch', function(){
 
 // ===========================================================================
 // Default Task
-gulp.task('default', ['watch','nodeSass','scripts']);
+gulp.task('default', ['watch','nodeSass','scripts','phpunit']);

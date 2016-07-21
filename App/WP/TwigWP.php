@@ -2,9 +2,9 @@
 namespace App\WP;
 
 use App\Models\Options;
-use App\Managers\TwigManager;
+use Twigger\Twigger;
 
-class TwigWP extends TwigManager
+class TwigWP extends Twigger
 {
     private $optionsModel;
 
@@ -19,6 +19,11 @@ class TwigWP extends TwigManager
         $this->sessionInstance();
         $this->getUserName();
         $this->getModuleName();
+    }
+    
+    public function getOptions()
+    {
+        return $this->options;
     }
 
     private function setOptions()
@@ -48,7 +53,7 @@ class TwigWP extends TwigManager
     private function getCurrentUser()
     {
         $this->createSimpleFunc('getCurrentUser', function() {
-            return wp_get_current_user()->ID;
+//            return wp_get_current_user()->ID;
         });
     }
 
@@ -71,7 +76,7 @@ class TwigWP extends TwigManager
     private function getUserName()
     {
         $this->createSimpleFunc('getUserName', function($id) {
-            return get_user_by('ID', $id)->user_login;
+//            return get_user_by('ID', $id)->user_login;
         });
     }
     

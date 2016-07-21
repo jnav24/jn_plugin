@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use App\Models\Pages;
-use App\Managers\TwigManager;
+use Twigger\Twigger;
 use Faker\Factory as Faker;
 
 class PagesTest extends TestCase
@@ -14,7 +14,7 @@ class PagesTest extends TestCase
     {
         $this->faker = Faker::create();
         $this->path = __DIR__ . '/../App/resources/views';
-        $this->twig = new TwigManager($this->path);
+        $this->twig = new Twigger($this->path);
 
         $options = Mockery::mock('overload:App\Models\Options');
         $options->shouldReceive('geturl')->once()->andReturn(['option_value' => 'http://pi.dev/jn-wpPlugin_new']);
@@ -38,7 +38,7 @@ class PagesTest extends TestCase
 
         $this->assertNotEquals($expect, $actual);
     }
-    
+
     public function testIndexReturnSampleHtml()
     {
         fake()->create('Pages', 10);
@@ -59,6 +59,7 @@ class PagesTest extends TestCase
             'page_content' => 'Something',
             'page_name' => 'from test',
             'page_url' => 'from-test',
+            'modules' => [],
             'modified_by' => '1',
         ];
 
@@ -87,7 +88,7 @@ class PagesTest extends TestCase
 
         $this->assertNotEquals($expect, $actual);
     }
-    
+
     public function testDestroyReturnNotEquals()
     {
         fake()->create('Pages', 10);
@@ -99,18 +100,19 @@ class PagesTest extends TestCase
 
         $this->assertNotEquals($expect, $actual);
     }
-    
+
     public function testEditNewPageReturnsDataFromModules()
     {
-        $needle = $this->faker->name;
+        $needle = $this->faker->imageUrl($width = 640, $height = 480);
         $pageContentFromDB = array(
             'module_banner_0' => [
-                'banner_name' => $needle
+                'banner_img' => $needle
             ]
         );
 
         Pages::create(['page_content' => $this->page->serialize($pageContentFromDB)]);
-        $haystack = $this->page->edit(Pages::first()->toArray());
+        $page = Pages::first();
+        $haystack = $this->page->edit($page->page_id);
         $this->assertContains($needle, $haystack);
     }
 }

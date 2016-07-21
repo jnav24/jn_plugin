@@ -35,12 +35,12 @@ abstract class Controller
         return $this->twig->render('modules/' . $file, $options);
     }
 
-    protected function serialize($value)
+    public function serialize($value)
     {
         return base64_encode(serialize($value));
     }
 
-    protected function unserialize($value)
+    public function unserialize($value)
     {
         return unserialize(base64_decode($value));
     }
