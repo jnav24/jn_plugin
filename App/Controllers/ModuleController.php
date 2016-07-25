@@ -15,7 +15,7 @@ class ModuleController extends Controller
     {
         Modules::create([
             'module_file' => $this->setModuleName($post['module_file']),
-            'module_image' => $post['module_image']
+            'module_image' => $this->stripUrlFromImg($post['module_image'])
         ]);
     }
     

@@ -60,4 +60,10 @@ abstract class Controller
     {
         return str_replace('-', '_', $this->urlFormat($string));
     }
+    
+    public function stripUrlFromImg($img)
+    {
+        $img_path = $this->twig->getImgPath();
+        return str_replace($img_path, '', $img);
+    }
 }

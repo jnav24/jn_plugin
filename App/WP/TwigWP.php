@@ -26,6 +26,11 @@ class TwigWP extends Twigger
         return $this->options;
     }
 
+    public function getImgPath()
+    {
+        return $this->options['plugin_img_path'];
+    }
+
     private function setOptions()
     {
         $results = $this->optionsModel->geturl();
@@ -44,7 +49,10 @@ class TwigWP extends Twigger
     private function getWpEditor()
     {
         $this->createSimpleFunc('getMCEEditor', function($content = '', $editorId = '') {
-            return wp_editor($content,$editorId);
+            if(function_exists('wp_editor'))
+            {
+                return wp_editor($content,$editorId);
+            }
         });
 
         return;
@@ -53,7 +61,10 @@ class TwigWP extends Twigger
     private function getCurrentUser()
     {
         $this->createSimpleFunc('getCurrentUser', function() {
-//            return wp_get_current_user()->ID;
+            if(function_exists('wp_get_current_user'))
+            {
+                return wp_get_current_user()->ID;
+            }
         });
     }
 
@@ -69,14 +80,17 @@ class TwigWP extends Twigger
     private function sessionInstance()
     {
         $this->createSimpleFunc('session', function() {
-            return new \App\Managers\SessionManager();
+            return new \App\Providers\SessionProvider();
         });
     }
     
     private function getUserName()
     {
         $this->createSimpleFunc('getUserName', function($id) {
-//            return get_user_by('ID', $id)->user_login;
+            if(function_exists('get_user_by')) 
+            {
+                return get_user_by('ID', $id)->user_login;
+            }
         });
     }
     

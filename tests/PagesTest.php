@@ -115,4 +115,12 @@ class PagesTest extends TestCase
         $haystack = $this->page->edit($page->page_id);
         $this->assertContains($needle, $haystack);
     }
+
+    public function testStripUrlFromImgReturnImgName()
+    {
+        $img_url = 'http://pi.dev/jn-wpPlugin_new/wp-content/plugins/jn_plugin/App/resources/images/placeholder.jpg';
+        $actual = $this->page->stripUrlFromImg($img_url);
+        $expect = 'placeholder.jpg';
+        $this->assertEquals($expect, $actual);
+    }
 }

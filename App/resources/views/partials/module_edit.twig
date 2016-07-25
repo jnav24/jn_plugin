@@ -2,7 +2,7 @@
     <div class="col">
         <input type="hidden" value="{{ module.module_id }}" name="module_id[]">
         <input type="hidden" value="{{ module.module_image }}" name="module_image[]">
-        <p>image container</p>
+        <img src="{{ plugin_img_path }}{{ module.module_image }}" alt="">
     </div>
 
     <div class="col">
@@ -11,6 +11,6 @@
     </div>
 
     <div class="col">
-        <a href="#" class="remove_module" data-id="{{ module.module_id }}">Delete</a>
+        <a href="#" class="remove_module flat_btn btn__del" data-id="{{ module.module_id }}">Delete</a>
     </div>
 </div>

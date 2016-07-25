@@ -1,4 +1,8 @@
 jQuery(function($) {
+    $('a[href="#"]').on('click', function(e) {
+        e.preventDefault();
+    });
+
     /*
     |--------------------------------------------------------------------------
     | Add modules on page create
@@ -74,6 +78,70 @@ jQuery(function($) {
         deleteRow(id, 'module-delete', row);
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | Popups
+    |--------------------------------------------------------------------------
+    |
+    | Everywhere in the plugin that has a delete the functionality is here.
+    |
+    */
+
+    function Popup()
+    {
+        var respondValue,
+            popup = this;
+
+        this.confirm = function(msg, callable) {
+            this.showPopup(msg);
+            return callable();
+        };
+
+        this.showPopup = function(msg) {
+            $('.popup__container').addClass('show');
+            $('<p>' + msg + '</p>').prependTo('.popup__container--box .popup__container--msgs');
+        };
+
+        this.hidePopup = function() {
+            $('.popup__container').removeClass('show');
+            $('.popup__container--msgs').text('');
+        };
+
+        this.setResponse = function (value) {
+            respondValue = value;
+        };
+
+        this.getResponse = function () {
+            if(respondValue == null || typeof respondValue == 'undefined')
+            {
+                setTimeout(function() {
+                    console.log('run...');
+                    popup.getResponse()
+                }, 10000);
+            }
+            else
+            {
+                return respondValue;
+            }
+        };
+
+        this.getValue = function() {
+            return respondValue;
+        };
+    }
+
+    var popup = new Popup(),
+        peace;
+
+    $('body').on('click', '.test', function() {
+       popup.confirm('Are you sure?');
+    });
+
+    $('.popup a').on('click', function() {
+        popup.hidePopup();
+        popup.setResponse($(this).data('respond'));
+        peace = $(this).data('respond');
+    });
 
     /*
     |--------------------------------------------------------------------------

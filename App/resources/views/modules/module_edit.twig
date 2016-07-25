@@ -10,7 +10,7 @@
             {% for module in modules %}
                 {% include 'partials/module_edit.twig' %}
             {% else %}
-                There are no modules.
+                <div class="module_empty">There are no modules.</div>
             {% endfor %}
         </div>
 
@@ -18,6 +18,8 @@
             {% include 'partials/save.twig' with {'action' : 'module-update'} %}
         </div>
     </div>
+
+    <a href="#" class="test">test popup</a>
 
     <script type="text/javascript">
         jQuery(function($) {
