@@ -19,12 +19,10 @@
         </div>
     </div>
 
-    <a href="#" class="test">test popup</a>
-
     <script type="text/javascript">
         jQuery(function($) {
             $(".add_module").on("click", function() {
-                var module = '{% spaceless %}{% include 'partials/module_edit.twig' with {'module' : {'module_image' : plugin_img_path ~ 'placeholder.jpg', 'module_file' : ' _ '}} %}{% endspaceless %}';
+                var module = '{% spaceless %}{% include 'partials/module_edit.twig' with {'module' : {'module_image' : 'placeholder.jpg', 'module_file' : ' _ '}} %}{% endspaceless %}';
 
                 $(module).appendTo('.modules_edit');
             });

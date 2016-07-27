@@ -5,6 +5,79 @@ jQuery(function($) {
 
     /*
     |--------------------------------------------------------------------------
+    | Callables
+    |--------------------------------------------------------------------------
+    |
+    | All ajax calls
+    |
+    */
+
+    function Callables() {
+        this.deleteRow = function (id, action, row) {
+            $.ajax({
+                url: window.location.href,
+                method: "POST",
+                data: {
+                    "id": id,
+                    "page_action": action
+                },
+                success: function (response) {
+                    row.fadeOut(function () {
+                        $(this).remove();
+                    });
+                }
+            });
+        };
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Popups
+    |--------------------------------------------------------------------------
+    |
+    | Everywhere in the plugin that has a delete the functionality is here.
+    |
+    */
+
+    function Popup()
+    {
+        var popup = this,
+            rowObj;
+
+        var getResponse = function (dis) {
+            var response = dis.data('respond');
+            if(response > 0)
+            {
+                var callable = new Callables();
+                callable.deleteRow(rowObj.id, rowObj.delete, rowObj.row);
+            }
+        };
+
+        this.confirm = function(msg, dis) {
+            rowObj = dis;
+            this.showPopup(msg);
+        };
+
+        this.showPopup = function(msg) {
+            $('.popup__container').addClass('show');
+            $('<p>' + msg + '</p>').prependTo('.popup__container--box .popup__container--msgs');
+        };
+
+        this.hidePopup = function(dis) {
+            $('.popup__container').removeClass('show');
+            $('.popup__container--msgs').text('');
+            getResponse(dis);
+        };
+    }
+
+    var popup = new Popup();
+
+    $('.popup a').on('click', function() {
+        popup.hidePopup($(this));
+    });
+
+    /*
+    |--------------------------------------------------------------------------
     | Add modules on page create
     |--------------------------------------------------------------------------
     |
@@ -45,103 +118,27 @@ jQuery(function($) {
     |
     */
 
-    function deleteRow(id, action, row) {
-        if (confirm("Are you want to remove this?")) {
-            $.ajax({
-                url: window.location.href,
-                method: "POST",
-                data: {
-                    "id": id,
-                    "page_action": action
-                },
-                success: function (response) {
-                    console.log(response);
-                    row.fadeOut(function () {
-                        $(this).remove();
-                    });
-                }
-            });
-        }
-    }
-
     $('.wp-list-table').on('click','.remove_media', function() {
-        var page_id = $(this).data('id'),
-            row = $(this).closest('tr');
+        var dump = {
+            'delete' : 'delete',
+            'id' : $(this).data('id'),
+            'row' : $(this).closest('tr'),
+        };
 
-        deleteRow(page_id, 'delete', row)
+        popup.confirm('Are you sure?', dump);
     });
 
     $('.col_container').on('click','.remove_module', function() {
-        var id = $(this).data('id'),
-            row = $(this).closest('.module_each');
+        var dump = {
+            'delete' : 'module-delete',
+            'id' : $(this).data('id'),
+            'row' : $(this).closest('.module_each'),
+        };
 
-        deleteRow(id, 'module-delete', row);
+        popup.confirm('Are you sure?', dump);
     });
 
-    /*
-    |--------------------------------------------------------------------------
-    | Popups
-    |--------------------------------------------------------------------------
-    |
-    | Everywhere in the plugin that has a delete the functionality is here.
-    |
-    */
 
-    function Popup()
-    {
-        var respondValue,
-            popup = this;
-
-        this.confirm = function(msg, callable) {
-            this.showPopup(msg);
-            return callable();
-        };
-
-        this.showPopup = function(msg) {
-            $('.popup__container').addClass('show');
-            $('<p>' + msg + '</p>').prependTo('.popup__container--box .popup__container--msgs');
-        };
-
-        this.hidePopup = function() {
-            $('.popup__container').removeClass('show');
-            $('.popup__container--msgs').text('');
-        };
-
-        this.setResponse = function (value) {
-            respondValue = value;
-        };
-
-        this.getResponse = function () {
-            if(respondValue == null || typeof respondValue == 'undefined')
-            {
-                setTimeout(function() {
-                    console.log('run...');
-                    popup.getResponse()
-                }, 10000);
-            }
-            else
-            {
-                return respondValue;
-            }
-        };
-
-        this.getValue = function() {
-            return respondValue;
-        };
-    }
-
-    var popup = new Popup(),
-        peace;
-
-    $('body').on('click', '.test', function() {
-       popup.confirm('Are you sure?');
-    });
-
-    $('.popup a').on('click', function() {
-        popup.hidePopup();
-        popup.setResponse($(this).data('respond'));
-        peace = $(this).data('respond');
-    });
 
     /*
     |--------------------------------------------------------------------------
