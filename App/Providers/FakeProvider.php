@@ -23,6 +23,13 @@ class FakeProvider
         $this->definitions[$class] = $attributes;
     }
 
+    /**
+     * Options extra values to be inserted into the db not specified in Helpers\fake()->define()
+     * 
+     * @param $class
+     * @param int $amount
+     * @param array $options
+     */
     public function create($class, $amount = 1, $options = [])
     {
         $name = $class;
