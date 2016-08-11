@@ -21,8 +21,13 @@
     .module_each {
         background: #000;
         height: 115px;
+        overflow: hidden;
         margin: 0 2% 10px;
         width: 96%;
+
+        img {
+            width: 100%;
+        }
     }
 
     &.module_list {

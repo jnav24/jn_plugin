@@ -3,6 +3,8 @@ jQuery(function($) {
         e.preventDefault();
     });
 
+    $('<div class="popup popup__bkgd"></div>').appendTo('body');
+
     /*
     |--------------------------------------------------------------------------
     | Callables
@@ -59,13 +61,21 @@ jQuery(function($) {
         };
 
         this.showPopup = function(msg) {
-            $('.popup__container').addClass('show');
-            $('<p>' + msg + '</p>').prependTo('.popup__container--box .popup__container--msgs');
+            $('.popup__container').removeClass('hide');
+            setTimeout(function() {
+                $('.popup__bkgd').fadeIn();
+                $('.popup__container').addClass('show');
+                $('<p>' + msg + '</p>').prependTo('.popup__container--box .popup__container--msgs');
+            }, 250);
         };
 
         this.hidePopup = function(dis) {
             $('.popup__container').removeClass('show');
-            $('.popup__container--msgs').text('');
+            $('.popup__bkgd').fadeOut();
+            setTimeout(function() {
+                $('.popup__container--msgs').text('');
+                $('.popup__container').addClass('hide');
+            }, 500);
             getResponse(dis);
         };
     }
@@ -104,6 +114,8 @@ jQuery(function($) {
         drop: function(event, ui) {
             var str = ui.draggable.context.outerHTML,
                 module = ui.draggable.context.attributes['data-module'].value;
+
+            console.log( ui.draggable.context.attributes );
             $(str.replace("ui-draggable ui-draggable-handle", "")).html("<input type='hidden' name='modules["+ getModuleIndex(module) +"]'>").appendTo(this)
         }
     }).sortable();

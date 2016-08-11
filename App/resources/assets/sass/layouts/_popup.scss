@@ -1,8 +1,10 @@
 .popup {
     &.popup__bkgd {
         background: rgba(#000, 0.75);
+        display: none;
         height: 100%;
         width: 100%;
+        z-index: 10000000;
         @include posa(0,n,n,0);
     }
 
@@ -10,13 +12,33 @@
         opacity: 0;
         text-align: center;
         width: 100%;
-        @include posa(-100px,n,n,0);
+        z-index: 10000001;
+        @include posa(20%,n,n,0);
         @include transition(all ease 0.5s);
+
+        &.hide {
+            display: none;
+        }
 
         &.show {
             opacity: 1;
-            @include posa(200px,n,n,0);
             @include transition(all ease 0.5s);
+        }
+
+        &.popup__slide {
+            @include posa(-100px,n,n,0);
+
+            &.show {
+                @include posa(200px,n,n,0);
+            }
+        }
+
+        &.popup__scale {
+            @include transform(scale(1.5, 1.5));
+
+            &.show {
+                @include transform(scale(1, 1));
+            }
         }
     }
 
