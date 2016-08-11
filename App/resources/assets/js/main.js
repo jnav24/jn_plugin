@@ -113,10 +113,10 @@ jQuery(function($) {
         accept: ":not(.ui-sortable-helper)",
         drop: function(event, ui) {
             var str = ui.draggable.context.outerHTML,
-                module = ui.draggable.context.attributes['data-module'].value;
+                module = ui.draggable.context.attributes['data-module'].value,
+                image = ui.draggable.context.attributes['data-image'].value;
 
-            console.log( ui.draggable.context.attributes );
-            $(str.replace("ui-draggable ui-draggable-handle", "")).html("<input type='hidden' name='modules["+ getModuleIndex(module) +"]'>").appendTo(this)
+            $(str.replace("ui-draggable ui-draggable-handle", "")).html("<img src='" + image + "'><input type='hidden' name='modules["+ getModuleIndex(module) +"]'>").appendTo(this)
         }
     }).sortable();
 

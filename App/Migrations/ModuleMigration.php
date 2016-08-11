@@ -20,6 +20,9 @@ class ModuleMigration
 
     public function down()
     {
-        Capsule::schema()->drop('modules');
+        if(Capsule::schema()->hasTable('modules')) 
+        {
+            Capsule::schema()->drop('modules');
+        }
     }
 }

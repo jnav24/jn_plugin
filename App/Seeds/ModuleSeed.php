@@ -10,11 +10,11 @@ class ModuleSeed
         $modules = array(
             [
                 'module_file' => 'module_banner',
-                'module_image' => 'banner.jpg'
+                'module_image' => 'module_banner.jpg'
             ],
             [
                 'module_file' => 'module_slideshow',
-                'module_image' => 'slideshow.jpg'
+                'module_image' => 'module_slideshow.jpg'
             ],
         );
 

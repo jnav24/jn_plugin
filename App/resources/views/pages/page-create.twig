@@ -12,7 +12,7 @@
         <div class="col main_col right_big clearfix">
             <div class="col modules module_list col_wrapper">
                 {% for module in modules %}
-                    <div class="module_each" data-module="{{ module.module_file }}">
+                    <div class="module_each" data-module="{{ module.module_file }}" data-image="{{ plugin_img_path }}{{ module.module_image }}">
                         {% if module.module_image is not empty %}
                             <img src="{{ plugin_img_path }}{{ module.module_image }}">
                         {% endif %}

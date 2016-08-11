@@ -24,6 +24,9 @@ class PageMigration
 
     public function down()
     {
-        Capsule::schema()->drop('pages');
+        if(!Capsule::schema()->hasTable('pages'))
+        {
+            Capsule::schema()->drop('pages');
+        }
     }
 }
