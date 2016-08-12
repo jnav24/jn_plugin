@@ -15,7 +15,7 @@ jQuery(function($) {
     */
 
     function Callables() {
-        this.deleteRow = function (id, action, row) {
+        this.deleteRow = function (id, action) {
             $.ajax({
                 url: window.location.href,
                 method: "POST",
@@ -24,9 +24,7 @@ jQuery(function($) {
                     "page_action": action
                 },
                 success: function (response) {
-                    row.fadeOut(function () {
-                        $(this).remove();
-                    });
+                   // nothing here...
                 }
             });
         };
@@ -50,8 +48,11 @@ jQuery(function($) {
             var response = dis.data('respond');
             if(response > 0)
             {
+                rowObj.row.fadeOut(function () {
+                    $(this).remove();
+                });
                 var callable = new Callables();
-                callable.deleteRow(rowObj.id, rowObj.delete, rowObj.row);
+                callable.deleteRow(rowObj.id, rowObj.delete);
             }
         };
 
@@ -116,7 +117,7 @@ jQuery(function($) {
                 module = ui.draggable.context.attributes['data-module'].value,
                 image = ui.draggable.context.attributes['data-image'].value;
 
-            $(str.replace("ui-draggable ui-draggable-handle", "")).html("<img src='" + image + "'><input type='hidden' name='modules["+ getModuleIndex(module) +"]'>").appendTo(this)
+            $(str.replace("ui-draggable ui-draggable-handle", "")).html("<div class='module_close'><i class='fa fa-trash'></i></div><img src='" + image + "'><input type='hidden' name='modules["+ getModuleIndex(module) +"]'>").appendTo(this)
         }
     }).sortable();
 
@@ -148,6 +149,16 @@ jQuery(function($) {
         };
 
         popup.confirm('Are you sure?', dump);
+    });
+
+    $('.module_create').on('click', '.module_close', function() {
+        var dump = {
+            'delete' : '',
+            'id' : '',
+            'row' : $(this).closest('.module_each'),
+        };
+
+        popup.confirm('Are you sure you want to delete this module?', dump);
     });
 
 
