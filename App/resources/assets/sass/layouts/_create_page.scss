@@ -17,13 +17,35 @@
 
 .modules {
     @include box-sizing(border-box);
+    $module_height: 115px;
 
     .module_each {
         background: #000;
-        height: 115px;
-        overflow: hidden;
+        height: $module_height;
         margin: 0 2% 10px;
+        overflow: hidden;
+        position: relative;
         width: 96%;
+
+        .module_close {
+            background: #e74c3c;
+            cursor: pointer;
+            height: $module_height;
+            padding-top: 45px;
+            text-align: center;
+            width: 50px;
+            @include posa(0px, 0px, n, n);
+            @include transition(0.5s background ease);
+
+            &:hover {
+                background: darken(#e74c3c, 20%);
+            }
+            
+            .fa {
+                color: #fff;
+                font-size: 18px;
+            }
+        }
 
         img {
             width: 100%;
