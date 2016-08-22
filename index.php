@@ -49,9 +49,6 @@ add_action('admin_menu', function() {
 
 add_action('admin_enqueue_scripts', function() {
     wp_enqueue_style('jn_plugin_styles', plugins_url('style.css', __FILE__));
-    wp_enqueue_script("jquery");
-    wp_enqueue_script("jqueryui","//code.jquery.com/ui/1.11.4/jquery-ui.js");
-    wp_enqueue_script("confirm", plugins_url('confirm.js', __FILE__));
     wp_enqueue_script("jn_plugin_script", plugins_url('main.min.js', __FILE__));
     wp_enqueue_media();
 });

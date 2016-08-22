@@ -1,0 +1,48 @@
+{
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:autoprefixer": "postcss -u autoprefixer -r css/*",
+    "dev:bs": "browser-sync start --server --files 'css/*.css, js/*.js'",
+    "dev:sass": "node-sass --output-style expanded -o css sass",
+    "dev:watch": "npm-run-all watch:*",
+    "lint": "eslint js-dev/*.js",
+    "prod": "npm-run-all --parallel prod:*",
+    "prod:sass": "node-sass --output-style compressed -o css sass",
+    "prod:js": "npm run uglify",
+    "uglify": "uglifyjs js-dev/*.js -m -o js/app.js",
+    "wpdev": "webpack --progress --colors --watch --display-error-details",
+    "wpprod": "NODE_ENV=production webpack",
+    "watch:css": "onchange 'sass/*.scss' -- npm run dev:sass",
+    "watch:js": "onchange 'js-dev/*.js' -- npm run dev:js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "babel-core": "^6.3.17",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-transform-runtime": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-2": "^6.0.0",
+    "babel-register": "^6.0.0",
+    "babel-runtime": "^5.8.34",
+    "browser-sync": "^2.14.0",
+    "css-loader": "^0.23.0",
+    "eslint": "^3.3.1",
+    "jquery": "^1.7.4",
+    "jquery-ui": "^1.12.0",
+    "node-sass": "^3.8.0",
+    "npm-run-all": "^3.0.0",
+    "onchange": "^2.5.0",
+    "postcss-cli": "^2.5.2",
+    "style-loader": "^0.13.1",
+    "uglify": "^0.1.5",
+    "vue-hot-reload-api": "^1.2.2",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^7.2.0",
+    "vue-style-loader": "^1.0.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "vue": "^1.0.13"
+  }
+}
