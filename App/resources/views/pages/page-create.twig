@@ -3,6 +3,16 @@
 {% block content %}
     <h1 class="jn_plugin_h1">Create a Page</h1>
 
+    {# delete begin #}
+    <draggable></draggable>
+    <message></message>
+    <ul class="list-group" v-sortable>
+        <li class="list-group-item">Foo</li>
+        <li class="list-group-item">Bar</li>
+        <li class="list-group-item">Baz</li>
+    </ul>
+    {# delete end #}
+
     <div class="row_title col_wrapper">
         <label for="page_name">Enter Page Name:</label>
         <input type="text" name="page_name">

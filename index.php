@@ -49,7 +49,7 @@ add_action('admin_menu', function() {
 
 add_action('admin_enqueue_scripts', function() {
     wp_enqueue_style('jn_plugin_styles', plugins_url('style.css', __FILE__));
-    wp_enqueue_script("jn_plugin_script", plugins_url('main.min.js', __FILE__));
+    wp_enqueue_script("jn_plugin_script", plugins_url('main.min.js', __FILE__), array(), null, true);
     wp_enqueue_media();
 });
 

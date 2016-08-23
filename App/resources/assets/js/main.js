@@ -1,3 +1,37 @@
+import Vue from 'vue'
+import Sortable from 'vue-sortable'
+import Message from './components/Message.vue'
+
+Vue.use(Sortable)
+
+new Vue({
+    el: 'body',
+    components: { Message },
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function handle(event)
+{
+    alert(event);
+}
+document.querySelector('a[href="#"]').style.color = 'red';//addEventListener('click', handle, false);
+console.log(document.querySelectorAll('a[href="#"]'));
+
 var $ = require('jquery');
 
 $(function() {
@@ -8,13 +42,13 @@ $(function() {
     $('<div class="popup popup__bkgd"></div>').appendTo('body');
 
     /*
-    |--------------------------------------------------------------------------
-    | Callables
-    |--------------------------------------------------------------------------
-    |
-    | All ajax calls
-    |
-    */
+     |--------------------------------------------------------------------------
+     | Callables
+     |--------------------------------------------------------------------------
+     |
+     | All ajax calls
+     |
+     */
 
     function Callables() {
         this.deleteRow = function (id, action) {
@@ -26,20 +60,20 @@ $(function() {
                     "page_action": action
                 },
                 success: function (response) {
-                   // nothing here...
+                    // nothing here...
                 }
             });
         };
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | Popups
-    |--------------------------------------------------------------------------
-    |
-    | Everywhere in the plugin that has a delete the functionality is here.
-    |
-    */
+     |--------------------------------------------------------------------------
+     | Popups
+     |--------------------------------------------------------------------------
+     |
+     | Everywhere in the plugin that has a delete the functionality is here.
+     |
+     */
 
     function Popup()
     {
@@ -90,14 +124,14 @@ $(function() {
     });
 
     /*
-    |--------------------------------------------------------------------------
-    | Add modules on page create
-    |--------------------------------------------------------------------------
-    |
-    | When creating a new page, this ensures the proper naming of inputs.
-    | Also handles drag and drop.
-    |
-    */
+     |--------------------------------------------------------------------------
+     | Add modules on page create
+     |--------------------------------------------------------------------------
+     |
+     | When creating a new page, this ensures the proper naming of inputs.
+     | Also handles drag and drop.
+     |
+     */
 
     var getModuleIndex = function(module) {
         var count = $("input[name*='" + module + "']").length;
@@ -124,14 +158,14 @@ $(function() {
     }).sortable();
 
     /*
-    |--------------------------------------------------------------------------
-    | All deletes
-    |--------------------------------------------------------------------------
-    |
-    | Everywhere in the plugin that has a delete the functionality is here.
-    |
-    |
-    */
+     |--------------------------------------------------------------------------
+     | All deletes
+     |--------------------------------------------------------------------------
+     |
+     | Everywhere in the plugin that has a delete the functionality is here.
+     |
+     |
+     */
 
     $('.wp-list-table').on('click','.remove_media', function() {
         var dump = {
@@ -166,14 +200,14 @@ $(function() {
 
 
     /*
-    |--------------------------------------------------------------------------
-    | Form Names in all modules
-    |--------------------------------------------------------------------------
-    |
-    | For all modules with a class of module__layout, this will rename your
-    | form name appropriately
-    |
-    */
+     |--------------------------------------------------------------------------
+     | Form Names in all modules
+     |--------------------------------------------------------------------------
+     |
+     | For all modules with a class of module__layout, this will rename your
+     | form name appropriately
+     |
+     */
 
     $('.module__layout').each(function(index, value) {
         var module = $(value).data('module'),
