@@ -3,47 +3,16 @@
 {% block content %}
     <h1 class="jn_plugin_h1">Create a Page</h1>
 
-    {# delete begin #}
-    <draggable></draggable>
-    <message></message>
-    <ul class="list-group" v-sortable>
-        <li class="list-group-item">Foo</li>
-        <li class="list-group-item">Bar</li>
-        <li class="list-group-item">Baz</li>
-    </ul>
-    {# delete end #}
-
     <div class="row_title col_wrapper">
         <label for="page_name">Enter Page Name:</label>
         <input type="text" name="page_name">
     </div>
 
     <div class="col_container left_big">
-        <div class="col main_col right_big clearfix">
-            <div class="col modules module_list col_wrapper">
-                {% for module in modules %}
-                    <div class="module_each" data-module="{{ module.module_file }}" data-image="{{ plugin_img_path }}{{ module.module_image }}">
-                        {% if module.module_image is not empty %}
-                            <img src="{{ plugin_img_path }}{{ module.module_image }}">
-                        {% endif %}
-                    </div>
-                {% else %}
-                    <div class="module_none">There are no modules.</div>
-                {% endfor %}
-            </div>
-            <div class="col modules">
-                <div class="module_create col_wrapper"></div>
-            </div>
-        </div>
+        <page-create-modules modules="{{ modules|json_encode() }}"></page-create-modules>
 
         <div class="col side_col">
             {% include 'partials/save.twig' with {'action' : 'create'} %}
         </div>
     </div>
-
-    <script>
-        jQuery(function($) {
-
-        });
-    </script>
 {% endblock %}

@@ -1,12 +1,22 @@
 import Vue from 'vue'
 import Sortable from 'vue-sortable'
 import Message from './components/Message.vue'
+import PageCreateModules from './components/PageCreateModules.vue'
 
 Vue.use(Sortable)
+// Vue.config.delimiters = ['[[', ']]'];
 
 new Vue({
     el: 'body',
-    components: { Message },
+    data: {},
+    components: { Message, PageCreateModules },
+    methods: {}    
+});
+
+[].map.call(document.querySelectorAll('a[href="#"]'), function(elem) {
+    elem.addEventListener('click', function(e) {
+        e.preventDefault();
+    });
 });
 
 
@@ -29,15 +39,10 @@ function handle(event)
 {
     alert(event);
 }
-document.querySelector('a[href="#"]').style.color = 'red';//addEventListener('click', handle, false);
-console.log(document.querySelectorAll('a[href="#"]'));
 
 var $ = require('jquery');
 
 $(function() {
-    $('a[href="#"]').on('click', function(e) {
-        e.preventDefault();
-    });
 
     $('<div class="popup popup__bkgd"></div>').appendTo('body');
 
@@ -122,40 +127,6 @@ $(function() {
     $('.popup a').on('click', function() {
         popup.hidePopup($(this));
     });
-
-    /*
-     |--------------------------------------------------------------------------
-     | Add modules on page create
-     |--------------------------------------------------------------------------
-     |
-     | When creating a new page, this ensures the proper naming of inputs.
-     | Also handles drag and drop.
-     |
-     */
-
-    var getModuleIndex = function(module) {
-        var count = $("input[name*='" + module + "']").length;
-        return module + '_' + count;
-    };
-
-    // TODO:
-    // add a remove button
-
-    $('.module_list .module_each').draggable({
-        appendTo: "body",
-        helper: "clone"
-    });
-
-    $('.module_create').droppable({
-        accept: ":not(.ui-sortable-helper)",
-        drop: function(event, ui) {
-            var str = ui.draggable.context.outerHTML,
-                module = ui.draggable.context.attributes['data-module'].value,
-                image = ui.draggable.context.attributes['data-image'].value;
-
-            $(str.replace("ui-draggable ui-draggable-handle", "")).html("<div class='module_close'><i class='fa fa-trash'></i></div><img src='" + image + "'><input type='hidden' name='modules["+ getModuleIndex(module) +"]'>").appendTo(this)
-        }
-    }).sortable();
 
     /*
      |--------------------------------------------------------------------------
