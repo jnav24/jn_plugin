@@ -17,33 +17,86 @@
 
 .modules {
     @include box-sizing(border-box);
-    $module_height: 115px;
+    $module_height: 21px;
 
     .module_each {
-        background: #000;
+        background: #fff;
+        border: 1px solid #cdcdcd;
         height: $module_height;
         margin: 0 2% 10px;
         overflow: hidden;
+        padding: 10px 0;
         position: relative;
         width: 96%;
 
-        .module_close {
-            background: #e74c3c;
-            cursor: pointer;
+        &-btn {
             height: $module_height;
-            padding-top: 45px;
-            text-align: center;
-            width: 50px;
-            @include posa(0px, 0px, n, n);
-            @include transition(0.5s background ease);
+            padding-top: 7px;
+            @include posa(0,10px,n,n);
+        }
+
+        p {
+            display: inline-block;
+            margin: 0;
+        }
+
+        &.list-group-item {
+            @include transition(0.25s ease background);
+
+            p {
+                line-height: 1;
+                margin-left: 12px;
+                @include fontLa(18px);
+            }
 
             &:hover {
-                background: darken(#e74c3c, 20%);
+                background: #efefef;
             }
-            
+        }
+        
+        &.sortable-ghost {
+            background: #ccc;
+            border: 0;
+            @include box-shadow(0 0 10px rgba(#000, 0.5));
+
+            p, div, i {
+                display: none;
+            }
+        }
+
+        .module_move, .module_close {
+            float: right;
+            height: $module_height;
+            line-height: 2.5;
+            margin-right: 10px;
+            text-align: center;
+            @include transition(0.5s background ease);
+
             .fa {
                 color: #fff;
                 font-size: 18px;
+            }
+        }
+
+        .module_move {
+            cursor: move;
+            &.round {
+                @include circle(30px, #0c7fcc);
+            }
+
+            &:hover {
+                background: darken(#0c7fcc, 20%);
+            }
+        }
+
+        .module_close {
+            cursor: pointer;
+            &.round {
+                @include circle(30px, #e74c3c);
+            }
+
+            &:hover {
+                background: darken(#e74c3c, 20%);
             }
         }
 

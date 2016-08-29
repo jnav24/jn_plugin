@@ -70,10 +70,17 @@ $buttons: (
     @include fontLa(16px);
     @include transition(background ease 0.5s);
 
+    &.round {
+        line-height: normal;
+        padding: 0;
+        @include circle(25px, #fff);
+    }
+
     &.btn__save {
         background: map-get($buttons,saveFlat);
         border: 1px solid map-get($buttons,saveFlat);
         color: #fff;
+        //@include transition(0.5s background ease);
 
         &:hover {
             background: darken(map-get($buttons,saveFlat),15%);

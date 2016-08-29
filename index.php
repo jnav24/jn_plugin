@@ -52,37 +52,3 @@ add_action('admin_enqueue_scripts', function() {
     wp_enqueue_script("jn_plugin_script", plugins_url('main.min.js', __FILE__), array(), null, true);
     wp_enqueue_media();
 });
-
-
-/*
-	create a page and build out an array like this to save
-
-	$page = array(
-		'module_banner_0' => [
-			0 => 'img.jpg'
-		],
-		'module_slideshow_0' => [
-			0 => [
-				'img.jpg'
-			]
-		],
-		'module_text_0' => [
-			'title' => '',
-			'text' => ''
-		]
-		'module_banner_1' => [
-			0 => 'img.jpg'
-		]
-	)
-
-	<input name="[modules][module_banner_0][]">
-	<input name="[modules][module_text_0][]">
-
-    Steps:
-    load page by url
-    go to index.php
-    get templates from db
-    get data from db
-    load data to template
-    display page
-*/

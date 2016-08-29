@@ -1,0 +1,27 @@
+.animate {
+    &__btn__pop {
+        &:active {
+            @include animation(btnPop 0.5s ease);
+        }
+    }
+}
+
+.btnpop-transition {
+    @include transition(0.5s all ease);
+}
+
+.btnpop-enter, .btnpop-leave {
+    opacity: 0;
+    //@include transform(scale(1.5));
+}
+
+@include keyframe(btnPop) {
+    0% {
+        opacity: 1;
+        //@include transform(scale(1));
+    }
+    100% {
+        opacity: 0;
+        @include transform(scale(1.5));
+    }
+}

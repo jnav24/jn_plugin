@@ -26,7 +26,7 @@ class FakeProvider
     /**
      * Options extra values to be inserted into the db not specified in Helpers\fake()->define()
      * 
-     * @param $class
+     * @param string $class
      * @param int $amount
      * @param array $options
      */

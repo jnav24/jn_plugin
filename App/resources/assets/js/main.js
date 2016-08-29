@@ -7,7 +7,7 @@ Vue.use(Sortable)
 // Vue.config.delimiters = ['[[', ']]'];
 
 new Vue({
-    el: 'body',
+    el: '.wrap',
     data: {},
     components: { Message, PageCreateModules },
     methods: {}    
