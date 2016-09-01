@@ -9,21 +9,11 @@
     }
 
     &.popup__container {
-        opacity: 0;
         text-align: center;
         width: 100%;
         z-index: 10000001;
         @include posa(20%,n,n,0);
         @include transition(all ease 0.5s);
-
-        &.hide {
-            display: none;
-        }
-
-        &.show {
-            opacity: 1;
-            @include transition(all ease 0.5s);
-        }
 
         &.popup__slide {
             @include posa(-100px,n,n,0);

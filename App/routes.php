@@ -3,10 +3,12 @@
 use App\Controllers\ModuleController;
 use App\Controllers\PageController;
 use App\Controllers\PageListController;
+use App\Managers\PostManager as Post;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $pageList = new PageListController();
 $page = new PageController();
+$post = new Post();
 $module = new ModuleController();
 $parent_slug = env()->getEnv('PREFIX', 'jn_') . env()->getEnv('MENU_SLUG', 'plugin');
 
@@ -96,24 +98,4 @@ if(Capsule::schema()->hasTable('pages'))
 |
 */
 
-if(isset($_POST['page_action']))
-{
-    switch ($_POST['page_action'])
-    {
-        case "create":
-            $page->store($_POST);
-            break;
-        case "update":
-            $page->update($_POST);
-            break;
-        case "delete":
-            $page->destroy($_POST);
-            break;
-        case "module-update":
-            $module->update($_POST);
-            break;
-        case "module-delete":
-            $module->destroy($_POST);
-            break;
-    }
-}
+$post->getPostData();

@@ -3588,7 +3588,6 @@ h1.jn_plugin_h1 {
 }
 
 .popup.popup__container {
-  opacity: 0;
   text-align: center;
   width: 100%;
   z-index: 10000001;
@@ -3597,19 +3596,6 @@ h1.jn_plugin_h1 {
   position: absolute;
   right: auto;
   top: 20%;
-  -webkit-transition: all ease 0.5s;
-  -moz-transition: all ease 0.5s;
-  -o-transition: all ease 0.5s;
-  -ms-transition: all ease 0.5s;
-  transition: all ease 0.5s;
-}
-
-.popup.popup__container.hide {
-  display: none;
-}
-
-.popup.popup__container.show {
-  opacity: 1;
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
   -o-transition: all ease 0.5s;

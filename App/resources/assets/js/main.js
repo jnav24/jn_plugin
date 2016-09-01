@@ -1,22 +1,29 @@
 import Vue from 'vue'
 import Sortable from 'vue-sortable'
-import Message from './components/Message.vue'
+import VueResource from 'vue-resource'
+import ModulesEdit from './components/ModulesEdit.vue'
 import PageCreateModules from './components/PageCreateModules.vue'
 
+Vue.use(VueResource)
 Vue.use(Sortable)
 // Vue.config.delimiters = ['[[', ']]'];
 
 new Vue({
     el: '.wrap',
     data: {},
-    components: { Message, PageCreateModules },
-    methods: {}    
+    components: { ModulesEdit, PageCreateModules },
+    methods: { }
 });
 
-[].map.call(document.querySelectorAll('a[href="#"]'), function(elem) {
-    elem.addEventListener('click', function(e) {
+document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
+    if(e.target && e.target.nodeName == 'A' && e.target.getAttribute('href') == '#')
+    {
         e.preventDefault();
-    });
+    }
+});
+
+document.getElementById('jn_plugin').addEventListener('submit', function(e) {
+    e.preventDefault();
 });
 
 
@@ -34,11 +41,6 @@ new Vue({
 
 
 
-
-function handle(event)
-{
-    alert(event);
-}
 
 var $ = require('jquery');
 
@@ -125,7 +127,7 @@ $(function() {
     var popup = new Popup();
 
     $('.popup a').on('click', function() {
-        popup.hidePopup($(this));
+        // popup.hidePopup($(this));
     });
 
     /*
@@ -155,20 +157,8 @@ $(function() {
             'row' : $(this).closest('.module_each'),
         };
 
-        popup.confirm('Are you sure?', dump);
+        // popup.confirm('Are you sure?', dump);
     });
-
-    $('.module_create').on('click', '.module_close', function() {
-        var dump = {
-            'delete' : '',
-            'id' : '',
-            'row' : $(this).closest('.module_each'),
-        };
-
-        popup.confirm('Are you sure you want to delete this module?', dump);
-    });
-
-
 
     /*
      |--------------------------------------------------------------------------

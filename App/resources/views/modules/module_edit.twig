@@ -5,29 +5,12 @@
 
     <h1 class="jn_plugin_h1">Edit Modules</h1>
     <p>Here are all the modules available for this site.</p>
-    <a href="#" class="add_module flat_btn btn__save">Add Module</a>
 
     <div class="col_container left_big">
-        <div class="col main_col col_wrapper modules_edit">
-            {% for module in modules %}
-                {% include 'partials/module_edit.twig' %}
-            {% else %}
-                <div class="module_empty">There are no modules.</div>
-            {% endfor %}
-        </div>
+        <modules-edit modules="{{ modules|json_encode() }}" url="{{ plugin_url }}"></modules-edit>
 
         <div class="col side_col">
             {% include 'partials/save.twig' with {'action' : 'module-update'} %}
         </div>
     </div>
-
-    <script type="text/javascript">
-        jQuery(function($) {
-            $(".add_module").on("click", function() {
-                var module = '{% spaceless %}{% include 'partials/module_edit.twig' with {'module' : {'module_image' : 'placeholder.jpg', 'module_file' : ' _ '}} %}{% endspaceless %}';
-
-                $(module).appendTo('.modules_edit');
-            });
-        });
-    </script>
 {% endblock %}

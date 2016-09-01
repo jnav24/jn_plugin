@@ -3,7 +3,7 @@
         <p>{{ module.module_image }}</p>
 
         <div class="module_each-btn clearfix">
-            <div class="module_close round">
+            <div class="module_close round" @click="removeModule(module)">
                 <i class="fa fa-trash"></i>
             </div>
 
@@ -19,6 +19,11 @@
 <script>
     export default {
         props: ['modules'],
-        methods: {}
+        methods: {
+            removeModule: function(module)
+            {
+                this.modules.$remove(module);
+            }
+        }
     }
 </script>

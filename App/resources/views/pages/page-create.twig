@@ -12,7 +12,7 @@
         <page-create-modules modules="{{ modules|json_encode() }}"></page-create-modules>
 
         <div class="col side_col">
-            {% include 'partials/save.twig' with {'action' : 'create'} %}
+            {% include 'partials/save.twig' with {'action' : 'page-store'} %}
         </div>
     </div>
 {% endblock %}
