@@ -1,10 +1,8 @@
 <template>
-    <popup :popup="popup" @hidepopup="resetPopup">wassup</popup>
-
     <p class="clearfix">
         <a href="#" class="add_module flat_btn btn__save" @click="addModule">Add Module</a>
     </p>
-<!--<pre>{{ modules|json }}</pre>-->
+
     <div class="col main_col col_wrapper modules_edit">
         <div class="module_each third" v-for="module in modules" track-by="$index" transition="fade" v-show="module.module_animate">
             <div class="col">
@@ -24,6 +22,8 @@
 
         <div class="module_empty" v-show="!modules.length">There are no modules.</div>
     </div>
+
+    <popup :popup="popup" @hidepopup="resetPopup">Are you sure you want to delete this module?</popup>
 </template>
 
 <script>

@@ -1,6 +1,9 @@
 <template>
+    <div class="popup popup__bkgd" transition="popup" v-show="popup"></div>
+
     <div class="popup popup__container" transition="popup" v-show="popup">
         <div class="popup__container--box">
+            <div class="popup__container--icon">?</div>
             <div class="popup__container--msgs"><slot></slot></div>
             <a href="#" class="flat_btn btn__save" @click="popupAction(1)">Yes</a>
             <a href="#" class="flat_btn" @click="popupAction(0)">No</a>

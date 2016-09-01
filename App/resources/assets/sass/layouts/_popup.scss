@@ -1,7 +1,6 @@
 .popup {
     &.popup__bkgd {
         background: rgba(#000, 0.75);
-        display: none;
         height: 100%;
         width: 100%;
         z-index: 10000000;
@@ -34,10 +33,26 @@
 
     .popup__container--box {
         background: #fff;
-        height: 100px;
         margin: 0 auto;
-        padding: 10px;
+        padding: 25px 10px;
         width: 500px;
         @include box-shadow(0 15px 20px rgba(#000, 0.4));
+    }
+
+    .popup__container--icon {
+        $color: red;
+        @include box-sizing(border-box);
+        @include circle(150px, lighten($color,20%));
+        @include fontLa(81px);
+        color: #fff;
+        margin: 0 auto;
+        padding: 63px 0 0 0;
+    }
+
+    .popup__container--msgs {
+        color: #7c7c7c;
+        line-height: 1;
+        margin: 30px 0;
+        @include fontLa(26px);
     }
 }

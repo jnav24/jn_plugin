@@ -26,6 +26,8 @@ document.getElementById('jn_plugin').addEventListener('submit', function(e) {
     e.preventDefault();
 });
 
+document.getElementsByTagName('BODY')[0].insertAdjacentElement('afterbegin', document.getElementsByClassName('popup__bkgd')[0]);
+
 
 
 
@@ -45,9 +47,7 @@ document.getElementById('jn_plugin').addEventListener('submit', function(e) {
 var $ = require('jquery');
 
 $(function() {
-
-    $('<div class="popup popup__bkgd"></div>').appendTo('body');
-
+    
     /*
      |--------------------------------------------------------------------------
      | Callables

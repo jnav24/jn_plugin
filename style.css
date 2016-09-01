@@ -3576,7 +3576,6 @@ h1.jn_plugin_h1 {
 
 .popup.popup__bkgd {
   background: rgba(0, 0, 0, 0.75);
-  display: none;
   height: 100%;
   width: 100%;
   z-index: 10000000;
@@ -3637,10 +3636,38 @@ h1.jn_plugin_h1 {
 
 .popup .popup__container--box {
   background: #fff;
-  height: 100px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 25px 10px;
   width: 500px;
   -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+}
+
+.popup .popup__container--icon {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 150px;
+  width: 150px;
+  background: #ff6666;
+  -webkit-border-radius: 75px;
+  border-radius: 75px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'Lato', sans-serif;
+  font-size: 81px;
+  font-weight: normal;
+  color: #fff;
+  margin: 0 auto;
+  padding: 63px 0 0 0;
+}
+
+.popup .popup__container--msgs {
+  color: #7c7c7c;
+  line-height: 1;
+  margin: 30px 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 26px;
+  font-weight: normal;
 }
