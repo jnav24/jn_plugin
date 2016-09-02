@@ -110,6 +110,15 @@
         overflow-y: auto;
     }
 
+    .page_create_header, .page_create_text {
+        margin: 0 10px;
+        text-align: left;
+    }
+
+    .page_create_text {
+        margin-bottom: 25px;
+    }
+
     &.module_list,  .module_create {
         padding: 10px;
     }

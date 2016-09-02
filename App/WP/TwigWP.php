@@ -19,6 +19,7 @@ class TwigWP extends Twigger
         $this->sessionInstance();
         $this->getUserName();
         $this->getModuleName();
+        $this->getAdminUrl();
     }
     
     public function getOptions()
@@ -104,6 +105,16 @@ class TwigWP extends Twigger
             }
             unset($explode[0]);
             return implode('_', $explode);
+        });
+    }
+
+    private function getAdminUrl()
+    {
+        $this->createSimpleFunc('getAdminUrl', function() {
+            if(function_exists('get_admin_url')) 
+            {
+                return get_admin_url();
+            }
         });
     }
 }

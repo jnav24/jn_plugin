@@ -16,7 +16,7 @@ class PageController extends Controller
     public function create()
     {
         $modules = Modules::all()->toArray();
-        return $this->getView('pages/page-create.twig', ['modules' => $modules]);
+        return $this->getView('pages/page_create.twig', ['modules' => $modules]);
     }
     
     public function edit($id)

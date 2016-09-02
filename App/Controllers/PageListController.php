@@ -8,6 +8,6 @@ class PageListController extends Controller
     public function index()
     {
         $pages = Pages::all()->toArray();
-        return $this->getView('pages/page-list.twig', ['pages' => $pages]);
+        return $this->getView('pages/page_list.twig', ['pages' => $pages]);
     }
 }

@@ -1,19 +1,6 @@
-import Vue from 'vue'
-import Sortable from 'vue-sortable'
-import VueResource from 'vue-resource'
-import ModulesEdit from './components/ModulesEdit.vue'
-import PageCreateModules from './components/PageCreateModules.vue'
-
-Vue.use(VueResource)
-Vue.use(Sortable)
-// Vue.config.delimiters = ['[[', ']]'];
-
-new Vue({
-    el: '.wrap',
-    data: {},
-    components: { ModulesEdit, PageCreateModules },
-    methods: { }
-});
+require('./instances/module_edit.js');
+require('./instances/page_create.js');
+require('./instances/page_list.js');
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
     if(e.target && e.target.nodeName == 'A' && e.target.getAttribute('href') == '#')
@@ -23,10 +10,30 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
 });
 
 document.getElementById('jn_plugin').addEventListener('submit', function(e) {
-    e.preventDefault();
+    if(document.querySelectorAll('input[name="page_action"]')[0].value == 'page-store')
+    {
+        if(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '')
+        {
+            e.preventDefault();
+            document.querySelectorAll('.alert')[0].style.display = 'block';
+        }
+    }
+
+    if(document.querySelectorAll('input[name="page_action"]')[0].value == 'module-update')
+    {
+        let modulesAll = document.querySelectorAll('input[name^="module_file"]');
+
+        modulesAll.forEach(function(input, index) {
+            if(input.value.trim() == '')
+            {
+                e.preventDefault();
+                document.querySelectorAll('.alert-error')[0].style.display = 'block';
+            }
+        });
+    }
 });
 
-document.getElementsByTagName('BODY')[0].insertAdjacentElement('afterbegin', document.getElementsByClassName('popup__bkgd')[0]);
+
 
 
 
@@ -147,7 +154,7 @@ $(function() {
             'row' : $(this).closest('tr'),
         };
 
-        popup.confirm('Are you sure?', dump);
+        // popup.confirm('Are you sure?', dump);
     });
 
     $('.col_container').on('click','.remove_module', function() {

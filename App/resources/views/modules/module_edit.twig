@@ -1,16 +1,19 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <h4 class="alert alert-warning">Editing and/or deleting current modules from this page will not update pages using those modules and the name of the files associated with them.</h4>
+    <div id="module_edit">
+        <h4 class="alert alert-warning">Editing and/or deleting current modules from this page will not update pages using those modules and the name of the files associated with them.</h4>
 
-    <h1 class="jn_plugin_h1">Edit Modules</h1>
-    <p>Here are all the modules available for this site.</p>
+        <alerts type="error">Please enter a module name for all your modules.</alerts>
+        <h1 class="jn_plugin_h1">Edit Modules</h1>
+        <p>Here are all the modules available for this site.</p>
 
-    <div class="col_container left_big">
-        <modules-edit modules="{{ modules|json_encode() }}" url="{{ plugin_url }}"></modules-edit>
+        <div class="col_container left_big">
+            <modules-edit modules="{{ modules|json_encode() }}" url="{{ plugin_url }}"></modules-edit>
 
-        <div class="col side_col">
-            {% include 'partials/save.twig' with {'action' : 'module-update'} %}
+            <div class="col side_col">
+                {% include 'partials/save.twig' with {'action' : 'module-update'} %}
+            </div>
         </div>
     </div>
 {% endblock %}

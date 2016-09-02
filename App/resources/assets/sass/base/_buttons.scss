@@ -63,7 +63,6 @@ $buttons: (
     cursor: pointer;
     display: inline-block;
     line-height: 1;
-    //min-height: 39px;
     padding: 10px 30px;
     text-decoration: none;
     @include border-radius(3px);
@@ -72,7 +71,8 @@ $buttons: (
 
     &.round {
         line-height: normal;
-        padding: 0;
+        padding: 3px 0 0 0;
+        @include box-sizing(border-box);
         @include circle(25px, #fff);
     }
 

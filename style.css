@@ -92,6 +92,7 @@
 }
 
 .alert {
+  display: none;
   margin-bottom: 20px;
   padding: 20px 0;
   position: relative;
@@ -328,7 +329,10 @@ h1.jn_plugin_h1 {
 
 .flat_btn.round {
   line-height: normal;
-  padding: 0;
+  padding: 3px 0 0 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   height: 25px;
   width: 25px;
   background: #fff;
@@ -3527,6 +3531,15 @@ h1.jn_plugin_h1 {
 .modules.module_list {
   height: 500px;
   overflow-y: auto;
+}
+
+.modules .page_create_header, .modules .page_create_text {
+  margin: 0 10px;
+  text-align: left;
+}
+
+.modules .page_create_text {
+  margin-bottom: 25px;
 }
 
 .modules.module_list, .modules .module_create {
