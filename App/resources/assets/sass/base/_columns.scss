@@ -27,6 +27,14 @@
     }
 
     &.quad, .quad {
-        @include colgrid(0.5, 3);
+        @include colgrid(0.5, 4);
+    }
+
+    &.quin, .quin {
+        @include colgrid(0.5, 5);
+    }
+
+    &.sext, .sext {
+        @include colgrid(0.5, 6);
     }
 }

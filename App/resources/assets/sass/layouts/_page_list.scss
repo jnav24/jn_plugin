@@ -1,0 +1,22 @@
+#page_list {
+    .col_container {
+        background: #fff;
+        margin: 0;
+
+        &:nth-of-type(2n+2) {
+            background: map_get($colors, ltegrey);
+        }
+
+        &.col_head {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            font-size: 14px;
+            //@include box-shadow(0 0 14px rgba(#000, 0.4));
+        }
+
+        .col {
+            padding: 10px 0 10px 10px;
+            @include box-sizing(border-box);
+        }
+    }
+}

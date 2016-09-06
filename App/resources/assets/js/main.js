@@ -1,6 +1,74 @@
 require('./instances/module_edit.js');
 require('./instances/page_create.js');
-require('./instances/page_list.js');
+// require('./instances/page_list.js');
+
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+import MyForm from './components/MyForm.vue'
+import PageList from './components/PageList.vue'
+
+Vue.use(VueResource);
+
+Vue.filter('date', function(output, format) {
+    let date = new Date(output);
+    let results = '';
+    format = format.split('');
+    format.map(function(elem) {
+        if(elem.toLowerCase() == 'm')
+        {
+            results += date.getMonth() + 1;
+        }
+        else if(elem.toLowerCase() == 'd')
+        {
+            results += date.getDate();
+        }
+        else if(elem == 'y')
+        {
+            results += date.getYear();
+        }
+        else if(elem == 'Y')
+        {
+            results += date.getFullYear();
+        }
+        else if(elem == 'H')
+        {
+            results += date.getHours()
+        }
+        else if(elem == 'h')
+        {
+            let hour = date.getHours();
+            if(hour > 12)
+            {
+                hour = hour - 12;
+            }
+            results += hour;
+        }
+        else if(elem.toLowerCase() == 'i')
+        {
+            let mins = date.getMinutes();
+            results += (mins < 10 ? '0' + mins : mins);
+        }
+        else if(elem == 'a')
+        {
+            let hour = 'am';
+            if(date.getHours() > 12)
+            {
+                hour = 'pm';
+            }
+            results += hour;
+        }
+        else
+        {
+            results += elem;
+        }
+    });
+    return results;
+});
+
+new Vue({
+    el: '.wrap',
+    components: { MyForm, PageList }
+});
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
     if(e.target && e.target.nodeName == 'A' && e.target.getAttribute('href') == '#')
@@ -9,29 +77,29 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
     }
 });
 
-document.getElementById('jn_plugin').addEventListener('submit', function(e) {
-    if(document.querySelectorAll('input[name="page_action"]')[0].value == 'page-store')
-    {
-        if(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '')
-        {
-            e.preventDefault();
-            document.querySelectorAll('.alert')[0].style.display = 'block';
-        }
-    }
-
-    if(document.querySelectorAll('input[name="page_action"]')[0].value == 'module-update')
-    {
-        let modulesAll = document.querySelectorAll('input[name^="module_file"]');
-
-        modulesAll.forEach(function(input, index) {
-            if(input.value.trim() == '')
-            {
-                e.preventDefault();
-                document.querySelectorAll('.alert-error')[0].style.display = 'block';
-            }
-        });
-    }
-});
+// document.getElementById('jn_plugin').addEventListener('submit', function(e) {
+//     if(document.querySelectorAll('input[name="page_action"]')[0].value == 'page-store')
+//     {
+//         if(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '')
+//         {
+//             e.preventDefault();
+//             document.querySelectorAll('.alert')[0].style.display = 'block';
+//         }
+//     }
+//
+//     if(document.querySelectorAll('input[name="page_action"]')[0].value == 'module-update')
+//     {
+//         let modulesAll = document.querySelectorAll('input[name^="module_file"]');
+//
+//         modulesAll.forEach(function(input, index) {
+//             if(input.value.trim() == '')
+//             {
+//                 e.preventDefault();
+//                 document.querySelectorAll('.alert-error')[0].style.display = 'block';
+//             }
+//         });
+//     }
+// });
 
 
 

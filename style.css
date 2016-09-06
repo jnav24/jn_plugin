@@ -477,11 +477,59 @@ h1.jn_plugin_h1 {
 .col_container.quad .col, .col_container .quad .col {
   float: left;
   margin-left: 0 !important;
-  margin-right: 6.25% !important;
-  width: 29.16667%;
+  margin-right: 5.55556% !important;
+  width: 20.83333%;
 }
 
-.col_container.quad .col:nth-of-type(3n+3), .col_container .quad .col:nth-of-type(3n+3) {
+.col_container.quad .col:nth-of-type(4n+4), .col_container .quad .col:nth-of-type(4n+4) {
+  margin-right: 0 !important;
+}
+
+.col_container.quin, .col_container .quin {
+  display: block;
+}
+
+.col_container.quin:after, .col_container.quin:before, .col_container .quin:after, .col_container .quin:before {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.col_container.quin .col, .col_container .quin .col {
+  float: left;
+  margin-left: 0 !important;
+  margin-right: 5.20833% !important;
+  width: 15.83333%;
+}
+
+.col_container.quin .col:nth-of-type(5n+5), .col_container .quin .col:nth-of-type(5n+5) {
+  margin-right: 0 !important;
+}
+
+.col_container.sext, .col_container .sext {
+  display: block;
+}
+
+.col_container.sext:after, .col_container.sext:before, .col_container .sext:after, .col_container .sext:before {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.col_container.sext .col, .col_container .sext .col {
+  float: left;
+  margin-left: 0 !important;
+  margin-right: 5% !important;
+  width: 12.5%;
+}
+
+.col_container.sext .col:nth-of-type(6n+6), .col_container .sext .col:nth-of-type(6n+6) {
   margin-right: 0 !important;
 }
 
@@ -3585,6 +3633,28 @@ h1.jn_plugin_h1 {
 
 .module__layout[data-module="module_slideshow"] input[type="text"] {
   width: 100%;
+}
+
+#page_list .col_container {
+  background: #fff;
+  margin: 0;
+}
+
+#page_list .col_container:nth-of-type(2n+2) {
+  background: #f9f9f9;
+}
+
+#page_list .col_container.col_head {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  font-size: 14px;
+}
+
+#page_list .col_container .col {
+  padding: 10px 0 10px 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .popup.popup__bkgd {

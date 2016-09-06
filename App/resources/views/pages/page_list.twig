@@ -6,6 +6,21 @@
 
         <h2>All Pages <a href="{{ add_page_url }}" class="add-new-h2">Add New</a></h2>
 
+        <div class="col_container sext col_head">
+            <div class="col">Page Title</div>
+            <div class="col">Created By</div>
+            <div class="col">Modified By</div>
+            <div class="col">Last Updated</div>
+            <div class="col">Status</div>
+            <div class="col">Delete</div>
+        </div>
+
+        <div style="border: 1px solid #e5e5e5; border-top: 0;">
+            <page-list pages="{{ pages|json_encode() }}" url="{{ plugin_url }}"></page-list>
+        </div>
+
+
+
         <table class="wp-list-table widefat fixed striped posts">
             <thead>
             <tr>
