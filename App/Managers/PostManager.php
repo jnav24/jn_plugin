@@ -68,21 +68,15 @@ class PostManager
     
     private function validateObject($class, $method)
     {
-        $namespaces = [
-            "App\\Controllers\\" . ucfirst($class) . "Controller",
-            "App\\Models\\" . ucfirst($class)
-        ];
+        $namespace = "App\\Controllers\\" . ucfirst($class) . "Controller";
 
-        foreach ($namespaces as $namespace)
+        if(class_exists($namespace))
         {
-            if(class_exists($namespace))
-            {
-                $object = new $namespace();
+            $object = new $namespace();
 
-                if(method_exists($object, $method))
-                {
-                    return $object;
-                }
+            if(method_exists($object, $method))
+            {
+                return $object;
             }
         }
         return false;
