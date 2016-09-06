@@ -18,10 +18,11 @@ if(document.getElementById('page_list') != null)
                 this.hidePopup();
                 if(id)
                 {
+                    var url = window.location.href;
                     document.querySelectorAll('tr[data-id="' + this.delete_page.page_id+ '"]')[0].style.display = 'none';
-                    this.$http.post('http://localhost/dev/wp-test/wp-admin/admin.php', {page_action: 'page-destroy', id: this.delete_page.page_id}).then((response) => {
+                    this.$http.post(url, {page_action: 'page-destroy', id: this.delete_page.page_id}).then((response) => {
                         this.delete_page = {};
-                });
+                    });
                 }
             }
         },

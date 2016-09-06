@@ -12,7 +12,7 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
 document.getElementById('jn_plugin').addEventListener('submit', function(e) {
     if(document.querySelectorAll('input[name="page_action"]')[0].value == 'page-store')
     {
-        if(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '')
+        if(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '' || document.querySelectorAll('input[name*="modules"]').length < 1)
         {
             e.preventDefault();
             document.querySelectorAll('.alert')[0].style.display = 'block';

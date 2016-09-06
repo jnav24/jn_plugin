@@ -13,6 +13,7 @@ class PostManager
             $post = $this->getJsonPostData();
         }
 
+
         if(isset($post['page_action']))
         {
             $this->callMethod($post);
@@ -40,6 +41,33 @@ class PostManager
         }
 
         list($class, $method) = $page_action;
+        $object = $this->validateObject($class, $method);
+        
+        if(is_object($object))
+        {
+            $results = $object->$method($post);
+
+            if($class == 'page')
+            {
+                $this->callPostsMethod(['posts',$method], $results);
+            }
+        }
+    }
+    
+    private function callPostsMethod($post, $obj)
+    {
+        list($class, $method) = $post;
+        
+        $object = $this->validateObject($class, $method);
+        
+        if(is_object($object))
+        {
+            $object->$method($obj);
+        }
+    }
+    
+    private function validateObject($class, $method)
+    {
         $namespace = "App\\Controllers\\" . ucfirst($class) . "Controller";
 
         if(class_exists($namespace))
@@ -48,8 +76,10 @@ class PostManager
 
             if(method_exists($object, $method))
             {
-                $object->$method($post);
+                return $object;
             }
         }
+        
+        return false;
     }
 }

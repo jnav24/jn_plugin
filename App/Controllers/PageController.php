@@ -29,17 +29,25 @@ class PageController extends Controller
 
     public function store($post)
     {
+        if(!isset($post['modules']))
+        {
+            $post['modules'] = [];
+        }
+        
         $page = new Pages();
         $page->page_name = $post['page_name'];
         $page->page_url = $this->urlFormat($post['page_name']);
         $page->page_content = $this->serialize($post['modules']);
+        $page->page_status = $post['page_status'];
         $page->created_by = $post['modified_by'];
         $page->modified_by = $post['modified_by'];
         $page->created_at = Carbon::now();
         $page->updated_at = Carbon::now();
         $page->save();
-
+        
 //        msg()->success('Page has been updated successfully.');
+        
+        return $page;
     }
 
     public function update($post)
@@ -48,15 +56,20 @@ class PageController extends Controller
         $page->page_name = $post['page_name'];
         $page->page_url = $this->urlFormat($post['page_name']);
         $page->page_content = $this->serialize($post['page_content']);
+        $page->page_status = $post['page_status'];
         $page->modified_by = $post['modified_by'];
         $page->updated_at = Carbon::now();
 
         $page->save();
+        
+        return $page;
     }
 
     public function destroy($post)
     {
+        $page = Pages::find($post['id']);
         Pages::destroy($post['id']);
+        return $page;
     }
     
     private function getPageModules($moduleContent)

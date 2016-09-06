@@ -6,7 +6,7 @@
             <div class="module_each" v-for="module in modules">
                 <p>{{ module.module_image }}</p>
                 <div class="module_each-btn">
-                    <a href="#" @click="addModule(module)" class="round flat_btn btn__save" transition="btnpop" v-show="module.module_animate">+</a>
+                    <a href="#" @click="addModule(module)" class="round flat_btn btn__save">+</a>
                 </div>
             </div>
             <div class="module_none" v-show="!modules.length">There are no modules.</div>

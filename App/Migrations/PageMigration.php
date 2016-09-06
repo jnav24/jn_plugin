@@ -15,6 +15,7 @@ class PageMigration
                 $table->text('page_content');
                 $table->string('page_name');
                 $table->string('page_url');
+                $table->string('page_status');
                 $table->integer('created_by')->unsigned();
                 $table->integer('modified_by')->unsigned();
                 $table->timestamps();
@@ -24,7 +25,7 @@ class PageMigration
 
     public function down()
     {
-        if(!Capsule::schema()->hasTable('pages'))
+        if(Capsule::schema()->hasTable('pages'))
         {
             Capsule::schema()->drop('pages');
         }
