@@ -18,7 +18,7 @@
         methods: {
             getUserName: function(id) {
                 return 'Admin'
-//                this.$http('', {page_action: users-retrieve, id: id}).then((response) => {});
+//                this.$http(window.location.href, {page_action: users-retrieve, id: id}).then((response) => {});
             }
         }
     }
