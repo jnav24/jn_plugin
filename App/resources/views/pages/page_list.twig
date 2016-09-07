@@ -2,8 +2,6 @@
 
 {% block content %}
     <div id="page_list">
-        {#<popup :popup="popup">Are you sure you want to delete this page?</popup>#}
-
         <a href="{{ add_page_url }}" class="add-new-h2">Add New Page</a>
 
         <page-list pages="{{ pages|json_encode() }}" url="{{ plugin_url }}"></page-list>

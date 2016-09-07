@@ -24,7 +24,7 @@
     </div>
 
     <div class="col_row_wrapper">
-        <div class="col_container sext" v-for="page in pages | filterBy search_filter in search_from | filterBy status_filter in 'page_status'">
+        <div class="col_container sext" v-for="page in paginate_data | filterBy search_filter in search_from | filterBy status_filter in 'page_status'">
             <div class="col"><strong><a href="{{ url }}{{ page.page_url|lowercase }}">{{ page.page_name }}</a></strong></div>
             <div class="col">{{ getUserName(page.created_by) }}</div>
             <div class="col">{{ getUserName(page.modified_by) }}</div>
@@ -35,14 +35,23 @@
 
         <div class="col_empty" v-if="!pages.length">There are no pages.</div>
     </div>
+
+    <pagination :paginate="paginate" :data="pages"></pagination>
 </template>
 
 <script>
-    import Popup from '../components/Popup.vue'
+    import Popup from './Popup.vue'
+    import Pagination from './Pagination.vue'
 
     export default {
         props: ['pages', 'url'],
-        components: { Popup },
+        components: { Pagination, Popup },
+        ready() {
+            // get paginate index, 0 indexed
+            // paginate index * total amount to show on page == first index
+            // paginate index * total amount to show on page - 1 == last index
+            console.log(this.pages.slice(0,1));
+        },
         created() {
             this.pages = JSON.parse(this.pages);
         },
@@ -50,6 +59,8 @@
             return {
                 delete_page: {},
                 columns: [],
+                paginate: 2,
+                paginate_data: {},
                 popup: false,
                 search_filter: '',
                 search_from: '',
@@ -80,6 +91,9 @@
             hidePopup: function () {
                 this.popup = false;
             }
+        },
+        ready() {
+            console.log(this.paginate_data);
         }
     }
 </script>

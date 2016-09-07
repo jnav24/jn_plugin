@@ -1,6 +1,5 @@
 require('./instances/module_edit.js');
 require('./instances/page_create.js');
-// require('./instances/page_list.js');
 
 import Vue from 'vue'
 import VueResource from 'vue-resource'
