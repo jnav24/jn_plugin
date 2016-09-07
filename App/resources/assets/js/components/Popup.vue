@@ -28,6 +28,9 @@
 //                this.$parent.setPopupResult(id);
 //                this.$parent.hidePopup();
             }
+        },
+        ready() {
+            document.getElementsByTagName('BODY')[0].insertAdjacentElement('afterbegin', document.getElementsByClassName('popup__bkgd')[0]);
         }
     }
 </script>
