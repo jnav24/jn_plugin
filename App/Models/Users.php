@@ -9,7 +9,7 @@ class Users extends Model
     protected $connection = 'wordpress';
     public $timestamps = false;
 
-    public function scopeRetrieve($query, $id)
+    public function scopeGetUsername($query, $id)
     {
         return $query->where('ID', $id)->get(['user_login']);
     }
