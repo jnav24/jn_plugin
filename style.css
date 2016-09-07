@@ -373,6 +373,18 @@ h1.jn_plugin_h1 {
   background: #ef8b80;
 }
 
+.col_empty {
+  background: #f9f9f9;
+  font-weight: bold;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.col_row_wrapper {
+  border: 1px solid #e5e5e5;
+  border-top: 0;
+}
+
 .col_container {
   margin-top: 20px;
   display: block;
