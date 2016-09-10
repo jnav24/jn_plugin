@@ -8,7 +8,8 @@
             <!--<option value="created_by">Created By</option>-->
             <!--<option value="modified_by">Modified By</option>-->
         </select>
-        <input type="text" v-model="search_filter">
+        <input type="text" v-model="search_filter" @keyup="updatePaginate">
+
         All <input type="radio" v-model="status_filter" value="" checked>
         publish <input type="radio" v-model="status_filter" value="publish">
         draft <input type="radio" v-model="status_filter" value="draft">
@@ -24,8 +25,8 @@
     </div>
 
     <div class="col_row_wrapper">
-        <div class="col_container sext" v-for="page in paginate_data | filterBy search_filter in search_from | filterBy status_filter in 'page_status'">
-            <div class="col"><strong><a href="{{ url }}{{ page.page_url|lowercase }}">{{ page.page_name }}</a></strong></div>
+        <div class="col_container sext" v-for="page in pages | filterBy search_filter in search_from | filterBy status_filter in 'page_status'" v-show="findPaginate($index)">
+            <div class="col"><strong><a href="{{ url }}{{ page.page_url|lowercase }}">{{ page.page_id }} || {{ page.page_name }}</a></strong></div>
             <div class="col">{{ getUserName(page.created_by) }}</div>
             <div class="col">{{ getUserName(page.modified_by) }}</div>
             <div class="col">{{ page.updated_at|date 'm/d/Y h:i a' }}</div>
@@ -36,7 +37,8 @@
         <div class="col_empty" v-if="!pages.length">There are no pages.</div>
     </div>
 
-    <pagination :paginate="paginate" :data="pages"></pagination>
+    <a href="#" v-for="page_index in paginate_total" @click="updateCurrent(page_index + 1)" style="display: inline-block; margin-right: 10px;">{{ page_index + 1 }}</a>
+    <!--<pagination :paginate="paginate" :data="pages"></pagination>-->
 </template>
 
 <script>
@@ -46,12 +48,6 @@
     export default {
         props: ['pages', 'url'],
         components: { Pagination, Popup },
-        ready() {
-            // get paginate index, 0 indexed
-            // paginate index * total amount to show on page == first index
-            // paginate index * total amount to show on page - 1 == last index
-            console.log(this.pages.slice(0,1));
-        },
         created() {
             this.pages = JSON.parse(this.pages);
         },
@@ -59,8 +55,10 @@
             return {
                 delete_page: {},
                 columns: [],
-                paginate: 2,
-                paginate_data: {},
+                current: 1,
+                paginate: 7,
+                paginate_data: [],
+                paginate_total: 0,
                 popup: false,
                 search_filter: '',
                 search_from: '',
@@ -80,6 +78,22 @@
             }
         },
         methods: {
+            updateCurrent: function(i) {
+                this.current = i;
+            },
+            updatePaginate: function() {
+                this.current = 1;
+                this.paginate_total = Math.ceil(document.querySelectorAll('.col_row_wrapper .col_container').length / this.paginate);
+            },
+            findPaginate: function(i) {
+                this.paginate_total = this.pages.length / this.paginate;
+                if (this.current == 1) {
+                    return i < this.paginate;
+                }
+                else {
+                    return (i >= (this.paginate * (this.current - 1)) && i < (this.current * this.paginate));
+                }
+            },
             getUserName: function(id) {
                 return 'Admin';
 //                this.$http(window.location.href, {page_action: users-retrieve, id: id}).then((response) => {});
@@ -91,9 +105,6 @@
             hidePopup: function () {
                 this.popup = false;
             }
-        },
-        ready() {
-            console.log(this.paginate_data);
         }
     }
 </script>
