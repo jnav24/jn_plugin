@@ -3656,17 +3656,134 @@ h1.jn_plugin_h1 {
   background: #f9f9f9;
 }
 
+#page_list .col_container:hover {
+  background: rgba(0, 115, 170, 0.1);
+}
+
 #page_list .col_container.col_head {
-  background: #fff;
+  background: #23282d;
   border: 1px solid #e5e5e5;
+  color: #fff;
   font-size: 14px;
 }
 
 #page_list .col_container .col {
-  padding: 10px 0 10px 10px;
+  padding: 20px 0 20px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+#page_list .col_container .col .v_center {
+  display: block;
+  padding: 7px 0;
+}
+
+#page_list .col_container.filter_search {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  margin: 30px 0;
+}
+
+#page_list .col_container.filter_search:hover {
+  background: #fff;
+}
+
+#page_list .col_container.filter_search input {
+  display: inline-block;
+  padding: 19px 15px;
+  vertical-align: top;
+  width: 300px;
+}
+
+#page_list .col_container.filter_search .filter_search_status {
+  border: 1px solid #ccc;
+  margin-left: -4px;
+  text-align: center;
+  width: 200px;
+  display: block;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#page_list .col_container.filter_search .filter_search_status:after, #page_list .col_container.filter_search .filter_search_status:before {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+#page_list .col_container.filter_search .filter_search_status .col {
+  float: left;
+  margin-left: 0 !important;
+  margin-right: 0% !important;
+  width: 33.33333%;
+}
+
+#page_list .col_container.filter_search .filter_search_status .col:nth-of-type(3n+3) {
+  margin-right: 0 !important;
+}
+
+#page_list .col_container.filter_search .filter_search_status .col {
+  background: #0073aa;
+  color: #fff;
+  cursor: pointer;
+  padding-left: 0;
+}
+
+#page_list .col_container.filter_search .filter_search_status .col:hover {
+  background: #0084c4;
+}
+
+#page_list .col_container.filter_search .filter_search_status .col.selected {
+  background: #002e44;
+  color: #fff;
+}
+
+#page_list .col_container a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#page_list .fa {
+  font-size: 23px;
+  margin-right: 10px;
+}
+
+#page_list .fa, #page_list .fa_link {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#page_list a.btn__save {
+  margin-top: 30px;
+}
+
+#page_list .pagination {
+  margin-top: 30px;
+}
+
+#page_list .pagination .pagination_link {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+#page_list .pagination .pagination_link.current {
+  background: #0073aa;
+  color: #fff;
+}
+
+#page_list .pagination .pagination_link:hover {
+  background: rgba(0, 115, 170, 0.1);
 }
 
 .popup.popup__bkgd {

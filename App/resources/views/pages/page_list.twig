@@ -2,7 +2,8 @@
 
 {% block content %}
     <div id="page_list">
-        <a href="{{ add_page_url }}" class="add-new-h2">Add New Page</a>
+        <h1>Pages</h1>
+        <a href="{{ add_page_url }}" class="flat_btn btn__save"><i class="fa fa-plus-circle"></i><span class="fa_link">Add New Page</span></a>
 
         <page-list pages="{{ pages|json_encode() }}" url="{{ plugin_url }}"></page-list>
     </div>

@@ -1,18 +1,20 @@
 <template>
     <popup :popup="popup">Are you sure you want to delete this page?</popup>
 
-    <div class="col_container">
-        <select v-model="search_from">
-            <option value="page_name" selected>Page Name</option>
+    <div class="col_container filter_search">
+        <!--<select v-model="search_from">-->
+            <!--<option value="page_name" selected>Page Name</option>-->
             <!-- Commented because you can not search by username. You are currently able to search by user id. -->
             <!--<option value="created_by">Created By</option>-->
             <!--<option value="modified_by">Modified By</option>-->
-        </select>
-        <input type="text" v-model="search_filter" @keyup="updatePaginate">
+        <!--</select>-->
+        <input type="text" v-model="search_filter" @keyup="updatePaginate" placeholder="Search">
 
-        All <input type="radio" v-model="status_filter" value="" checked>
-        publish <input type="radio" v-model="status_filter" value="publish">
-        draft <input type="radio" v-model="status_filter" value="draft">
+        <div class="filter_search_status">
+            <div class="col" :class="{'selected': status_filter == ''}" @click="setStatus('')">All</div>
+            <div class="col" :class="{'selected': status_filter == 'publish'}" @click="setStatus('publish')">Publish</div>
+            <div class="col" :class="{'selected': status_filter == 'draft'}" @click="setStatus('draft')">Draft</div>
+        </div>
     </div>
     
     <div class="col_container sext col_head">
@@ -25,29 +27,31 @@
     </div>
 
     <div class="col_row_wrapper">
-        <div class="col_container sext" v-for="page in pages | filterBy search_filter in search_from | filterBy status_filter in 'page_status'" v-show="findPaginate($index)">
-            <div class="col"><strong><a href="{{ url }}{{ page.page_url|lowercase }}">{{ page.page_id }} || {{ page.page_name }}</a></strong></div>
-            <div class="col">{{ getUserName(page.created_by) }}</div>
-            <div class="col">{{ getUserName(page.modified_by) }}</div>
-            <div class="col">{{ page.updated_at|date 'm/d/Y h:i a' }}</div>
-            <div class="col">{{ page.page_status }}</div>
-            <div class="col"><a href="#" @click="showPopup(page)">Delete Page</a></div>
+        <div class="col_container sext" v-for="page in pages | filterBy search_filter in 'page_name' | filterBy status_filter in 'page_status'" v-show="setPaginate($index)">
+            <div class="col"><strong class="v_center"><a href="{{ url }}{{ page.page_url|lowercase }}">{{ page.page_name }}</a></strong></div>
+            <div class="col"><span class="v_center">{{ getUserName(page.created_by) }}</span></div>
+            <div class="col"><span class="v_center">{{ getUserName(page.modified_by) }}</span></div>
+            <div class="col"><span class="v_center">{{ page.updated_at|date 'm/d/Y h:i a' }}</span></div>
+            <div class="col"><span class="v_center">{{ page.page_status }}</span></div>
+            <div class="col"><a href="#" @click="showPopup(page)" class="flat_btn btn__del">Delete Page</a></div>
         </div>
 
         <div class="col_empty" v-if="!pages.length">There are no pages.</div>
     </div>
 
-    <a href="#" v-for="page_index in paginate_total" @click="updateCurrent(page_index + 1)" style="display: inline-block; margin-right: 10px;">{{ page_index + 1 }}</a>
-    <!--<pagination :paginate="paginate" :data="pages"></pagination>-->
+    <div class="pagination">
+        <a href="#" v-for="page_index in paginate_total" v-show="paginate_total > 1" @click="updateCurrent(page_index + 1)" class="pagination_link" :class="{'current': (page_index + 1) == current}">
+            {{ page_index + 1 }}
+        </a>
+    </div>
 </template>
 
 <script>
     import Popup from './Popup.vue'
-    import Pagination from './Pagination.vue'
 
     export default {
         props: ['pages', 'url'],
-        components: { Pagination, Popup },
+        components: { Popup },
         created() {
             this.pages = JSON.parse(this.pages);
         },
@@ -56,7 +60,7 @@
                 delete_page: {},
                 columns: [],
                 current: 1,
-                paginate: 7,
+                paginate: 10,
                 paginate_data: [],
                 paginate_total: 0,
                 popup: false,
@@ -85,7 +89,7 @@
                 this.current = 1;
                 this.paginate_total = Math.ceil(document.querySelectorAll('.col_row_wrapper .col_container').length / this.paginate);
             },
-            findPaginate: function(i) {
+            setPaginate: function(i) {
                 this.paginate_total = this.pages.length / this.paginate;
                 if (this.current == 1) {
                     return i < this.paginate;
@@ -104,6 +108,12 @@
             },
             hidePopup: function () {
                 this.popup = false;
+            },
+            setStatus: function(filter_text) {
+                this.status_filter = filter_text;
+                this.$nextTick(function() {
+                    this.updatePaginate();
+                });
             }
         }
     }

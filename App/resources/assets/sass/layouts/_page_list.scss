@@ -6,17 +6,115 @@
         &:nth-of-type(2n+2) {
             background: map_get($colors, ltegrey);
         }
+        
+        &:hover {
+            background: rgba(map_get($colors, link), 0.1);
+        }
 
         &.col_head {
-            background: #fff;
+            background: #23282d;
             border: 1px solid #e5e5e5;
+            color: #fff;
             font-size: 14px;
             //@include box-shadow(0 0 14px rgba(#000, 0.4));
         }
 
         .col {
-            padding: 10px 0 10px 10px;
+            padding: 20px 0 20px 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             @include box-sizing(border-box);
+
+            .v_center {
+                display: block;
+                padding: 7px 0;
+            }
+        }
+
+        &.filter_search {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            margin: 30px 0;
+            //padding: 20px 10px;
+
+            &:hover {
+                background: #fff;
+            }
+
+            input {
+                display: inline-block;
+                padding: 19px 15px;
+                vertical-align: top;
+                width: 300px;
+            }
+
+            .filter_search_status {
+                border: 1px solid #ccc;
+                margin-left: -4px;
+                text-align: center;
+                width: 200px;
+                @include colgrid(0, 3);
+                display: inline-block;
+                vertical-align: top;
+
+                .col {
+                    background: map_get($colors, link);
+                    color: #fff;
+                    cursor: pointer;
+                    padding-left: 0;
+                    
+                    &:hover {
+                        background: lighten(map_get($colors, link), 5%);
+                    }
+
+                    &.selected {
+                        background: darken(map_get($colors, link), 20%);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
+    .fa {
+        font-size: 23px;
+        margin-right: 10px;
+    }
+
+    .fa, .fa_link {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    a.btn__save {
+        margin-top: 30px;
+    }
+
+    .pagination {
+        margin-top: 30px;
+
+        .pagination_link {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            text-decoration: none;
+
+            &.current {
+                background: map_get($colors, link);
+                color: #fff
+            }
+            
+            &:hover {
+                background: rgba(map_get($colors, link) , 0.1);
+            }
         }
     }
 }
