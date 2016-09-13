@@ -6,15 +6,15 @@ There are some functionality that are twig specific which causes some issues in 
 #}
 <div id="save" class="save_container">
     <div class="col_wrapper">
-        <h2>Page Info</h2>
-
         {% if page is not null %}
+            <h2>Page Info</h2>
+
             <p><strong>Last Modified By:</strong> {{ getUserName(page.modified_by) }}</p>
             <p><strong>Last Modified On:</strong> {{ page.updated_at|date('M d, y') }} @ {{ page.updated_at|date('G:i') }}</p>
-        {% endif %}
 
-        Publish <input type="radio" name="page_status" value="publish" checked>
-        Draft <input type="radio" name="page_status" value="draft">
+            Publish <input type="radio" name="page_status" value="publish" checked>
+            Draft <input type="radio" name="page_status" value="draft">
+        {% endif %}
 
         <input type="hidden" name="page_action" value="{{ action }}">
         <input type="hidden" name="modified_by" value="{{ getCurrentUser() }}">

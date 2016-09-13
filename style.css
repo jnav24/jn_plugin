@@ -3611,6 +3611,27 @@ h1.jn_plugin_h1 {
   min-height: 500px;
 }
 
+#page_create .module_list {
+  background: #fff;
+  border: 1px solid #ccc;
+  height: 100%;
+  left: 182px;
+  position: fixed;
+  top: 117px;
+  width: 250px;
+}
+
+#page_create .module_save {
+  background: #000;
+  margin-bottom: 30px;
+  margin-left: 280px;
+  width: auto;
+}
+
+#page_create .module_save .col_wrapper {
+  margin-left: 0;
+}
+
 .module__layout[data-module="module_banner"] .banner_img {
   width: 100%;
 }

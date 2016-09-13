@@ -4,7 +4,8 @@
     </p>
 
     <div class="col main_col col_wrapper modules_edit">
-        <div class="module_each third" v-for="module in modules" track-by="$index" transition="fade" v-show="module.module_animate">
+        <!--<div class="module_each third" v-for="module in modules" track-by="$index" transition="fade" v-show="module.module_animate">-->
+        <div class="module_each third" v-for="module in modules" track-by="$index">
             <div class="col">
                 <input type="hidden" value="{{ module.module_id }}" name="module_id[]">
                 <input type="hidden" value="{{ module.module_image }}" name="module_image[]">

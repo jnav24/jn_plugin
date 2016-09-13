@@ -54,6 +54,7 @@
         components: { Popup },
         created() {
             this.pages = JSON.parse(this.pages);
+            this.paginate_total = this.pages.length / this.paginate;
         },
         data() {
             return {
@@ -61,7 +62,6 @@
                 columns: [],
                 current: 1,
                 paginate: 10,
-                paginate_data: [],
                 paginate_total: 0,
                 popup: false,
                 search_filter: '',
@@ -90,7 +90,6 @@
                 this.paginate_total = Math.ceil(document.querySelectorAll('.col_row_wrapper .col_container').length / this.paginate);
             },
             setPaginate: function(i) {
-                this.paginate_total = this.pages.length / this.paginate;
                 if (this.current == 1) {
                     return i < this.paginate;
                 }

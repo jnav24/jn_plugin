@@ -3,18 +3,24 @@
         <div class="col modules module_list col_wrapper">
             <h2 class="page_create_header">Module List</h2>
             <p class="page_create_text">Here is a list of all available modules. Click on the green add button to add a module to your page.</p>
+
             <div class="module_each" v-for="module in modules">
                 <p>{{ module.module_image }}</p>
                 <div class="module_each-btn">
                     <a href="#" @click="addModule(module)" class="round flat_btn btn__save">+</a>
                 </div>
             </div>
+
             <div class="module_none" v-show="!modules.length">There are no modules.</div>
         </div>
+
         <div class="col modules">
             <div class="module_create col_wrapper">
                 <h2 class="page_create_header">Page</h2>
                 <p class="page_create_text">The modules listed below are going to be the modules that will be available on your page. You can sort the order of how you want the modules to be on the page by clicking and dragging the blue move button.</p>
+
+                <label for="page_name">Enter Page Name:</label>
+                <input type="text" name="page_name">
 
                 <div class="list-group" v-sortable="{ handle: '.fa-arrows' }">
                     <page-insert-module :modules="page_modules"></page-insert-module>

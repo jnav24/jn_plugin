@@ -128,3 +128,27 @@
         min-height: 500px;
     }
 }
+
+// version 2
+#page_create {
+    .module_list {
+        background: #fff;
+        border: 1px solid #ccc;
+        height: 100%;
+        left: 182px;
+        position: fixed;
+        top: 117px;
+        width: 250px;
+    }
+
+    .module_save {
+        background: #000;
+        margin-bottom: 30px;
+        margin-left: 280px;
+        width: auto;
+
+        .col_wrapper {
+            margin-left: 0;
+        }
+    }
+}
