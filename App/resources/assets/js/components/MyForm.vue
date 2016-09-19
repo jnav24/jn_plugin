@@ -1,5 +1,5 @@
 <template>
-    <form action="" method="POST" id="jn_plugin" @submit.prevent="savePage">
+    <form action="" method="POST" id="jn_plugin">
         <slot></slot>
     </form>
 </template>

@@ -1,12 +1,15 @@
 require('./instances/module_edit.js');
-require('./instances/page_create.js');
+// require('./instances/page_create.js');
 
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import Sortable from 'vue-sortable'
 import MyForm from './components/MyForm.vue'
+import PageCreateModules from './components/PageCreateModules.vue'
 import PageList from './components/PageList.vue'
 
 Vue.use(VueResource);
+Vue.use(Sortable);
 
 Vue.filter('date', function(output, format) {
     let date = new Date(output);
@@ -66,7 +69,7 @@ Vue.filter('date', function(output, format) {
 
 new Vue({
     el: '.wrap',
-    components: { MyForm, PageList }
+    components: { MyForm, PageCreateModules, PageList }
 });
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
@@ -76,29 +79,32 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(e) {
     }
 });
 
-// document.getElementById('jn_plugin').addEventListener('submit', function(e) {
-//     if(document.querySelectorAll('input[name="page_action"]')[0].value == 'page-store')
-//     {
-//         if(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '')
-//         {
-//             e.preventDefault();
-//             document.querySelectorAll('.alert')[0].style.display = 'block';
-//         }
-//     }
-//
-//     if(document.querySelectorAll('input[name="page_action"]')[0].value == 'module-update')
-//     {
-//         let modulesAll = document.querySelectorAll('input[name^="module_file"]');
-//
-//         modulesAll.forEach(function(input, index) {
-//             if(input.value.trim() == '')
-//             {
-//                 e.preventDefault();
-//                 document.querySelectorAll('.alert-error')[0].style.display = 'block';
-//             }
-//         });
-//     }
-// });
+document.getElementById('jn_plugin').addEventListener('submit', function(e) {
+    if(document.querySelectorAll('input[name="page_action"]')[0].value == 'page-store')
+    {
+        console.log(document.querySelectorAll('.list-group-item.empty').length);
+        console.log(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '');
+        if(document.querySelectorAll('input[name="page_name"]')[0].value.trim() == '' || document.querySelectorAll('.list-group-item.empty').length > 0)
+        {
+            console.log('Page not submitted');
+            e.preventDefault();
+            document.querySelectorAll('.alert')[0].style.display = 'block';
+        }
+    }
+
+    if(document.querySelectorAll('input[name="page_action"]')[0].value == 'module-update')
+    {
+        let modulesAll = document.querySelectorAll('input[name^="module_file"]');
+
+        modulesAll.forEach(function(input, index) {
+            if(input.value.trim() == '')
+            {
+                e.preventDefault();
+                document.querySelectorAll('.alert-error')[0].style.display = 'block';
+            }
+        });
+    }
+});
 
 
 

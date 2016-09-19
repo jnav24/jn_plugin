@@ -38,7 +38,7 @@ class PageController extends Controller
         $page->page_name = $post['page_name'];
         $page->page_url = $this->urlFormat($post['page_name']);
         $page->page_content = $this->serialize($post['modules']);
-        $page->page_status = $post['page_status'];
+        $page->page_status = 'draft';
         $page->created_by = $post['modified_by'];
         $page->modified_by = $post['modified_by'];
         $page->created_at = Carbon::now();

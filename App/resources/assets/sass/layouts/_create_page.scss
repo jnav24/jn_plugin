@@ -131,14 +131,163 @@
 
 // version 2
 #page_create {
+    $module_height: 21px;
+
     .module_list {
         background: #fff;
         border: 1px solid #ccc;
-        height: 100%;
+        height: 90%;
         left: 182px;
+        overflow: auto;
         position: fixed;
-        top: 117px;
+        top: 51px;
         width: 250px;
+        
+        .module_each {
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            position: relative;
+
+            p, .module_each-btn {
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            &-btn {
+                height: $module_height;
+                padding-top: 7px;
+                text-align: center;
+                @include posa(0,10px,n,n);
+
+                a {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .module_create {
+        background: #fff;
+        margin-left: 280px;
+        padding: 15px 0 0 0;
+        width: auto;
+
+        .alert {
+            margin: 20px 15px;
+        }
+
+        .module_each {
+            position: relative;
+        }
+
+        .module_each-btn {
+            padding-top: 12px;
+            @include posa(0,0,n,n);
+        }
+
+        .page_create_header {
+            padding: 0 15px;
+            @include fontLa(24px, 300);
+        }
+
+        .page_create_text {
+            padding: 0 15px;
+        }
+
+        input[name="page_name"] {
+            display: block;
+            margin: 0 1%;
+            padding: 10px;
+            width: 98%;
+        }
+
+        .list-group {
+            background: #5e5e5e;
+            margin-top: 20px;
+            padding: 30px 15px;
+        }
+
+        .list-group-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            @include transition(0.25s ease background);
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+            p {
+                display: inline-block;
+                line-height: 1;
+                margin-left: 12px;
+                @include fontLa(18px);
+            }
+
+            &:hover, &.empty {
+                background: #efefef;
+            }
+
+            &.empty {
+                //border: 5px dashed #ccc;
+                color: #5e5e5e;
+                text-align: center;
+
+                p {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .sortable-ghost {
+            background: #ccc;
+            border: 0;
+            @include box-shadow(0 0 10px rgba(#000, 0.5));
+
+            p, div, i {
+                display: none;
+            }
+        }
+
+        .module_move, .module_close {
+            float: right;
+            height: $module_height;
+            line-height: 2.5;
+            margin-right: 10px;
+            text-align: center;
+            @include transition(0.5s background ease);
+
+            .fa {
+                color: #fff;
+                font-size: 18px;
+            }
+        }
+
+        .module_move {
+            cursor: move;
+            &.round {
+                @include circle(30px, #0c7fcc);
+            }
+
+            &:hover {
+                background: darken(#0c7fcc, 20%);
+            }
+        }
+
+        .module_close {
+            cursor: pointer;
+            &.round {
+                @include circle(30px, #e74c3c);
+            }
+
+            &:hover {
+                background: darken(#e74c3c, 20%);
+            }
+        }
     }
 
     .module_save {

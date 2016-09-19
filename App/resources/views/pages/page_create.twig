@@ -2,18 +2,22 @@
 
 {% block content %}
     <div id="page_create">
-        <alerts type="error"><strong>Oops!</strong> Make sure you have entered a name and add a module.</alerts>
 
-        <div class="module_list"></div>
+        <page-create-modules modules="{{ modules|json_encode() }}">{% include 'partials/save.twig' with {'action' : 'page-store'} %}</page-create-modules>
 
-        <div class="module_save">
-            {% include 'partials/save.twig' with {'action' : 'page-store'} %}
-        </div>
+        {#<div class="module_list"></div>#}
 
-        <div style="width: auto; height: 300px; background: #fff; margin-left: 280px;">
-            <h2 class="page_create_header">Page</h2>
-            <p class="page_create_text">The modules listed below are going to be the modules that will be available on your page. You can sort the order of how you want the modules to be on the page by clicking and dragging the blue move button.</p>
-        </div>
+        {#<div class="module_save">#}
+            {#{% include 'partials/save.twig' with {'action' : 'page-store'} %}#}
+        {#</div>#}
+
+        {#<div style="width: auto; height: 300px; background: #fff; margin-left: 280px;">#}
+            {#<h2 class="page_create_header">Page</h2>#}
+            {#<p class="page_create_text">#}
+                {#The modules listed below are going to be the modules that will be available on your page.#}
+                {#You can sort the order of how you want the modules to be on the page by clicking and dragging the blue move button.#}
+            {#</p>#}
+        {#</div>#}
 
         {#<h1 class="jn_plugin_h1">Create a Page</h1>#}
 

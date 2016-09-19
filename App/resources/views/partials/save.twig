@@ -19,7 +19,7 @@ There are some functionality that are twig specific which causes some issues in 
         <input type="hidden" name="page_action" value="{{ action }}">
         <input type="hidden" name="modified_by" value="{{ getCurrentUser() }}">
 
-        <div class="save__btns">
+        <div class="save__btns" style="padding-left: 15px">
             <input type="submit" name="btn_save" class="flat_btn btn__save" value="Save">
             <a href="{{ main_page_url }}" class="flat_btn">Cancel</a>
         </div>

@@ -98,8 +98,9 @@
   position: relative;
   text-align: center;
   text-decoration: none;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 .alert .close {
@@ -375,7 +376,7 @@ h1.jn_plugin_h1 {
 
 .col_empty {
   background: #f9f9f9;
-  font-weight: bold;
+  font-size: 18px;
   padding: 20px 0;
   text-align: center;
 }
@@ -3614,11 +3615,194 @@ h1.jn_plugin_h1 {
 #page_create .module_list {
   background: #fff;
   border: 1px solid #ccc;
-  height: 100%;
+  height: 90%;
   left: 182px;
+  overflow: auto;
   position: fixed;
-  top: 117px;
+  top: 51px;
   width: 250px;
+}
+
+#page_create .module_list .module_each {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+}
+
+#page_create .module_list .module_each p, #page_create .module_list .module_each .module_each-btn {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#page_create .module_list .module_each p {
+  margin: 0;
+}
+
+#page_create .module_list .module_each-btn {
+  height: 21px;
+  padding-top: 7px;
+  text-align: center;
+  bottom: auto;
+  left: auto;
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+
+#page_create .module_list .module_each-btn a {
+  padding: 0;
+}
+
+#page_create .module_create {
+  background: #fff;
+  margin-left: 280px;
+  padding: 15px 0 0 0;
+  width: auto;
+}
+
+#page_create .module_create .alert {
+  margin: 20px 15px;
+}
+
+#page_create .module_create .module_each {
+  position: relative;
+}
+
+#page_create .module_create .module_each-btn {
+  padding-top: 12px;
+  bottom: auto;
+  left: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#page_create .module_create .page_create_header {
+  padding: 0 15px;
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+#page_create .module_create .page_create_text {
+  padding: 0 15px;
+}
+
+#page_create .module_create input[name="page_name"] {
+  display: block;
+  margin: 0 1%;
+  padding: 10px;
+  width: 98%;
+}
+
+#page_create .module_create .list-group {
+  background: #5e5e5e;
+  margin-top: 20px;
+  padding: 30px 15px;
+}
+
+#page_create .module_create .list-group-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+  -webkit-transition: 0.25s ease background;
+  -moz-transition: 0.25s ease background;
+  -o-transition: 0.25s ease background;
+  -ms-transition: 0.25s ease background;
+  transition: 0.25s ease background;
+}
+
+#page_create .module_create .list-group-item:first-of-type {
+  margin-top: 0;
+}
+
+#page_create .module_create .list-group-item p {
+  display: inline-block;
+  line-height: 1;
+  margin-left: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+#page_create .module_create .list-group-item:hover, #page_create .module_create .list-group-item.empty {
+  background: #efefef;
+}
+
+#page_create .module_create .list-group-item.empty {
+  color: #5e5e5e;
+  text-align: center;
+}
+
+#page_create .module_create .list-group-item.empty p {
+  margin-left: 0;
+}
+
+#page_create .module_create .sortable-ghost {
+  background: #ccc;
+  border: 0;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#page_create .module_create .sortable-ghost p, #page_create .module_create .sortable-ghost div, #page_create .module_create .sortable-ghost i {
+  display: none;
+}
+
+#page_create .module_create .module_move, #page_create .module_create .module_close {
+  float: right;
+  height: 21px;
+  line-height: 2.5;
+  margin-right: 10px;
+  text-align: center;
+  -webkit-transition: 0.5s background ease;
+  -moz-transition: 0.5s background ease;
+  -o-transition: 0.5s background ease;
+  -ms-transition: 0.5s background ease;
+  transition: 0.5s background ease;
+}
+
+#page_create .module_create .module_move .fa, #page_create .module_create .module_close .fa {
+  color: #fff;
+  font-size: 18px;
+}
+
+#page_create .module_create .module_move {
+  cursor: move;
+}
+
+#page_create .module_create .module_move.round {
+  height: 30px;
+  width: 30px;
+  background: #0c7fcc;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+#page_create .module_create .module_move:hover {
+  background: #06436c;
+}
+
+#page_create .module_create .module_close {
+  cursor: pointer;
+}
+
+#page_create .module_create .module_close.round {
+  height: 30px;
+  width: 30px;
+  background: #e74c3c;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+#page_create .module_create .module_close:hover {
+  background: #a82315;
 }
 
 #page_create .module_save {

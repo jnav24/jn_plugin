@@ -9,17 +9,14 @@
 
 // ::::::::::::::: Sass
 
-var sassop = './';
-var sassip = 'App/resources/assets/sass/';
+var sassop = 'css/';
+var sassip = 'sass/';
 var ops = 'compressed';
-var sass = 'nodeSass';
 
 // ::::::::::::::: JS
 
-var jsop = './';
-var jsip = 'App/resources/assets/js/';
-var jsDir = './';
-var phpDir = 'tests/';
+var jsop = 'js/';
+var jsip = 'js-dev/';
 
 // ::::::::::::::: Global Gulp
 
@@ -31,112 +28,141 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     watch = require('gulp-watch'),
+    livereload= require('gulp-livereload'),
     plumber = require('gulp-plumber'),
-    rubySass = require('gulp-ruby-sass'),
-    nodeSass = require('gulp-sass'),
+    // ===========================================================================
+    // you can only use one of these at a time. sassy = not using. sass = using.
+    // just change the desired on to 'sass' and the other to 'sassy'.
+    sassy = require('gulp-sass'),
+    sass = require('gulp-ruby-sass'),
+    // ===========================================================================
+
     connect = require('gulp-connect'),
     notify = require('gulp-notify'),
-    phpunit = require('gulp-phpunit'),
-    jasminet = require('gulp-jasmine'),
-    reload = browserSync.reload;
+    growl = require('gulp-notify-growl'),
+    phpunit = require('gulp-phpunit');
 
 // ===========================================================================
-// JS
+// Initialize the notifier
+var growlNotifier = growl({
+  hostname : '10.16.20.42' // IP or Hostname to notify, default to localhost
+});
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+// ===========================================================================
+// Concatenate & Minify JS 
+// Do NOT create a main.js file or a file you are concatenating to.
+
+
 gulp.task('scripts', function() {
     return gulp.src(jsip+'*.js')
-        .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
-        .pipe(concat('main.js'))
-        .pipe(uglify())
-        .pipe(rename({
-            suffix: '.min'
+        .pipe(watch({
+            glob: jsip + '*.js',
+            emit: 'all',
+            emitOnGlob: false
+        }, function(files) {
+            return files.pipe(plumber())
+                .pipe(concat('main.js'))
+                .pipe(uglify())
+                .pipe(rename({
+                    suffix: '.min'
+                }))
+                .pipe(gulp.dest(jsop))
+                // the error handler isn't really needed because this check for errors
+                // so with each save you will get a success . Perhaps use jshint.
+                .pipe(plumber({errorHandler: growlNotifier.onError('<%= error.message %>')}))
+                .pipe(growlNotifier({
+                    title: 'Success',
+                    message: 'Compiled <%= file.relative %>'
+                }))
+                .pipe(browserSync.reload({stream:true}));
+        }))        
+});
+
+
+// ===========================================================================
+// Ruby Sass (to run: sudo gulp)
+gulp.task('sassy', function () {
+    return gulp.src([sassip + '**/*.scss', sassip + '**/*.sass'])
+        .pipe(watch({
+            glob: [sassip + '**/*.scss', sassip + '**/*.sass'],
+            emit: 'all',
+            emitOnGlob: false
+        }, function(files) {
+            return files.pipe(plumber())
+                .pipe(sass({
+                    style: ops
+                }))
+                .pipe(gulp.dest(sassop));
         }))
-        .pipe(gulp.dest(jsop))
-        .pipe(notify({
+        .pipe(plumber({errorHandler: growlNotifier.onError('<%= error.message %>')}))
+        // ===========================================================================
+        // Change watches for changed files then runs sass
+        // which is why the sass command is repeated below
+        .pipe(changed(sassop, { extension: '.css' }))
+        .pipe(sass({
+            style: ops
+        }))
+        .pipe(gulp.dest(sassop))
+        .pipe(growlNotifier({
             title: 'Success',
             message: 'Compiled <%= file.relative %>'
         }))
-        .pipe(browserSync.reload({stream:true}));
+        // ===========================================================================
+        .pipe(browserSync.reload({stream:true}));;
 });
 
 // ===========================================================================
-// Ruby Sass
-gulp.task('rubySass', function() {
-    return rubySass(sassip, { style: ops })
-        .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
-        .pipe(gulp.dest(sassop))
-        .pipe(notify({
-            title: 'Success',
-            message: 'Compiled <%= file.relative %>'
+// Sass (not ruby)
+gulp.task('sass', function() {
+    return gulp.src([sassip + '**/*.scss', sassip + '**/*.sass'])
+        .pipe(watch({
+            glob: ['sass/**/*.scss', 'sass/**/*.sass'],
+            emit: 'all',
+            emitOnGlob: false
+        }, function(files) {
+            return files.pipe(plumber())
+                .pipe(sass({
+                    errLogToConsole: true,
+                    outputStyle: ops
+                }))
+                .pipe(gulp.dest(sassop));
         }))
-        .pipe(reload({stream: true}));
-});
-
-// ===========================================================================
-// Node Sass
-gulp.task('nodeSass', function() {
-    gulp.src(sassip + '*.scss')
-    .pipe(plumber())
-    .pipe(nodeSass({outputStyle: ops, errLogToConsole: true}))
+        .pipe(plumber({errorHandler: growlNotifier.onError('<%= error.message %>')}))
+        // ===========================================================================
+        // Change watches for changed files then runs sass
+        // which is why the sass command is repeated below
+        .pipe(changed(sassop, { extension: '.css' }))
+        .pipe(sass({
+            errLogToConsole: true,
+            outputStyle: ops
+        }))
         .pipe(gulp.dest(sassop))
-        .pipe(reload({stream: true}));
+        .pipe(growlNotifier({
+            title: 'Success',
+            message: 'Compiled Sass <%= file.relative %>'
+        }))
+        // ===========================================================================
+        .pipe(browserSync.reload({stream:true}));;
 });
 
 // ===========================================================================
-// Browser Sync
-// the baseDir goes to localhost:3000
-// the proxy goes to 192.168.33.10:3000/path/to/dir
+// Watch HTML
 gulp.task('browser-sync', function() {
-    //browserSync({
-      //  server: {
-        //    baseDir: './' 
-        //}
-        // proxy: "192.168.33.10" 
-    //});
     browserSync.init([
-    '**/*.php',
-    '*.html'
-   ],{
-    proxy: {
-        host: "192.168.1.81"
-    }
-   });
-});
-
-// ===========================================================================
-// PhpUnit
-gulp.task('phpunit', function() {
-    var options = {debug: false, notify: true};
-    gulp.src('phpunit.xml')
-        .pipe(phpunit('', options))
-        .on('error', notify.onError({
-            title: "Failed Tests!",
-            message: "<%= error.message %>"
-        }))
-        .pipe(notify({
-            title: 'Success',
-            message: '<%= file.relative %>'
-        }));
-});
-
-// ===========================================================================
-// Jasmine
-gulp.task('jasmine', function() {
-    gulp.src(jsDir + 'spec/*_spec.js')
-	.pipe(jasmine())
-});
-
-// ===========================================================================
-// All Watch commands
-gulp.task('watch', function(){
-    gulp.watch(phpDir + '/**/*.php', function(){
-        gulp.run('phpunit');
+        '**/*.php',
+        '*.html'
+        ], {
+        proxy: {
+            host: "10.16.20.65"
+          }
     });
-    gulp.watch([sassip + '**/*.scss', sassip + '**/*.sass'], [sass]);
-    gulp.watch(jsip+'*.js', ['scripts']);
-    gulp.watch("./*.html").on('change', reload);
-    gulp.watch(jsDir + "spec/*._spec.js", ['jasmine']);
 });
 
 // ===========================================================================
 // Default Task
-gulp.task('default', ['watch','nodeSass','scripts','phpunit']);
+gulp.task('default', ['sassy','browser-sync','scripts']);

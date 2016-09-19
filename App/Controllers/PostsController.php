@@ -14,6 +14,10 @@ class PostsController extends Controller
         $posts->post_name = $input->page_url;
         $posts->post_author = $input->created_by;
         $posts->post_status = $input->page_status;
+        $posts->post_excerpt = '';
+        $posts->to_ping = '';
+        $posts->pinged = '';
+        $posts->post_content_filtered = '';
         $posts->post_content = "[jn_plugin id='" . $input->page_id . "']";
         $posts->post_date = Carbon::now();
         $posts->post_date_gmt = Carbon::now();

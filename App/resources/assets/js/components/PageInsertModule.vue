@@ -14,6 +14,10 @@
 
         <input type="hidden" name="modules[{{ module.module_index }}]">
     </div>
+
+    <div class="list-group-item empty" v-if="!modules.length">
+        <p>Added modules will appear here.</p>
+    </div>
 </template>
 
 <script>
