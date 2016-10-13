@@ -19,6 +19,15 @@
 
     <div class="col">
         <h3>Additional Info</h3>
-        {{ content.banner_name }}
+
+        <label for="banner_name">Banner Name</label>
+        <input value="{{ content.banner_name }}" type="text" name="banner_name">
+
+        <label for="banner_alt_text">Alt Text</label>
+        <input value="{{ content.banner_alt_text }}" type="text" name="banner_alt_text">
+
+        <label for="banner_caption">Captions</label>
+        <textarea name="banner_caption"></textarea>
+
     </div>
 </div>

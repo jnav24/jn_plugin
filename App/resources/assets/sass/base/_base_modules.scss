@@ -5,12 +5,61 @@
 #jn_plugin {
     .module__layout {
         background: #fff;
-        padding: 10px;
+        padding: 50px 10px 10px;
+        position: relative;
         @include box-shadow(0 0 1px rgba(#000,0.6));
 
         h2 {
-            font-size: 21px;
+            background: map_get($colors, dkgrey);
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+            @include box-sizing(border-box);
+            @include fontLa(21px, 300);
+            @include posa(0,n,n,0);
+        }
+
+        h3 {
+            @include fontLa(18px, normal);
+        }
+    }
+    
+    .test_module {
+        padding: 10px;
+        @include box-sizing(border-box);
+
+        h2, p {
+            margin: 0;
             padding: 0;
+        }
+
+        h2 {
+            color: #fff;
+            @include fontLa(24px, 300);
+        }
+
+        p {
+            color: #efefef;
+        }
+
+        &.blue {
+            background: #00BCD5;
+        }
+
+        &.green {
+            background: #8BC24A;
+        }
+
+        &.grey {
+            background: #607D8B;
+        }
+
+        &.orange {
+            background: #FF9700;
+        }
+
+        &.pink {
+            background: #EA1E63;
         }
     }
 }

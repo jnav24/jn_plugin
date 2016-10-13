@@ -10,15 +10,3 @@
     background: #fff;
     @include box-shadow(0 0 1px rgba(#000,0.6));
 }
-
-.save_container {
-    .col_wrapper {
-        margin-left: 20px;
-        padding: 0;
-    }
-    
-    .save__btns {
-        background: #3a3a3a;
-        padding: 10px 0;
-    }
-}

@@ -4,6 +4,18 @@
     }
 
     input[type="text"] {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+
+        &.banner_src {
+            margin: 10px 0;
+        }
+    }
+
+    textarea {
+        display: block;
+        height: 150px;
         width: 100%;
     }
 }

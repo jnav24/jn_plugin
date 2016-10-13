@@ -106,6 +106,20 @@ document.getElementById('jn_plugin').addEventListener('submit', function(e) {
     }
 });
 
+const page_status = document.querySelectorAll('.page_status .col');
+page_status.forEach(function(v, i) {
+    v.addEventListener('click', () => {
+        if (v.className == 'col selected') {
+            return;
+        }
+        else {
+            let selected = document.getElementsByClassName('col selected')[0];
+            selected.className = 'col';
+            v.className = 'col selected';
+        }
+    });
+});
+
 
 
 

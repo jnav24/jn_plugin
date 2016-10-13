@@ -9,11 +9,29 @@ There are some functionality that are twig specific which causes some issues in 
         {% if page is not null %}
             <h2>Page Info</h2>
 
-            <p><strong>Last Modified By:</strong> {{ getUserName(page.modified_by) }}</p>
-            <p><strong>Last Modified On:</strong> {{ page.updated_at|date('M d, y') }} @ {{ page.updated_at|date('G:i') }}</p>
+            <p><strong>Last Modified By</strong></p>
+            <h3>{{ getUserName(page.modified_by) }}</h3>
 
-            Publish <input type="radio" name="page_status" value="publish" checked>
-            Draft <input type="radio" name="page_status" value="draft">
+            <p><strong>Last Modified On</strong></p>
+            <h3>{{ page.updated_at|date('M d, y') }}  <span>{{ page.updated_at|date('G:i') }}</span></h3>
+
+            <div class="page_status col_container half">
+                <p class="clearfix"><strong>Page Status</strong></p>
+                <div class="col selected">
+                    <div class="page_status-radio">
+                        <div class="page_status-radio-check"></div>
+                    </div>
+                    <p>Publish</p>
+                </div>
+                <div class="col">
+                    <div class="page_status-radio">
+                        <div class="page_status-radio-check"></div>
+                    </div>
+                    <p>Draft</p>
+                </div>
+            </div>
+
+            <input type="hidden" name="page_status">
         {% endif %}
 
         <input type="hidden" name="page_action" value="{{ action }}">

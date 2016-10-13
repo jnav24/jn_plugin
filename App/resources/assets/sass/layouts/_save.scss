@@ -1,0 +1,101 @@
+#jn_plugin {
+    .save_container {
+        text-align: left;
+
+        .col_wrapper {
+            background: #3a3a3a;
+            color: #fff;
+            margin-left: 20px;
+            padding: 0;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 30px;
+            @include fontLa(21px, 300);
+        }
+
+        h3 {
+            color: #fff;
+            margin: 0 0 30px 0;
+            @include fontLa(26px, 300);
+
+            span {
+                @include fontLa(16px, 300);
+            }
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .save__btns {
+            background: #3a3a3a;
+            padding: 10px 0;
+        }
+
+        .page_status {
+            &.col_container {
+                margin: 20px 0;
+            }
+
+            .col {
+                border: 1px solid #fff;
+                cursor: pointer;
+                padding: 10px;
+                @include box-sizing(border-box);
+                @include transition(0.25s all ease);
+
+                &:hover {
+                    background: #fff;
+                    color: #3a3a3a;
+
+                    .page_status-radio {
+                        background: #fff;
+                        border-color: #3a3a3a;
+                    }
+                }
+                
+                &.selected {
+                    background: #1c8fff;
+                    border-color: #1c8fff;
+                    
+                    &:hover {
+                        color: #fff;
+
+                        .page_status-radio {
+                            border-color: #fff;
+                        }
+                    }
+
+                    .page_status-radio {
+                        background: #1c8fff;
+
+                        &-check {
+                            margin: 0 auto;
+                            @include circle(10px, #fff);
+                        }
+                    }
+                }
+
+                .page_status-radio, p {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+
+                .page_status-radio {
+                    border: 2px solid #fff;
+                    padding-top: 5.5px;
+                    @include box-sizing(border-box);
+                    @include circle(25px, #3a3a3a);
+                    @include transition(0.25s all ease);
+                }
+
+                p {
+                    font-size: 18px;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}

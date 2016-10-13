@@ -97,6 +97,5 @@ if(Capsule::schema()->hasTable('pages'))
 |--------------------------------------------------------------------------
 |
 */
-//$_POST['page_action'] = 'page-destroy';
-//$_POST['id'] = '15';
+
 $post->getPostData();

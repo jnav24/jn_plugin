@@ -1,9 +1,16 @@
-.module__layout[data-module="module_slideshow"] {
+#jn_plugin .module__layout[data-module="module_slideshow"] {
+    padding-left: 0;
+    padding-right: 0;
+
+    .slideshow__container {
+        margin: 15px 0;
+    }
+
     .slide__each {
-        padding: 10px 0;
+        padding: 10px;
 
         &:nth-of-type(2n+2) {
-            background: #eaeaea;
+            background: lighten(map_get($colors, dkgrey), 30%);
         }
     }
 
@@ -13,5 +20,11 @@
 
     input[type="text"] {
         width: 100%;
+    }
+
+    textarea {
+        height: 100px;
+        width: 100%;
+        @include box-sizing(border-box);
     }
 }

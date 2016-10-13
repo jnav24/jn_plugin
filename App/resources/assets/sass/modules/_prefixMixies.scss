@@ -336,18 +336,20 @@
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+// $colSize - amount of columns for the biggest column
 // $colamount - the amount of total columns
-// $col - amount of columns for the biggest column
 // i.e.
 // span { @include colgriduneven(6,4,false); }
 
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-@mixin colgriduneven($col, $colamount, $float: true, $bigCol: 1) {
+@mixin colgriduneven($colSize, $colamount, $float: true, $bigCol: 1) {
   $columns: 12;
-  $diff: ($columns - $col);
+  $diff: ($columns - $colSize);
   $divide: $diff/($colamount - 1);
+  $gutterSize: 0.25;
+  $gutter: ($gutterSize/($colamount - 1)) + $gutterSize;
 
   @if $bigCol > $colamount {
     @warn "The amount of columns #{$colamount} and the nth column #{$bigCol} do not match up.";
@@ -360,12 +362,18 @@
     display: inline-block;
     vertical-align: middle;
   }
+
+  margin-right: ccw($gutter);
   text-align: center;
-  width: ccw($divide);
+  width: ccw($divide - $gutterSize);
 
   &:nth-of-type(#{$bigCol}) {
     text-align: left;
-    width: ccw($col);
+    width: ccw($colSize - $gutterSize);
+  }
+
+  &:last-of-type {
+    margin-right: 0;
   }
 }
 
