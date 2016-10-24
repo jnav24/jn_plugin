@@ -3751,9 +3751,9 @@ h1.jn_plugin_h1 {
   padding: 0 15px;
 }
 
-#page_create .module_create input[name="page_name"] {
+#page_create .module_create input[name*="page_"] {
   display: block;
-  margin: 0 1%;
+  margin: 0 1% 10px;
   padding: 10px;
   width: 98%;
 }
@@ -4189,12 +4189,13 @@ h1.jn_plugin_h1 {
   background: #3a3a3a;
   color: #fff;
   margin-left: 20px;
-  padding: 0;
+  padding: 10px;
 }
 
 #jn_plugin .save_container h2 {
   color: #fff;
   margin-bottom: 30px;
+  padding-left: 0;
   font-family: 'Lato', sans-serif;
   font-size: 21px;
   font-weight: 300;
@@ -4287,7 +4288,7 @@ h1.jn_plugin_h1 {
 
 #jn_plugin .save_container .page_status .col .page_status-radio {
   border: 2px solid #fff;
-  padding-top: 5.5px;
+  padding-top: 5.25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -4308,5 +4309,5 @@ h1.jn_plugin_h1 {
 
 #jn_plugin .save_container .page_status .col p {
   font-size: 18px;
-  margin-left: 10px;
+  margin: 0 0 0 10px;
 }

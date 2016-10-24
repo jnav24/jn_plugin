@@ -6,12 +6,13 @@
             background: #3a3a3a;
             color: #fff;
             margin-left: 20px;
-            padding: 0;
+            padding: 10px;
         }
 
         h2 {
             color: #fff;
             margin-bottom: 30px;
+            padding-left: 0;
             @include fontLa(21px, 300);
         }
 
@@ -85,7 +86,7 @@
 
                 .page_status-radio {
                     border: 2px solid #fff;
-                    padding-top: 5.5px;
+                    padding-top: 5.25px;
                     @include box-sizing(border-box);
                     @include circle(25px, #3a3a3a);
                     @include transition(0.25s all ease);
@@ -93,7 +94,7 @@
 
                 p {
                     font-size: 18px;
-                    margin-left: 10px;
+                    margin: 0 0 0 10px;
                 }
             }
         }

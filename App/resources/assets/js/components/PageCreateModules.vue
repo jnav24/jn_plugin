@@ -25,6 +25,7 @@
         <alerts type="error"><strong>Oops!</strong> Make sure you have entered a name and add a module.</alerts>
 
         <input type="text" name="page_name" placeholder="Enter Page Name">
+        <input type="text" name="page_type" placeholder="Enter Page Type">
 
         <div class="list-group" v-sortable="{ handle: '.fa-arrows' }">
             <page-insert-module :modules="page_modules"></page-insert-module>

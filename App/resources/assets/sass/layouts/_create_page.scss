@@ -198,9 +198,9 @@
             padding: 0 15px;
         }
 
-        input[name="page_name"] {
+        input[name*="page_"] {
             display: block;
-            margin: 0 1%;
+            margin: 0 1% 10px;
             padding: 10px;
             width: 98%;
         }

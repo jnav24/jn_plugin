@@ -16,6 +16,7 @@ class PageMigration
                 $table->string('page_name');
                 $table->string('page_url');
                 $table->string('page_status');
+                $table->string('page_type');
                 $table->integer('created_by')->unsigned();
                 $table->integer('modified_by')->unsigned();
                 $table->timestamps();

@@ -112,11 +112,12 @@ page_status.forEach(function(v, i) {
         if (v.className == 'col selected') {
             return;
         }
-        else {
-            let selected = document.getElementsByClassName('col selected')[0];
-            selected.className = 'col';
-            v.className = 'col selected';
-        }
+
+        document.getElementById('page_status').value = v.getAttribute('data-status');
+        let selected = document.getElementsByClassName('col selected')[0];
+        selected.className = 'col';
+        v.className = 'col selected';
+        console.log(document.getElementById('page_status').value);
     });
 });
 

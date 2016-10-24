@@ -17,13 +17,13 @@ There are some functionality that are twig specific which causes some issues in 
 
             <div class="page_status col_container half">
                 <p class="clearfix"><strong>Page Status</strong></p>
-                <div class="col selected">
+                <div class="col {{ page.page_status is null ? 'selected' : (page.page_status == 'publish' ? 'selected' : '') }}" data-status="publish">
                     <div class="page_status-radio">
                         <div class="page_status-radio-check"></div>
                     </div>
                     <p>Publish</p>
                 </div>
-                <div class="col">
+                <div class="col {{ page.page_status == 'draft' ? 'selected' : '' }}" data-status="draft">
                     <div class="page_status-radio">
                         <div class="page_status-radio-check"></div>
                     </div>
@@ -31,7 +31,7 @@ There are some functionality that are twig specific which causes some issues in 
                 </div>
             </div>
 
-            <input type="hidden" name="page_status">
+            <input type="hidden" name="page_status" id="page_status" value="{{ page.page_status is null ? 'publish' : page.page_status }}">
         {% endif %}
 
         <input type="hidden" name="page_action" value="{{ action }}">
