@@ -3717,10 +3717,13 @@ h1.jn_plugin_h1 {
 }
 
 #page_create .module_create {
-  background: #fff;
   margin-left: 280px;
-  padding: 15px 0 0 0;
+  margin-right: 420px;
   width: auto;
+}
+
+#page_create .module_create .col_wrapper {
+  padding: 15px 0;
 }
 
 #page_create .module_create .alert {
@@ -3751,11 +3754,25 @@ h1.jn_plugin_h1 {
   padding: 0 15px;
 }
 
-#page_create .module_create input[name*="page_"] {
+#page_create .module_create input[name*="page_"], #page_create .module_create select {
   display: block;
   margin: 0 1% 10px;
   padding: 10px;
   width: 98%;
+}
+
+#page_create .module_create label {
+  cursor: text;
+  display: block;
+  margin: 20px 1% 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+#page_create .module_create select {
+  color: #777;
+  height: 45px;
 }
 
 #page_create .module_create .list-group {
@@ -3869,10 +3886,13 @@ h1.jn_plugin_h1 {
 }
 
 #page_create .module_save {
-  background: #000;
+  height: 90%;
   margin-bottom: 30px;
   margin-left: 280px;
-  width: auto;
+  position: fixed;
+  right: 20px;
+  top: 51px;
+  width: 400px;
 }
 
 #page_create .module_save .col_wrapper {

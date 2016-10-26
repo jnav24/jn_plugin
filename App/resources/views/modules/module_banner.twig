@@ -6,10 +6,10 @@
 
         {% if content.banner_img is empty %}
             <img class="banner_img" src="{{ plugin_img_path }}thumbnail.jpg" alt="">
-            <input type="text" class="banner_src" name="" value="" readonly>
+            <input type="text" class="banner_src" name="page_modules[module_banner{{ int }}][banner_src]" value="" readonly>
         {% else %}
             <img class="banner_img" src="{{ base_url }}{{ content.banner_img }}" alt="">
-            <input type="text" class="banner_src" name="" value="{{ base_url }}{{ content.banner_img }}" readonly>
+            <input type="text" class="banner_src" name="page_modules[module_banner{{ int }}][banner_src]" value="{{ base_url }}{{ content.banner_img }}" readonly>
         {% endif %}
 
         <a href="#" class="insert-media add_media flat_btn" data-editor="content" title="Add Media">
@@ -21,13 +21,13 @@
         <h3>Additional Info</h3>
 
         <label for="banner_name">Banner Name</label>
-        <input value="{{ content.banner_name }}" type="text" name="banner_name">
+        <input value="{{ content.banner_name }}" type="text" name="page_modules[module_banner{{ int }}][banner_name]">
 
         <label for="banner_alt_text">Alt Text</label>
-        <input value="{{ content.banner_alt_text }}" type="text" name="banner_alt_text">
+        <input value="{{ content.banner_alt_text }}" type="text" name="page_modules[module_banner{{ int }}][banner_alt_text]">
 
         <label for="banner_caption">Captions</label>
-        <textarea name="banner_caption"></textarea>
+        <textarea name="page_modules[module_banner{{ int }}][banner_caption]">{{ content.banner_captions }}</textarea>
 
     </div>
 </div>

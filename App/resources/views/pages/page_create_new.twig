@@ -1,0 +1,9 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div id="page_create">
+    <page-create-modules-new modules="{{ modules|json_encode() }}">
+        {% include 'partials/save.twig' with {'action' : (page is empty ? 'page-store' : 'page-update')} %}
+    </page-create-modules-new>
+</div>
+{% endblock %}

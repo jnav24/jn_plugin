@@ -64,6 +64,23 @@ add_action('admin_menu', function() use ($parent_slug,  $page) {
 
 /*
 |--------------------------------------------------------------------------
+| Add Page
+|--------------------------------------------------------------------------
+|
+*/
+
+add_action('admin_menu', function() use ($parent_slug,  $page) {
+    $child_slug = env()->getEnv('PREFIX', 'jn_') . 'new_edit';
+    $pageTitle = "New Add Page";
+    $pageName = "New Add Page";
+
+    add_submenu_page($parent_slug, $pageTitle, $pageName, 'manage_options', $child_slug, function() use ($page) {
+        echo $page->newCreate();
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
 | Rest of the pages
 |--------------------------------------------------------------------------
 | Because having all the pages, that might be created, appear in the submenu,

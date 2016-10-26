@@ -18,6 +18,13 @@ class PageController extends Controller
         $modules = Modules::all()->toArray();
         return $this->getView('pages/page_create.twig', ['modules' => $modules]);
     }
+
+    public function newCreate()
+    {
+        $modules = Modules::all()->toArray();
+        $page = '';
+        return $this->getView('pages/page_create_new.twig', ['modules' => $modules, 'page' => $page]);
+    }
     
     public function edit($id)
     {
@@ -52,6 +59,8 @@ class PageController extends Controller
 
     public function update($post)
     {
+        echo "<pre>";
+        var_dump($post);die();
         $page = Pages::find($post['page_id']);
         $page->page_name = $post['page_name'];
         $page->page_url = $this->urlFormat($post['page_name']);

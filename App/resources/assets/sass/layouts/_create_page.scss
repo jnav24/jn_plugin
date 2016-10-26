@@ -171,10 +171,13 @@
     }
 
     .module_create {
-        background: #fff;
         margin-left: 280px;
-        padding: 15px 0 0 0;
+        margin-right: 420px;
         width: auto;
+
+        .col_wrapper {
+            padding: 15px 0;
+        }
 
         .alert {
             margin: 20px 15px;
@@ -198,11 +201,23 @@
             padding: 0 15px;
         }
 
-        input[name*="page_"] {
+        input[name*="page_"], select {
             display: block;
             margin: 0 1% 10px;
             padding: 10px;
             width: 98%;
+        }
+
+        label {
+            cursor: text;
+            display: block;
+            margin: 20px 1% 10px;
+            @include fontLa(18px, 300);
+        }
+
+        select {
+            color: #777;
+            height: 45px;
         }
 
         .list-group {
@@ -291,10 +306,13 @@
     }
 
     .module_save {
-        background: #000;
+        height: 90%;
         margin-bottom: 30px;
         margin-left: 280px;
-        width: auto;
+        position: fixed;
+        right: 20px;
+        top: 51px;
+        width: 400px;
 
         .col_wrapper {
             margin-left: 0;

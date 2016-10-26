@@ -6,6 +6,7 @@ import VueResource from 'vue-resource'
 import Sortable from 'vue-sortable'
 import MyForm from './components/MyForm.vue'
 import PageCreateModules from './components/PageCreateModules.vue'
+import PageCreateModulesNew from './components/PageCreateModulesNew.vue'
 import PageList from './components/PageList.vue'
 
 Vue.use(VueResource);
@@ -69,7 +70,7 @@ Vue.filter('date', function(output, format) {
 
 new Vue({
     el: '.wrap',
-    components: { MyForm, PageCreateModules, PageList }
+    components: { MyForm, PageCreateModules, PageCreateModulesNew, PageList }
 });
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(e) {

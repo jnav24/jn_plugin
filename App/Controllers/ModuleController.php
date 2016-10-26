@@ -48,4 +48,26 @@ class ModuleController extends Controller
     {
         return 'module_' . $this->makeModuleSafe($module);
     }
+
+    /**
+     * gets and returns modules from views/modules directory.
+     *
+     * @param array $post - post data
+     * @return bool
+     */
+    public function retrieve($post)
+    {
+        if (!isset($post['module_name']) || !isset($post['module_data'])) {
+            return false;
+        }
+
+        if (!isset($post['module_int'])) {
+            $post['module_int'] = '_0';
+        }
+
+        echo $this->getModule($post['module_name'] . '.twig', [
+            'int' => $post['module_int'],
+            'content' => $post['module_data']
+        ]);
+    }
 }
