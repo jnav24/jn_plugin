@@ -36,7 +36,6 @@
             <!--<page-insert-module :modules="page_modules"></page-insert-module>-->
         <!--</div>-->
         <div class="list-group" id="modules_all">
-            <!--<div v-for="page in page_data">{{{ getModule(page) }}}</div>-->
             <div v-for="page in page_html" track-by="$index">{{{ page }}}</div>
         </div>
     </div>
@@ -51,7 +50,11 @@
     import PageInsertModule from './PageInsertModule.vue'
 
     export default {
-        props: ['modules'],
+        props: [
+            'base_url',
+            'modules',
+            'page_data'
+        ],
         data() {
             return {
                 page_data: {
@@ -85,7 +88,7 @@
                 let obj = {};
                 obj[current_module] = {};
                 let page_data = {
-                    'base_url': 'http://localhost/wp-test/wp-admin/admin.php',
+                    'base_url': this.base_url,
                     'page_modules': []
                 };
                 page_data['page_modules'].push(obj);
